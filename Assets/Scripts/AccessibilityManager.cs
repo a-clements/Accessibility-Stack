@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using System.Speech.Synthesis;
+//using System.Speech.Synthesis; //native functionality does not work in unity so it has to be done with the speechlib.
 using SpeechLib;
 
 public class AccessibilityManager : MonoBehaviour
@@ -17,18 +17,18 @@ public class AccessibilityManager : MonoBehaviour
 
     private void Awake()
     {
-        if(ManagerInstance == null)
+        if (ManagerInstance == null)
         {
             ManagerInstance = this;
         }
-        
-        if(ManagerInstance != this)
+
+        if (ManagerInstance != this)
         {
             Destroy(gameObject);
         }
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         Buttons = FindObjectsOfType<ButtonRemapping>();
         Dropdowns = FindObjectsOfType<DropdownRemapping>();

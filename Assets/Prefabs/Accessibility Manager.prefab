@@ -182,7 +182,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4928836303026550}
-  - component: {fileID: 114619716533693562}
   m_Layer: 0
   m_Name: Accessibility Manager
   m_TagString: Untagged
@@ -506,21 +505,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114619716533693562
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1868455544150410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61ba740a0cb7fed4f923623cb58985a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Keys: 
-  Buttons: []
-  Dropdowns: []
-  Button_TTS: []
 --- !u!114 &114628722945824270
 MonoBehaviour:
   m_ObjectHideFlags: 1
