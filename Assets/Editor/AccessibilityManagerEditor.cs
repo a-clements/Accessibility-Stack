@@ -20,24 +20,12 @@ public class AccessibilityManagerEditor : Editor
     public override void OnInspectorGUI()
     {
         AccessibilityManager Manager = (AccessibilityManager)target;
+        Manager.PanelNumber = GUILayout.Toolbar(Manager.PanelNumber, new string[] { "GamePlay", "Controls", "Graphics", "Audio" });
         if (GUILayout.Button("Create GamePlay Panel"))
         {
-            Manager.CreateGamePlayPanel();
+            Manager.CreatePanel();
         }
 
-        if (GUILayout.Button("Create Controls Panel"))
-        {
-            Manager.CreateControlsPanel();
-        }
-
-        if (GUILayout.Button("Create Graphics Panel"))
-        {
-            Manager.CreateGraphicsPanel();
-        }
-
-        if (GUILayout.Button("Create Audio Panel"))
-        {
-            Manager.CreateAudioPanel();
-        }
+        base.OnInspectorGUI();
     }
 }

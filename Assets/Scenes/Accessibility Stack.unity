@@ -229,6 +229,32 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1798780908131798, guid: d8a6c44186656044baaa8f0225c82276, type: 2}
+      propertyPath: m_Name
+      value: GamePlayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935768366201182, guid: d8a6c44186656044baaa8f0225c82276, type: 2}
+      propertyPath: m_Name
+      value: ControlsButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1162242400306418, guid: d8a6c44186656044baaa8f0225c82276, type: 2}
+      propertyPath: m_Name
+      value: GraphicsButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752141417753114, guid: d8a6c44186656044baaa8f0225c82276, type: 2}
+      propertyPath: m_Name
+      value: AudioButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 114581084912083628, guid: d8a6c44186656044baaa8f0225c82276,
+        type: 2}
+      propertyPath: PanelName
+      value: GamePlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 114581084912083628, guid: d8a6c44186656044baaa8f0225c82276,
+        type: 2}
+      propertyPath: panelexists
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8a6c44186656044baaa8f0225c82276, type: 2}
   m_IsPrefabAsset: 0

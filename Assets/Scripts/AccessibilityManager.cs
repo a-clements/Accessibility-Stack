@@ -17,6 +17,8 @@ public class AccessibilityManager : MonoBehaviour
     public ButtonRemapping[] Buttons;
     public DropdownRemapping[] Dropdowns;
     public Button_TTS[] Button_TTS;
+    [HideInInspector] public int PanelNumber;
+    [HideInInspector] public string PanelName;
 
     private void Awake()
     {
@@ -38,68 +40,44 @@ public class AccessibilityManager : MonoBehaviour
         Button_TTS = FindObjectsOfType<Button_TTS>();
     }
 
-    public void CreateGamePlayPanel()
+    public void CreatePanel()
     {
         Canvas canvas;
         canvas = FindObjectOfType<Canvas>();
-        Panel = new GameObject("GameplayPanel");
-        Panel.transform.SetParent(canvas.transform);
-        Panel.AddComponent<Image>();
-        Panel.transform.localPosition = new Vector3(0, 0, 0);
-        Panel.GetComponent<RectTransform>().anchorMax = canvas.transform.GetChild(0).GetComponent<RectTransform>().anchorMax;
-        Panel.GetComponent<RectTransform>().anchorMin = canvas.transform.GetChild(0).GetComponent<RectTransform>().anchorMin;
-        Panel.GetComponent<Image>().rectTransform.sizeDelta = canvas.transform.GetChild(0).GetComponent<Image>().rectTransform.sizeDelta;
-        Panel.GetComponent<Image>().sprite = canvas.transform.GetChild(0).GetComponent<Image>().sprite;
-        Panel.GetComponent<Image>().type = Image.Type.Sliced;
-        Panel.GetComponent<Image>().color = canvas.transform.GetChild(0).GetComponent<Image>().color;
-    }
 
-    public void CreateControlsPanel()
-    {
-        Canvas canvas;
-        canvas = FindObjectOfType<Canvas>();
-        Panel = new GameObject("ControlsPanel");
-        Panel.transform.SetParent(canvas.transform);
-        Panel.AddComponent<Image>();
-        Panel.transform.localPosition = new Vector3(0, 0, 0);
-        Panel.GetComponent<RectTransform>().anchorMax = canvas.transform.GetChild(0).GetComponent<RectTransform>().anchorMax;
-        Panel.GetComponent<RectTransform>().anchorMin = canvas.transform.GetChild(0).GetComponent<RectTransform>().anchorMin;
-        Panel.GetComponent<Image>().rectTransform.sizeDelta = canvas.transform.GetChild(0).GetComponent<Image>().rectTransform.sizeDelta;
-        Panel.GetComponent<Image>().sprite = canvas.transform.GetChild(0).GetComponent<Image>().sprite;
-        Panel.GetComponent<Image>().type = Image.Type.Sliced;
-        Panel.GetComponent<Image>().color = canvas.transform.GetChild(0).GetComponent<Image>().color;
-    }
+        switch(PanelNumber)
+        {
+            case 0:
+                PanelName = "GamePlayPanel";
+                break;
+            case 1:
+                PanelName = "ControlsPanel";
+                break;
+            case 2:
+                PanelName = "GraphicsPanel";
+                break;
+            case 3:
+                PanelName = "AudioPanel";
+                break;
+        }
 
-    public void CreateGraphicsPanel()
-    {
-        Canvas canvas;
-        canvas = FindObjectOfType<Canvas>();
-        Panel = new GameObject("GraphicsPanel");
-        Panel.transform.SetParent(canvas.transform);
-        Panel.AddComponent<Image>();
-        Panel.transform.localPosition = new Vector3(0, 0, 0);
-        Panel.GetComponent<RectTransform>().anchorMax = canvas.transform.GetChild(0).GetComponent<RectTransform>().anchorMax;
-        Panel.GetComponent<RectTransform>().anchorMin = canvas.transform.GetChild(0).GetComponent<RectTransform>().anchorMin;
-        Panel.GetComponent<Image>().rectTransform.sizeDelta = canvas.transform.GetChild(0).GetComponent<Image>().rectTransform.sizeDelta;
-        Panel.GetComponent<Image>().sprite = canvas.transform.GetChild(0).GetComponent<Image>().sprite;
-        Panel.GetComponent<Image>().type = Image.Type.Sliced;
-        Panel.GetComponent<Image>().color = canvas.transform.GetChild(0).GetComponent<Image>().color;
-    }
-
-    public void CreateAudioPanel()
-    {
-        Canvas canvas;
-        canvas = FindObjectOfType<Canvas>();
-        Panel = new GameObject("AudioPanel");
-        Panel.transform.SetParent(canvas.transform);
-        Panel.AddComponent<Image>();
-        Panel.transform.localPosition = new Vector3(0, 0, 0);
-        Panel.GetComponent<RectTransform>().anchorMax = canvas.transform.GetChild(0).GetComponent<RectTransform>().anchorMax;
-        Panel.GetComponent<RectTransform>().anchorMin = canvas.transform.GetChild(0).GetComponent<RectTransform>().anchorMin;
-        Panel.GetComponent<Image>().rectTransform.sizeDelta = canvas.transform.GetChild(0).GetComponent<Image>().rectTransform.sizeDelta;
-        Panel.GetComponent<Image>().sprite = canvas.transform.GetChild(0).GetComponent<Image>().sprite;
-        Panel.GetComponent<Image>().type = Image.Type.Sliced;
-        Panel.GetComponent<Image>().color = canvas.transform.GetChild(0).GetComponent<Image>().color;
+        if (GameObject.Find(PanelName) == null)
+        {
+            Panel = new GameObject(PanelName);
+            Panel.transform.SetParent(canvas.transform);
+            Panel.AddComponent<Image>();
+            Panel.transform.localPosition = new Vector3(0, 0, 0);
+            Panel.GetComponent<RectTransform>().anchorMax = canvas.transform.GetChild(0).GetComponent<RectTransform>().anchorMax;
+            Panel.GetComponent<RectTransform>().anchorMin = canvas.transform.GetChild(0).GetComponent<RectTransform>().anchorMin;
+            Panel.GetComponent<Image>().rectTransform.sizeDelta = canvas.transform.GetChild(0).GetComponent<Image>().rectTransform.sizeDelta;
+            Panel.GetComponent<Image>().sprite = canvas.transform.GetChild(0).GetComponent<Image>().sprite;
+            Panel.GetComponent<Image>().type = Image.Type.Sliced;
+            Panel.GetComponent<Image>().color = canvas.transform.GetChild(0).GetComponent<Image>().color;
+        }
+        else
+        {
+            Debug.Log("Panel " + PanelName + " already exists.");
+        }
     }
 
     public void Speak(string text)
