@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114687949649591774}
   - component: {fileID: 114895146192466648}
   m_Layer: 5
-  m_Name: Graphics
+  m_Name: GraphicsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 222547306067245322}
   - component: {fileID: 114762803311730396}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: MainMenuPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 114924824431741412}
   - component: {fileID: 114696105944354754}
   m_Layer: 5
-  m_Name: Audio
+  m_Name: AudioButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 114144504112037122}
   - component: {fileID: 114292550988551872}
   m_Layer: 5
-  m_Name: GamePlay
+  m_Name: GamePlayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 114739780337908486}
   - component: {fileID: 114470433951285388}
   m_Layer: 5
-  m_Name: Controls
+  m_Name: ControlsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -525,6 +525,8 @@ MonoBehaviour:
   - {fileID: 114288121253995170}
   - {fileID: 114054904617539288}
   - {fileID: 114960875359891494}
+  PanelNumber: 3
+  PanelName: AudioPanel
 --- !u!114 &114628722945824270
 MonoBehaviour:
   m_ObjectHideFlags: 1

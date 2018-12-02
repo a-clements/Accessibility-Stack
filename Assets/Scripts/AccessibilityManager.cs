@@ -45,22 +45,6 @@ public class AccessibilityManager : MonoBehaviour
         Canvas canvas;
         canvas = FindObjectOfType<Canvas>();
 
-        switch(PanelNumber)
-        {
-            case 0:
-                PanelName = "GamePlayPanel";
-                break;
-            case 1:
-                PanelName = "ControlsPanel";
-                break;
-            case 2:
-                PanelName = "GraphicsPanel";
-                break;
-            case 3:
-                PanelName = "AudioPanel";
-                break;
-        }
-
         if (GameObject.Find(PanelName) == null)
         {
             Panel = new GameObject(PanelName);
