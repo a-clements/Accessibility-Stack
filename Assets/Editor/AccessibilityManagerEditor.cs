@@ -60,6 +60,7 @@ public class AccessibilityManagerEditor : Editor
         }
 /*The end of the panels code*/
 
+/*This is the beginning of the gameplay settings*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 
         EditorGUILayout.LabelField("Game Play", EditorStyles.boldLabel);
@@ -72,7 +73,9 @@ public class AccessibilityManagerEditor : Editor
         {
             Manager.CreateGameplayButton();
         }
+/*This is the end of the gameplay settings*/
 
+/*This is the beginning of the Controls settings*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 
         EditorGUILayout.LabelField("Controls", EditorStyles.boldLabel);
@@ -85,7 +88,9 @@ public class AccessibilityManagerEditor : Editor
         {
             Manager.CreateControlsButton();
         }
+/*This is the end of the Controls settings*/
 
+/*This is the beginning of the graphics settings*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 
         EditorGUILayout.LabelField("Graphics", EditorStyles.boldLabel);
@@ -98,7 +103,9 @@ public class AccessibilityManagerEditor : Editor
         {
             Manager.CreateGraphicsButton();
         }
+/*This is the end of the Grapics settings*/
 
+/*This is the beginning of the Audio settings*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 
         EditorGUILayout.LabelField("Audio", EditorStyles.boldLabel);
@@ -111,6 +118,7 @@ public class AccessibilityManagerEditor : Editor
         {
             Manager.CreateAudioButton();
         }
+/*This is the end of the audio settings*/
 
         GUILayout.EndVertical(); //closes off the vertical command
 
