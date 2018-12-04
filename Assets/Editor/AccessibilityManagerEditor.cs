@@ -58,12 +58,16 @@ public class AccessibilityManagerEditor : Editor
         {
             Manager.CreatePanel(); //makes a call to the AccessibilityManager script
         }
+
+        GUILayout.EndVertical(); //closes off the vertical command
 /*The end of the panels code*/
 
-/*This is the beginning of the gameplay settings*/
+        /*This is the beginning of the gameplay settings*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 
         EditorGUILayout.LabelField("Game Play", EditorStyles.boldLabel);
+
+        GUILayout.BeginHorizontal(); //this line starts an area where the buttons are layed out horizontally
 
         string[] GameplayOptions = new[] { "Button", "Dropdown" }; //this creates an enum list
 
@@ -71,8 +75,10 @@ public class AccessibilityManagerEditor : Editor
 
         if (GUILayout.Button("Create Gameplay " + GameplayOptions[GameplayIndex])) //this line creates a button with the caption changing with the enum value
         {
-            Manager.CreateGameplayButton();
+            Manager.CreateGameplay();
         }
+
+        GUILayout.EndHorizontal(); //this line ends the horizontal layout
 /*This is the end of the gameplay settings*/
 
 /*This is the beginning of the Controls settings*/
@@ -80,14 +86,18 @@ public class AccessibilityManagerEditor : Editor
 
         EditorGUILayout.LabelField("Controls", EditorStyles.boldLabel);
 
+        GUILayout.BeginHorizontal();
+
         string[] ControlOptions = new[] { "Button", "Dropdown" };
 
         ControlIndex = EditorGUILayout.Popup(ControlIndex, ControlOptions);
 
         if (GUILayout.Button("Create Controls " + ControlOptions[ControlIndex]))
         {
-            Manager.CreateControlsButton();
+            Manager.CreateControls();
         }
+
+        GUILayout.EndHorizontal();
 /*This is the end of the Controls settings*/
 
 /*This is the beginning of the graphics settings*/
@@ -95,14 +105,18 @@ public class AccessibilityManagerEditor : Editor
 
         EditorGUILayout.LabelField("Graphics", EditorStyles.boldLabel);
 
+        GUILayout.BeginHorizontal();
+
         string[] GraphicsOptions = new[] { "Button", "Dropdown" };
 
         GraphicsIndex = EditorGUILayout.Popup(GraphicsIndex, GraphicsOptions);
 
         if (GUILayout.Button("Create Graphics " + GraphicsOptions[GraphicsIndex]))
         {
-            Manager.CreateGraphicsButton();
+            Manager.CreateGraphics();
         }
+
+        GUILayout.EndHorizontal();
 /*This is the end of the Grapics settings*/
 
 /*This is the beginning of the Audio settings*/
@@ -110,17 +124,19 @@ public class AccessibilityManagerEditor : Editor
 
         EditorGUILayout.LabelField("Audio", EditorStyles.boldLabel);
 
+        GUILayout.BeginHorizontal();
+
         string[] AudioOptions = new[] { "Button", "Dropdown" };
 
         AudioIndex = EditorGUILayout.Popup(AudioIndex, AudioOptions);
 
         if (GUILayout.Button("Create Audio " + AudioOptions[AudioIndex]))
         {
-            Manager.CreateAudioButton();
+            Manager.CreateAudio();
         }
-/*This is the end of the audio settings*/
 
-        GUILayout.EndVertical(); //closes off the vertical command
+        GUILayout.EndHorizontal();
+/*This is the end of the audio settings*/
 
         base.OnInspectorGUI();
     }

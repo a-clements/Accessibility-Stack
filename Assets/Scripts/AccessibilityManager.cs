@@ -12,8 +12,6 @@ public class AccessibilityManager : MonoBehaviour
     SpVoice Voice = new SpVoice();
     private GameObject Panel;
     private GameObject Button;
-    private Toggle TTS_Toggle;
-    private Toggle FullScreen;
 
     public KeyCode[] Keys;
     public ButtonRemapping[] Buttons;
@@ -66,17 +64,14 @@ public class AccessibilityManager : MonoBehaviour
         }
     }
 
-    public void CreateGameplayButton()
+    public void CreateGameplay()
     {
-        Canvas canvas;
-        canvas = FindObjectOfType<Canvas>();
-
         Panel = GameObject.Find("GamePlayPanel");
 
         if(Panel != null)
         {
             Button = new GameObject("Gameplay Button");
-            Button.transform.SetParent(canvas.transform);
+            Button.transform.SetParent(Panel.transform);
         }
         else
         {
@@ -85,17 +80,14 @@ public class AccessibilityManager : MonoBehaviour
         }
     }
 
-    public void CreateControlsButton()
+    public void CreateControls()
     {
-        Canvas canvas;
-        canvas = FindObjectOfType<Canvas>();
-
         Panel = GameObject.Find("ControlsPanel");
 
         if (Panel != null)
         {
             Button = new GameObject("Controls Button");
-            Button.transform.SetParent(canvas.transform);
+            Button.transform.SetParent(Panel.transform);
         }
         else
         {
@@ -104,17 +96,14 @@ public class AccessibilityManager : MonoBehaviour
         }
     }
 
-    public void CreateGraphicsButton()
+    public void CreateGraphics()
     {
-        Canvas canvas;
-        canvas = FindObjectOfType<Canvas>();
-
         Panel = GameObject.Find("GraphicsPanel");
 
         if (Panel != null)
         {
             Button = new GameObject("Graphics Button");
-            Button.transform.SetParent(canvas.transform);
+            Button.transform.SetParent(Panel.transform);
         }
         else
         {
@@ -123,17 +112,14 @@ public class AccessibilityManager : MonoBehaviour
         }
     }
 
-    public void CreateAudioButton()
+    public void CreateAudio()
     {
-        Canvas canvas;
-        canvas = FindObjectOfType<Canvas>();
-
         Panel = GameObject.Find("AudioPanel");
 
         if (Panel != null)
         {
             Button = new GameObject("Audio Button");
-            Button.transform.SetParent(canvas.transform);
+            Button.transform.SetParent(Panel.transform);
         }
         else
         {
