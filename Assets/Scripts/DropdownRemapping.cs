@@ -6,6 +6,7 @@ public class DropdownRemapping : MonoBehaviour
 {
     private string[] codes;
     public Dropdown Dropdown;
+    public KeyCode Keycode;
 
     private void Awake()
     {
@@ -26,6 +27,6 @@ public class DropdownRemapping : MonoBehaviour
 
     public void ondropdownchanged()
     {
-        AccessibilityManager.ManagerInstance.Keys[0] = (KeyCode)Enum.Parse(typeof(KeyCode), Dropdown.options[Dropdown.value].text, true);
+        Keycode = (KeyCode)Enum.Parse(typeof(KeyCode), Dropdown.options[Dropdown.value].text, true);
     }
 }

@@ -197,6 +197,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114581084912083628, guid: d8a6c44186656044baaa8f0225c82276,
+        type: 2}
+      propertyPath: ControlSprite.Array.size
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4928836303026550, guid: d8a6c44186656044baaa8f0225c82276, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0

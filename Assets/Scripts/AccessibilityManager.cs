@@ -11,13 +11,12 @@ public class AccessibilityManager : MonoBehaviour
     //SpeechSynthesizer Voice = new SpeechSynthesizer();
     SpVoice Voice = new SpVoice();
     private GameObject Panel;
-    private GameObject Button;
+    private GameObject ControlType;
 
     public KeyCode[] Keys;
     public ButtonRemapping[] Buttons;
     public DropdownRemapping[] Dropdowns;
     public Button_TTS[] Button_TTS;
-    [HideInInspector] public int PanelNumber;
     [HideInInspector] public string PanelName;
 
     private void Awake()
@@ -64,14 +63,14 @@ public class AccessibilityManager : MonoBehaviour
         }
     }
 
-    public void CreateGameplay()
+    public void CreateGameplay(int GameplayIndex)
     {
         Panel = GameObject.Find("GamePlayPanel");
 
         if(Panel != null)
         {
-            Button = new GameObject("Gameplay Button");
-            Button.transform.SetParent(Panel.transform);
+            ControlType = new GameObject("Gameplay Button");
+            ControlType.transform.SetParent(Panel.transform);
         }
         else
         {
@@ -80,30 +79,64 @@ public class AccessibilityManager : MonoBehaviour
         }
     }
 
-    public void CreateControls()
+    public void CreateControls(int ControlIndex)
     {
         Panel = GameObject.Find("ControlsPanel");
 
         if (Panel != null)
         {
-            Button = new GameObject("Controls Button");
-            Button.transform.SetParent(Panel.transform);
+            ControlType = new GameObject("Controls Button");
+
+            ControlType.transform.SetParent(Panel.transform);
         }
         else
         {
             PanelName = "ControlsPanel";
             CreatePanel();
         }
+
+        switch(ControlIndex)
+        {
+            case 0:
+                ControlType.transform.SetParent(Panel.transform);
+                ControlType.AddComponent<Image>();
+                ControlType.AddComponent<Button>();
+                ControlType.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+                ControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+                ControlType.GetComponent<Button>().transition = Selectable.Transition.ColorTint;
+                ControlType.AddComponent<ButtonRemapping>();
+                ControlType.AddComponent<Button_TTS>();
+                GameObject Text = new GameObject("Text");
+                Text.transform.SetParent(ControlType.transform);
+                Text.AddComponent<Text>();
+                Text.GetComponent<RectTransform>().anchorMin = new Vector2(0, 0);
+                Text.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1);
+                Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+                Text.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+                Text.GetComponent<Text>().color = new Color(0.5f,0.5f,0.5f,1.0f);
+                Text.GetComponent<Text>().text = "Button";
+                Text.GetComponent<Text>().alignment = TextAnchor.MiddleCenter;
+
+                ControlType.GetComponent<Image>();
+
+                break;
+            case 1:
+                ControlType.AddComponent<Dropdown>();
+                ControlType.GetComponent<Dropdown>().transition = Selectable.Transition.None;
+                ControlType.AddComponent<DropdownRemapping>();
+                ControlType.AddComponent<Button_TTS>();
+                break;
+        }
     }
 
-    public void CreateGraphics()
+    public void CreateGraphics(int GraphicsIndex)
     {
         Panel = GameObject.Find("GraphicsPanel");
 
         if (Panel != null)
         {
-            Button = new GameObject("Graphics Button");
-            Button.transform.SetParent(Panel.transform);
+            ControlType = new GameObject("Graphics Button");
+            ControlType.transform.SetParent(Panel.transform);
         }
         else
         {
@@ -112,14 +145,14 @@ public class AccessibilityManager : MonoBehaviour
         }
     }
 
-    public void CreateAudio()
+    public void CreateAudio(int AudioIndex)
     {
         Panel = GameObject.Find("AudioPanel");
 
         if (Panel != null)
         {
-            Button = new GameObject("Audio Button");
-            Button.transform.SetParent(Panel.transform);
+            ControlType = new GameObject("Audio Button");
+            ControlType.transform.SetParent(Panel.transform);
         }
         else
         {

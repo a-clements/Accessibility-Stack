@@ -5,10 +5,11 @@ using UnityEngine;
 public class AccessibilityManagerEditor : Editor
 {
     private string PanelName;
-    public int GameplayIndex = 0;
-    public int ControlIndex = 0;
-    public int GraphicsIndex = 0;
-    public int AudioIndex = 0;
+    private int PanelNumber;
+    private int GameplayIndex = 0;
+    private int ControlIndex = 0;
+    private int GraphicsIndex = 0;
+    private int AudioIndex = 0;
 
     void Start ()
     {
@@ -32,9 +33,9 @@ public class AccessibilityManagerEditor : Editor
 
         EditorGUILayout.LabelField("Panels", EditorStyles.boldLabel); //creates a label in the inspector with a bold font
 
-        Manager.PanelNumber = GUILayout.Toolbar(Manager.PanelNumber, new string[] { "GamePlay", "Controls", "Graphics", "Audio" }); //this line creates a toolbar and places the enum in the variable
+        PanelNumber = GUILayout.Toolbar(PanelNumber, new string[] { "GamePlay", "Controls", "Graphics", "Audio" }); //this line creates a toolbar and places the enum in the variable
 
-        switch (Manager.PanelNumber)
+        switch (PanelNumber)
         {
             case 0:
                 Manager.PanelName = "GamePlayPanel";
@@ -75,7 +76,7 @@ public class AccessibilityManagerEditor : Editor
 
         if (GUILayout.Button("Create Gameplay " + GameplayOptions[GameplayIndex])) //this line creates a button with the caption changing with the enum value
         {
-            Manager.CreateGameplay();
+            Manager.CreateGameplay(GameplayIndex);
         }
 
         GUILayout.EndHorizontal(); //this line ends the horizontal layout
@@ -94,7 +95,7 @@ public class AccessibilityManagerEditor : Editor
 
         if (GUILayout.Button("Create Controls " + ControlOptions[ControlIndex]))
         {
-            Manager.CreateControls();
+            Manager.CreateControls(ControlIndex);
         }
 
         GUILayout.EndHorizontal();
@@ -113,7 +114,7 @@ public class AccessibilityManagerEditor : Editor
 
         if (GUILayout.Button("Create Graphics " + GraphicsOptions[GraphicsIndex]))
         {
-            Manager.CreateGraphics();
+            Manager.CreateGraphics(GraphicsIndex);
         }
 
         GUILayout.EndHorizontal();
@@ -132,7 +133,7 @@ public class AccessibilityManagerEditor : Editor
 
         if (GUILayout.Button("Create Audio " + AudioOptions[AudioIndex]))
         {
-            Manager.CreateAudio();
+            Manager.CreateAudio(AudioIndex);
         }
 
         GUILayout.EndHorizontal();

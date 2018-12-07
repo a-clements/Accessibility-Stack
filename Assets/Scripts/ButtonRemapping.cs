@@ -17,6 +17,7 @@ public class ButtonRemapping : MonoBehaviour
 
     public Button Button;
     private string text;
+    public KeyCode Keycode;
 
     private bool IsButtonPressed = false;
 
@@ -44,7 +45,7 @@ public class ButtonRemapping : MonoBehaviour
 
         if (KeyEvent.isKey && IsButtonPressed == true)
         {
-            AccessibilityManager.ManagerInstance.Keys[0] = KeyEvent.keyCode;
+            Keycode = KeyEvent.keyCode;
             IsButtonPressed = false;
         }
     }
