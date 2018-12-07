@@ -66,13 +66,10 @@ public class AccessibilityManager : MonoBehaviour
     public void CreateGameplay(int GameplayIndex)
     {
         Panel = GameObject.Find("GamePlayPanel");
+        Canvas canvas;
+        canvas = FindObjectOfType<Canvas>();
 
-        if(Panel != null)
-        {
-            ControlType = new GameObject("Gameplay Button");
-            ControlType.transform.SetParent(Panel.transform);
-        }
-        else
+        if (Panel == null)
         {
             PanelName = "GamePlayPanel";
             CreatePanel();
@@ -82,14 +79,10 @@ public class AccessibilityManager : MonoBehaviour
     public void CreateControls(int ControlIndex)
     {
         Panel = GameObject.Find("ControlsPanel");
+        Canvas canvas;
+        canvas = FindObjectOfType<Canvas>();
 
-        if (Panel != null)
-        {
-            ControlType = new GameObject("Controls Button");
-
-            ControlType.transform.SetParent(Panel.transform);
-        }
-        else
+        if (Panel == null)
         {
             PanelName = "ControlsPanel";
             CreatePanel();
@@ -98,10 +91,13 @@ public class AccessibilityManager : MonoBehaviour
         switch(ControlIndex)
         {
             case 0:
+                ControlType = new GameObject("Controls Button");
                 ControlType.transform.SetParent(Panel.transform);
-                ControlType.AddComponent<Image>();
+                ControlType.AddComponent<Image>().sprite = canvas.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite;
+                ControlType.GetComponent<Image>().type = Image.Type.Sliced;
+                ControlType.GetComponent<Image>().fillCenter = true;
                 ControlType.AddComponent<Button>();
-                ControlType.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+                ControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 ControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 ControlType.GetComponent<Button>().transition = Selectable.Transition.ColorTint;
                 ControlType.AddComponent<ButtonRemapping>();
@@ -109,19 +105,23 @@ public class AccessibilityManager : MonoBehaviour
                 GameObject Text = new GameObject("Text");
                 Text.transform.SetParent(ControlType.transform);
                 Text.AddComponent<Text>();
-                Text.GetComponent<RectTransform>().anchorMin = new Vector2(0, 0);
+                Text.GetComponent<RectTransform>().anchorMin = Vector2.zero;
                 Text.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1);
-                Text.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
-                Text.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+                Text.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                Text.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
                 Text.GetComponent<Text>().color = new Color(0.5f,0.5f,0.5f,1.0f);
                 Text.GetComponent<Text>().text = "Button";
                 Text.GetComponent<Text>().alignment = TextAnchor.MiddleCenter;
-
-                ControlType.GetComponent<Image>();
-
                 break;
+
             case 1:
+                ControlType = new GameObject("Controls Dropdown");
+                ControlType.AddComponent<Image>().sprite = canvas.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite;
+                ControlType.GetComponent<Image>().type = Image.Type.Sliced;
+                ControlType.GetComponent<Image>().fillCenter = true;
                 ControlType.AddComponent<Dropdown>();
+                ControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                ControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 ControlType.GetComponent<Dropdown>().transition = Selectable.Transition.None;
                 ControlType.AddComponent<DropdownRemapping>();
                 ControlType.AddComponent<Button_TTS>();
@@ -132,13 +132,10 @@ public class AccessibilityManager : MonoBehaviour
     public void CreateGraphics(int GraphicsIndex)
     {
         Panel = GameObject.Find("GraphicsPanel");
+        Canvas canvas;
+        canvas = FindObjectOfType<Canvas>();
 
-        if (Panel != null)
-        {
-            ControlType = new GameObject("Graphics Button");
-            ControlType.transform.SetParent(Panel.transform);
-        }
-        else
+        if (Panel == null)
         {
             PanelName = "GraphicsPanel";
             CreatePanel();
@@ -148,13 +145,10 @@ public class AccessibilityManager : MonoBehaviour
     public void CreateAudio(int AudioIndex)
     {
         Panel = GameObject.Find("AudioPanel");
+        Canvas canvas;
+        canvas = FindObjectOfType<Canvas>();
 
-        if (Panel != null)
-        {
-            ControlType = new GameObject("Audio Button");
-            ControlType.transform.SetParent(Panel.transform);
-        }
-        else
+        if (Panel == null)
         {
             PanelName = "AudioPanel";
             CreatePanel();
