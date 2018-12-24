@@ -11,7 +11,10 @@ public class AccessibilityManager : MonoBehaviour
     //SpeechSynthesizer Voice = new SpeechSynthesizer();
     SpVoice Voice = new SpVoice();
     private GameObject Panel;
-    private GameObject ControlType;
+    private Button ButtonControlType;
+    private Dropdown DropdownControlType;
+    public Button ButtonPrefab;
+    public Dropdown DropdownPrefab;
 
     public KeyCode[] Keys;
     public ButtonRemapping[] Buttons;
@@ -88,43 +91,24 @@ public class AccessibilityManager : MonoBehaviour
             CreatePanel();
         }
 
-        switch(ControlIndex)
+        switch (ControlIndex)
         {
             case 0:
-                ControlType = new GameObject("Controls Button");
-                ControlType.transform.SetParent(Panel.transform);
-                ControlType.AddComponent<Image>().sprite = canvas.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite;
-                ControlType.GetComponent<Image>().type = Image.Type.Sliced;
-                ControlType.GetComponent<Image>().fillCenter = true;
-                ControlType.AddComponent<Button>();
-                ControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                ControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-                ControlType.GetComponent<Button>().transition = Selectable.Transition.ColorTint;
-                ControlType.AddComponent<ButtonRemapping>();
-                ControlType.AddComponent<Button_TTS>();
-                GameObject Text = new GameObject("Text");
-                Text.transform.SetParent(ControlType.transform);
-                Text.AddComponent<Text>();
-                Text.GetComponent<RectTransform>().anchorMin = Vector2.zero;
-                Text.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1);
-                Text.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                Text.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
-                Text.GetComponent<Text>().color = new Color(0.5f,0.5f,0.5f,1.0f);
-                Text.GetComponent<Text>().text = "Button";
-                Text.GetComponent<Text>().alignment = TextAnchor.MiddleCenter;
+                ButtonControlType = Instantiate(ButtonPrefab, transform.position, transform.rotation);
+                ButtonControlType.transform.SetParent(Panel.transform);
+                ButtonControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                ButtonControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+                ButtonControlType.gameObject.AddComponent<ButtonRemapping>();
+                ButtonControlType.gameObject.AddComponent<Button_TTS>();
                 break;
 
             case 1:
-                ControlType = new GameObject("Controls Dropdown");
-                ControlType.AddComponent<Image>().sprite = canvas.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite;
-                ControlType.GetComponent<Image>().type = Image.Type.Sliced;
-                ControlType.GetComponent<Image>().fillCenter = true;
-                ControlType.AddComponent<Dropdown>();
-                ControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                ControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-                ControlType.GetComponent<Dropdown>().transition = Selectable.Transition.None;
-                ControlType.AddComponent<DropdownRemapping>();
-                ControlType.AddComponent<Button_TTS>();
+                DropdownControlType = Instantiate(DropdownPrefab, transform.position, transform.rotation);
+                DropdownControlType.transform.SetParent(Panel.transform);
+                DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+                DropdownControlType.gameObject.AddComponent<DropdownRemapping>();
+                DropdownControlType.gameObject.AddComponent<Button_TTS>();
                 break;
         }
     }
