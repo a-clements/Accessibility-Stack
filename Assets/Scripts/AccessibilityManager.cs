@@ -69,8 +69,6 @@ public class AccessibilityManager : MonoBehaviour
     public void CreateGameplay(int GameplayIndex)
     {
         Panel = GameObject.Find("GamePlayPanel");
-        Canvas canvas;
-        canvas = FindObjectOfType<Canvas>();
 
         if (Panel == null)
         {
@@ -82,8 +80,6 @@ public class AccessibilityManager : MonoBehaviour
     public void CreateControls(int ControlIndex)
     {
         Panel = GameObject.Find("ControlsPanel");
-        Canvas canvas;
-        canvas = FindObjectOfType<Canvas>();
 
         if (Panel == null)
         {
@@ -116,21 +112,66 @@ public class AccessibilityManager : MonoBehaviour
     public void CreateGraphics(int GraphicsIndex)
     {
         Panel = GameObject.Find("GraphicsPanel");
-        Canvas canvas;
-        canvas = FindObjectOfType<Canvas>();
+
+        Canvas WindowSize;
+        WindowSize = FindObjectOfType<Canvas>();
+        Resolution[] Resolutions;
 
         if (Panel == null)
         {
             PanelName = "GraphicsPanel";
             CreatePanel();
         }
+
+        switch (GraphicsIndex)
+        {
+            case 0:
+                DropdownControlType = Instantiate(DropdownPrefab, transform.position, transform.rotation);
+                DropdownControlType.transform.SetParent(Panel.transform);
+                DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+
+                Resolutions = Screen.resolutions;
+
+                if (Resolutions != null)
+                {
+                    foreach (Resolution resolution in Resolutions)
+                    {
+                        DropdownControlType.options.Add(new Dropdown.OptionData(resolution.ToString()));
+                    }
+                }
+                else
+                {
+                    WindowSize.GetComponent<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+                    WindowSize.GetComponent<CanvasScaler>().screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
+                    WindowSize.GetComponent<CanvasScaler>().matchWidthOrHeight = 0.5f;
+                    WindowSize.GetComponent<CanvasScaler>().referenceResolution = new Vector2(1920, 1080);
+                }
+                break;
+
+            case 1:
+                ButtonControlType = Instantiate(ButtonPrefab, transform.position, transform.rotation);
+                ButtonControlType.transform.SetParent(Panel.transform);
+                ButtonControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                ButtonControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+                ButtonControlType.gameObject.AddComponent<ButtonRemapping>();
+                ButtonControlType.gameObject.AddComponent<Button_TTS>();
+                break;
+
+            case 2:
+                DropdownControlType = Instantiate(DropdownPrefab, transform.position, transform.rotation);
+                DropdownControlType.transform.SetParent(Panel.transform);
+                DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+                DropdownControlType.gameObject.AddComponent<DropdownRemapping>();
+                DropdownControlType.gameObject.AddComponent<Button_TTS>();
+                break;
+        }
     }
 
     public void CreateAudio(int AudioIndex)
     {
         Panel = GameObject.Find("AudioPanel");
-        Canvas canvas;
-        canvas = FindObjectOfType<Canvas>();
 
         if (Panel == null)
         {
