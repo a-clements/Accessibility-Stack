@@ -13,8 +13,10 @@ public class AccessibilityManager : MonoBehaviour
     private GameObject Panel;
     private Button ButtonControlType;
     private Dropdown DropdownControlType;
+    public Canvas WindowSize;
     public Button ButtonPrefab;
     public Dropdown DropdownPrefab;
+    public GameObject PanelPrefab;
 
     public KeyCode[] Keys;
     public ButtonRemapping[] Buttons;
@@ -40,25 +42,22 @@ public class AccessibilityManager : MonoBehaviour
         Buttons = FindObjectsOfType<ButtonRemapping>();
         Dropdowns = FindObjectsOfType<DropdownRemapping>();
         Button_TTS = FindObjectsOfType<Button_TTS>();
+        WindowSize = FindObjectOfType<Canvas>();
     }
 
     public void CreatePanel()
     {
-        Canvas canvas;
-        canvas = FindObjectOfType<Canvas>();
+        WindowSize = FindObjectOfType<Canvas>();
 
         if (GameObject.Find(PanelName) == null)
         {
-            Panel = new GameObject(PanelName);
-            Panel.transform.SetParent(canvas.transform);
-            Panel.AddComponent<Image>();
+            Panel = Instantiate(PanelPrefab, transform.position, transform.rotation);
+            Panel.name = PanelName;
+            Panel.transform.SetParent(WindowSize.transform);
             Panel.transform.localPosition = new Vector3(0, 0, 0);
-            Panel.GetComponent<RectTransform>().anchorMax = canvas.transform.GetChild(0).GetComponent<RectTransform>().anchorMax;
-            Panel.GetComponent<RectTransform>().anchorMin = canvas.transform.GetChild(0).GetComponent<RectTransform>().anchorMin;
-            Panel.GetComponent<Image>().rectTransform.sizeDelta = canvas.transform.GetChild(0).GetComponent<Image>().rectTransform.sizeDelta;
-            Panel.GetComponent<Image>().sprite = canvas.transform.GetChild(0).GetComponent<Image>().sprite;
-            Panel.GetComponent<Image>().type = Image.Type.Sliced;
-            Panel.GetComponent<Image>().color = canvas.transform.GetChild(0).GetComponent<Image>().color;
+            Panel.GetComponent<RectTransform>().anchorMax = WindowSize.transform.GetChild(0).GetComponent<RectTransform>().anchorMax;
+            Panel.GetComponent<RectTransform>().anchorMin = WindowSize.transform.GetChild(0).GetComponent<RectTransform>().anchorMin;
+            Panel.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
         }
         else
         {
@@ -127,7 +126,7 @@ public class AccessibilityManager : MonoBehaviour
         {
             case 0:
                 DropdownControlType = Instantiate(DropdownPrefab, transform.position, transform.rotation);
-                DropdownControlType.transform.SetParent(Panel.transform);
+                DropdownControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
                 DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
 
@@ -151,7 +150,7 @@ public class AccessibilityManager : MonoBehaviour
 
             case 1:
                 ButtonControlType = Instantiate(ButtonPrefab, transform.position, transform.rotation);
-                ButtonControlType.transform.SetParent(Panel.transform);
+                ButtonControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
                 ButtonControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 ButtonControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 ButtonControlType.gameObject.AddComponent<ButtonRemapping>();
@@ -160,7 +159,7 @@ public class AccessibilityManager : MonoBehaviour
 
             case 2:
                 DropdownControlType = Instantiate(DropdownPrefab, transform.position, transform.rotation);
-                DropdownControlType.transform.SetParent(Panel.transform);
+                DropdownControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
                 DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 DropdownControlType.gameObject.AddComponent<DropdownRemapping>();

@@ -412,12 +412,12 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -520,6 +520,8 @@ MonoBehaviour:
   ButtonPrefab: {fileID: 114891391051099860, guid: 404a9908d31d9b043854deb7269bfa60,
     type: 2}
   DropdownPrefab: {fileID: 114841841750359266, guid: 1c2b480b94c1e7947836b8cdfdfd1c59,
+    type: 2}
+  PanelPrefab: {fileID: 1185229289116316, guid: af9d700f568eb654187afe0668dfdb85,
     type: 2}
   Keys: 
   Buttons: []
