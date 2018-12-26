@@ -129,6 +129,7 @@ public class AccessibilityManager : MonoBehaviour
             case 0:
                 DropdownControlType = Instantiate(DropdownPrefab, transform.position, transform.rotation);
                 DropdownControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
+                DropdownControlType.name = "ResolutionMenu";
                 DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
 
@@ -148,27 +149,21 @@ public class AccessibilityManager : MonoBehaviour
                     WindowSize.GetComponent<CanvasScaler>().matchWidthOrHeight = 0.5f;
                     WindowSize.GetComponent<CanvasScaler>().referenceResolution = new Vector2(1920, 1080);
                 }
-
-                WindowSize.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetComponent<RectTransform>().anchorMin = new Vector2(0.008f, 0.96f);
-                WindowSize.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetComponent<RectTransform>().anchorMax = new Vector2(0.3f, 0.99f);
-                WindowSize.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/ResolutionMenu").GetComponent<RectTransform>().anchorMin = new Vector2(0.008f, 0.96f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/ResolutionMenu").GetComponent<RectTransform>().anchorMax = new Vector2(0.3f, 0.99f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/ResolutionMenu").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
                 break;
 
             case 1:
                 ToggleControlType = Instantiate(TogglePrefab, transform.position, transform.rotation);
                 ToggleControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
+                ToggleControlType.name = "FullScreenToggle";
                 ToggleControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 ToggleControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-                WindowSize.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetChild(1).GetComponent<RectTransform>().anchorMin = new Vector2(0.72f, 0.96f);
-                WindowSize.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetChild(1).GetComponent<RectTransform>().anchorMax = new Vector2(0.975f, 0.99f);
-                WindowSize.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetChild(1).GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
-                WindowSize.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetChild(1).GetChild(1).GetComponent<Text>().text = "Full Screen";
-                //ButtonControlType = Instantiate(ButtonPrefab, transform.position, transform.rotation);
-                //ButtonControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
-                //ButtonControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                //ButtonControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-                //ButtonControlType.gameObject.AddComponent<ButtonRemapping>();
-                //ButtonControlType.gameObject.AddComponent<Button_TTS>();
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/FullScreenToggle").GetComponent<RectTransform>().anchorMin = new Vector2(0.72f, 0.96f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/FullScreenToggle").GetComponent<RectTransform>().anchorMax = new Vector2(0.975f, 0.99f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/FullScreenToggle").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/FullScreenToggle").GetChild(1).GetComponent<Text>().text = "Full Screen";
                 break;
 
             case 2:

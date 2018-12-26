@@ -108,7 +108,7 @@ public class AccessibilityManagerEditor : Editor
 
         GUILayout.BeginHorizontal();
 
-        string[] GraphicsOptions = new[] { "Resolution", "Full Screen Toggle", "Dropdown" };
+        string[] GraphicsOptions = new[] { "Resolution", "Full Screen", "Dropdown" };
 
         GraphicsIndex = EditorGUILayout.Popup(GraphicsIndex, GraphicsOptions);
 

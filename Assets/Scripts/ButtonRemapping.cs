@@ -28,7 +28,7 @@ public class ButtonRemapping : MonoBehaviour
         Button = this.gameObject.GetComponent<Button>();
     }
 
-    public void buttonclick()
+    public void ButtonClick()
     {
         Button.transform.GetChild(0).GetComponent<Text>().text = "Please enter a new key";
         text = "ButtonPressed";
@@ -66,7 +66,7 @@ public class ButtonRemapping : MonoBehaviour
         switch (text)
         {
             case "ButtonPressed":
-                Button.transform.GetChild(0).GetComponent<Text>().text = AccessibilityManager.ManagerInstance.Keys[0].ToString();
+                Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
                 StopCoroutine(GetNewKey());
                 break;
         }
