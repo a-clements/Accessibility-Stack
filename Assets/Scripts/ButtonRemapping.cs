@@ -17,7 +17,8 @@ public class ButtonRemapping : MonoBehaviour
 
     public Button Button;
     private string text;
-    public KeyCode Keycode;
+    private KeyCode Keycode;
+    private int Index;
 
     private bool IsButtonPressed = false;
 
@@ -26,6 +27,13 @@ public class ButtonRemapping : MonoBehaviour
     private void Awake()
     {
         Button = this.gameObject.GetComponent<Button>();
+        Index = this.transform.GetSiblingIndex();
+    }
+
+    private void Start()
+    {
+        Keycode = AccessibilityManager.ManagerInstance.Keys[Index - 1];
+        Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
     }
 
     public void OnButtonClick()
@@ -46,6 +54,9 @@ public class ButtonRemapping : MonoBehaviour
         if (KeyEvent.isKey && IsButtonPressed == true)
         {
             Keycode = KeyEvent.keyCode;
+
+            AccessibilityManager.ManagerInstance.Keys[Index - 1] = KeyEvent.keyCode;
+
             IsButtonPressed = false;
         }
     }
