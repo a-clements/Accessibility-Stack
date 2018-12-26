@@ -25,7 +25,7 @@ public class DropdownRemapping : MonoBehaviour
         }
     }
 
-    public void ondropdownchanged()
+    public void OnDropdownChange()
     {
         Keycode = (KeyCode)Enum.Parse(typeof(KeyCode), Dropdown.options[Dropdown.value].text, true);
     }

@@ -28,7 +28,7 @@ public class ButtonRemapping : MonoBehaviour
         Button = this.gameObject.GetComponent<Button>();
     }
 
-    public void ButtonClick()
+    public void OnButtonClick()
     {
         Button.transform.GetChild(0).GetComponent<Text>().text = "Please enter a new key";
         text = "ButtonPressed";

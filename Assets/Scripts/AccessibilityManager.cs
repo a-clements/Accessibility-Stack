@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 //using System.Speech.Synthesis; //native functionality does not work in unity so it has to be done with the speechlib.
 using SpeechLib;
 using UnityEngine.UI;
@@ -95,8 +96,6 @@ public class AccessibilityManager : MonoBehaviour
                 ButtonControlType.transform.SetParent(Panel.transform);
                 ButtonControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 ButtonControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-                ButtonControlType.gameObject.AddComponent<ButtonRemapping>();
-                ButtonControlType.gameObject.AddComponent<Button_TTS>();
                 break;
 
             case 1:
@@ -104,8 +103,6 @@ public class AccessibilityManager : MonoBehaviour
                 DropdownControlType.transform.SetParent(Panel.transform);
                 DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-                DropdownControlType.gameObject.AddComponent<DropdownRemapping>();
-                DropdownControlType.gameObject.AddComponent<Button_TTS>();
                 break;
         }
     }
