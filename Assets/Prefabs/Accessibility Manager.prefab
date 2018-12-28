@@ -217,7 +217,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1868455544150410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224033839650959228}
@@ -518,11 +518,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WindowSize: {fileID: 223372097793186110}
-  ButtonPrefab: {fileID: 114891391051099860, guid: 404a9908d31d9b043854deb7269bfa60,
+  ControlButtonPrefab: {fileID: 114891391051099860, guid: 404a9908d31d9b043854deb7269bfa60,
     type: 2}
-  DropdownPrefab: {fileID: 114841841750359266, guid: 1c2b480b94c1e7947836b8cdfdfd1c59,
+  ControlDropdownPrefab: {fileID: 114841841750359266, guid: 1c2b480b94c1e7947836b8cdfdfd1c59,
     type: 2}
-  TogglePrefab: {fileID: 114202163193658646, guid: 95e244e132405574c92b404bcf366f06,
+  DifficultyDropdownPrefab: {fileID: 114841841750359266, guid: 02cc1b5ad74da514f84329c8bfbab3b3,
+    type: 2}
+  SpeedDropdownPrefab: {fileID: 114841841750359266, guid: 58f97c7bc53a5cd4abc325d9a38e2f7a,
+    type: 2}
+  ResolutionDropdownPrefab: {fileID: 114841841750359266, guid: eb55694ff4a36434faf1e2a51f56417a,
+    type: 2}
+  AntiAliasingDropdownPrefab: {fileID: 114841841750359266, guid: dbfcc4df1fadf1b44b55cb18066d6171,
+    type: 2}
+  TextureQualityDropdownPrefab: {fileID: 114841841750359266, guid: f67d42c9771df7e4789a603b1acc37bb,
+    type: 2}
+  VSyncDropdownPrefab: {fileID: 114841841750359266, guid: af9617076313d2b43b5aa1792a83c945,
+    type: 2}
+  FullscreenTogglePrefab: {fileID: 114202163193658646, guid: 95e244e132405574c92b404bcf366f06,
+    type: 2}
+  DifficultySliderPrefab: {fileID: 114161127365676574, guid: e7a13a1dd283fb94ca8b1b85690233b4,
+    type: 2}
+  SpeedSliderPrefab: {fileID: 114161127365676574, guid: 8e491f660f1d05c4897798a611e47953,
+    type: 2}
+  TextPrefab: {fileID: 114713866310433856, guid: 7cea1f8a6511f324285efc39d0f7d165,
+    type: 2}
+  ImagePrefab: {fileID: 114159798432010988, guid: b4971c7543fb8a240b9b3ddbf7545412,
     type: 2}
   PanelPrefab: {fileID: 1185229289116316, guid: af9d700f568eb654187afe0668dfdb85,
     type: 2}

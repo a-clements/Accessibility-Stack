@@ -63,14 +63,14 @@ public class AccessibilityManagerEditor : Editor
         GUILayout.EndVertical(); //closes off the vertical command
 /*The end of the panels code*/
 
-        /*This is the beginning of the gameplay settings*/
+/*This is the beginning of the gameplay settings*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 
         EditorGUILayout.LabelField("Game Play", EditorStyles.boldLabel);
 
         GUILayout.BeginHorizontal(); //this line starts an area where the buttons are layed out horizontally
 
-        string[] GameplayOptions = new[] { "Button", "Dropdown" }; //this creates an enum list
+        string[] GameplayOptions = new[] { "Difficulty Slider", "Difficulty Dropdown", "Speed Slider", "Speed Dropdown" }; //this creates an enum list
 
         GameplayIndex = EditorGUILayout.Popup(GameplayIndex, GameplayOptions); //this creates a dropdown menu in the inspector with the enum values
 
@@ -108,7 +108,7 @@ public class AccessibilityManagerEditor : Editor
 
         GUILayout.BeginHorizontal();
 
-        string[] GraphicsOptions = new[] { "Resolution", "Full Screen", "Dropdown" };
+        string[] GraphicsOptions = new[] { "Resolution", "Full Screen", "VSync", "Anti Aliasing", "Texture Quality" };
 
         GraphicsIndex = EditorGUILayout.Popup(GraphicsIndex, GraphicsOptions);
 

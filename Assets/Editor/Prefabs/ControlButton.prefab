@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114215620512636430}
   - component: {fileID: 114316212007286918}
   m_Layer: 0
-  m_Name: Button
+  m_Name: ControlButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 114891391051099860}
-  Keycode: 0
 --- !u!114 &114316212007286918
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 36
+  controlID: 107
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 37
+  controlID: 108
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 38
+  controlID: 109
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -642,7 +642,7 @@ MonoBehaviour:
   m_AnimEditor: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -125742
+  m_LastSelectedObjectID: -332702
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -747,20 +747,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Editor/Scripts
   m_ViewMode: 1
   m_StartGridSize: 67
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Editor/Scripts
   m_LastFoldersGridSize: 67
   m_LastProjectPath: C:\Users\woofa\Documents\GitHub\Accessibility Stack
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: fe2b0000
-    m_LastClickedID: 11262
-    m_ExpandedIDs: 00000000f42900000e2c000000ca9a3b
+    m_SelectedIDs: c62d0000
+    m_LastClickedID: 11718
+    m_ExpandedIDs: 00000000d22b0000d62d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -788,7 +788,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000f42900000e2c0000
+    m_ExpandedIDs: 00000000d22b0000d62d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -815,7 +815,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000b02c00009821feff8c1efefffa2a00004265feff985ffeff0a5dfeff7e18feff4cf0fdffc4edfdff6e2a00000c3f000092290000da2b00004a5cffff6c450000d88bffff5e4500007a3300005a3000009ad7ffffbe300000ce2d0000702d0000e02d0000d8e3ffff882d00004ee9feffe43300004633000046290000942900008e2800000e3300001a29000076280000d011000000000000ca2b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -904,9 +904,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: dcfbffff
-    m_LastClickedID: -1060
-    m_ExpandedIDs: defbffff00000000
+    m_SelectedIDs: 16350000
+    m_LastClickedID: 0
+    m_ExpandedIDs: f6d9faff00dafaff0adafaff12dafaff9c12fbffa612fbffb012fbffb812fbffea56fbff1a57fbff2457fbff2e57fbff3657fbffd0a9fcffdaa9fcffe4a9fcffeca9fcff60c7fcff90c7fcff9ac7fcffa4c7fcffacc7fcff8e2afdff982afdffa22afdffaa2afdff1054fdff1a54fdff2454fdff2c54fdffd273fdff0274fdff0c74fdff1674fdff1e74fdff90a4fdff9aa4fdffa4a4fdffaca4fdff22bbfdff2cbbfdff36bbfdff3ebbfdff6a2dfeff742dfeff7e2dfeff862dfeffca8cfefffa8cfeff048dfeff4c98ffff5698ffff6098ffff6898ffffa6eaffffa0fbffffaafbffffb4fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -961,9 +961,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 633.6698, y: 309.02322, z: 0}
+    m_Target: {x: 597.9689, y: 505.56958, z: 0}
     speed: 2
-    m_Value: {x: 633.6698, y: 309.02322, z: 0}
+    m_Value: {x: 597.9689, y: 505.56958, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -995,9 +995,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0, y: 0, z: -0, w: -1}
   m_Size:
-    m_Target: 812.90674
+    m_Target: 574.4457
     speed: 2
-    m_Value: 812.90674
+    m_Value: 574.4457
   m_Ortho:
     m_Target: 1
     speed: 2
