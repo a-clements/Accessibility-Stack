@@ -39,6 +39,8 @@ public class DropdownRemapping : MonoBehaviour
         {
             Dropdown.options.Add(new Dropdown.OptionData(code));
         }
+
+        Dropdown.onValueChanged.AddListener(delegate { OnDropdownChange(); });
     }
 
     public void OnDropdownChange()

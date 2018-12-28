@@ -38,9 +38,8 @@ GameObject:
   - component: {fileID: 224226265356660572}
   - component: {fileID: 222697712155908322}
   - component: {fileID: 114872698209028860}
-  - component: {fileID: 114960875359891494}
   - component: {fileID: 114687949649591774}
-  - component: {fileID: 114895146192466648}
+  - component: {fileID: 114310022775735336}
   m_Layer: 5
   m_Name: GraphicsButton
   m_TagString: Untagged
@@ -144,9 +143,8 @@ GameObject:
   - component: {fileID: 224265811702024474}
   - component: {fileID: 222828998098483876}
   - component: {fileID: 114468551799306364}
-  - component: {fileID: 114288121253995170}
   - component: {fileID: 114924824431741412}
-  - component: {fileID: 114696105944354754}
+  - component: {fileID: 114616086727776402}
   m_Layer: 5
   m_Name: AudioButton
   m_TagString: Untagged
@@ -164,9 +162,8 @@ GameObject:
   - component: {fileID: 224060532835813712}
   - component: {fileID: 222935000764756062}
   - component: {fileID: 114482496863942290}
-  - component: {fileID: 114628722945824270}
   - component: {fileID: 114144504112037122}
-  - component: {fileID: 114292550988551872}
+  - component: {fileID: 114869100358027956}
   m_Layer: 5
   m_Name: GamePlayButton
   m_TagString: Untagged
@@ -200,9 +197,8 @@ GameObject:
   - component: {fileID: 224048907741461848}
   - component: {fileID: 222573318982913806}
   - component: {fileID: 114781699438791478}
-  - component: {fileID: 114054904617539288}
   - component: {fileID: 114739780337908486}
-  - component: {fileID: 114470433951285388}
+  - component: {fileID: 114481015058528552}
   m_Layer: 5
   m_Name: ControlsButton
   m_TagString: Untagged
@@ -224,17 +220,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114054904617539288
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1935768366201182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f585b16f2eb87a64bbd56600db7674e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114067660131900218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -360,47 +345,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Audio
---- !u!114 &114288121253995170
+--- !u!114 &114310022775735336
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1752141417753114}
+  m_GameObject: {fileID: 1162242400306418}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f585b16f2eb87a64bbd56600db7674e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114292550988551872
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1798780908131798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114628722945824270}
-          m_MethodName: OnMouseOver
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 1
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
 --- !u!114 &114379769568083064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -449,7 +404,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114470433951285388
+--- !u!114 &114481015058528552
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -457,28 +412,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1935768366201182}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: f585b16f2eb87a64bbd56600db7674e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114054904617539288}
-          m_MethodName: OnMouseOver
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 1
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
 --- !u!114 &114482496863942290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -524,23 +460,29 @@ MonoBehaviour:
     type: 2}
   TogglePrefab: {fileID: 114202163193658646, guid: 95e244e132405574c92b404bcf366f06,
     type: 2}
+  SliderPrefab: {fileID: 114067083392306242, guid: 894b5e30a901c10408f9aedd99b2c060,
+    type: 2}
+  TextPrefab: {fileID: 114268640274990692, guid: ac397003b8808c1439490f7f90b01e45,
+    type: 2}
+  ImagePrefab: {fileID: 114738944645343062, guid: 6ab34143226ef6d408736054bd843422,
+    type: 2}
   PanelPrefab: {fileID: 1185229289116316, guid: af9d700f568eb654187afe0668dfdb85,
     type: 2}
-  Keys: 
+  Keys: 61000000
   Buttons: []
   Dropdowns: []
   Button_TTS:
-  - {fileID: 114628722945824270}
-  - {fileID: 114288121253995170}
-  - {fileID: 114054904617539288}
-  - {fileID: 114960875359891494}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   PanelName: GamePlayPanel
---- !u!114 &114628722945824270
+--- !u!114 &114616086727776402
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1798780908131798}
+  m_GameObject: {fileID: 1752141417753114}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f585b16f2eb87a64bbd56600db7674e8, type: 3}
@@ -620,36 +562,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114696105944354754
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1752141417753114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114288121253995170}
-          m_MethodName: OnMouseOver
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 1
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
 --- !u!114 &114739780337908486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -778,6 +690,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114869100358027956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1798780908131798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f585b16f2eb87a64bbd56600db7674e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114872698209028860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -805,36 +728,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114895146192466648
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1162242400306418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 114960875359891494}
-          m_MethodName: OnMouseOver
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 1
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
 --- !u!114 &114924824431741412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -876,17 +769,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114960875359891494
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1162242400306418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f585b16f2eb87a64bbd56600db7674e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &222154428206294530
 CanvasRenderer:
   m_ObjectHideFlags: 1

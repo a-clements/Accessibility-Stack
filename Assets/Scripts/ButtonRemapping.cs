@@ -30,6 +30,11 @@ public class ButtonRemapping : MonoBehaviour
         Index = this.transform.GetSiblingIndex();
     }
 
+    private void OnEnable()
+    {
+        Button.onClick.AddListener(delegate { OnButtonClick(); });
+    }
+
     private void Start()
     {
         Keycode = AccessibilityManager.ManagerInstance.Keys[Index - 1];

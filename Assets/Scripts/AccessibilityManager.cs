@@ -15,10 +15,16 @@ public class AccessibilityManager : MonoBehaviour
     private Button ButtonControlType;
     private Dropdown DropdownControlType;
     private Toggle ToggleControlType;
+    private Slider SliderControlType;
+    private Text TextControlType;
+    private Image ImageControlType;
     public Canvas WindowSize;
     public Button ButtonPrefab;
     public Dropdown DropdownPrefab;
     public Toggle TogglePrefab;
+    public Slider SliderPrefab;
+    public Text TextPrefab;
+    public Image ImagePrefab;
     public GameObject PanelPrefab;
 
     public KeyCode[] Keys;
@@ -94,6 +100,8 @@ public class AccessibilityManager : MonoBehaviour
             case 0:
                 ButtonControlType = Instantiate(ButtonPrefab, transform.position, transform.rotation);
                 ButtonControlType.transform.SetParent(Panel.transform);
+                ButtonControlType.gameObject.AddComponent<ButtonRemapping>();
+                ButtonControlType.gameObject.AddComponent<Button_TTS>();
                 ButtonControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 ButtonControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 break;
@@ -101,6 +109,8 @@ public class AccessibilityManager : MonoBehaviour
             case 1:
                 DropdownControlType = Instantiate(DropdownPrefab, transform.position, transform.rotation);
                 DropdownControlType.transform.SetParent(Panel.transform);
+                DropdownControlType.gameObject.AddComponent<DropdownRemapping>();
+                DropdownControlType.gameObject.AddComponent<Button_TTS>();
                 DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 break;
