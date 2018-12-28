@@ -62,14 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\AccessibilityManagerEditor.cs" />
-    <Compile Include="Assets\Editor\Scripts\AccessibilityManager.cs" />
-    <Compile Include="Assets\Editor\Scripts\AntiAliasing.cs" />
-    <Compile Include="Assets\Editor\Scripts\Button_TTS.cs" />
-    <Compile Include="Assets\Editor\Scripts\ButtonRemapping.cs" />
-    <Compile Include="Assets\Editor\Scripts\DropdownRemapping.cs" />
-    <Compile Include="Assets\Editor\Scripts\FullScreen.cs" />
-    <Compile Include="Assets\Editor\Scripts\TextureQuality.cs" />
-    <Compile Include="Assets\Editor\Scripts\VSync.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/woofa/Documents/GitHub/Accessibility Stack/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -379,6 +371,12 @@
     <Reference Include="Boo.Lang">
       <HintPath>D:/Unity/2018.2.16f1/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/Boo.Lang.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp.csproj">
+      <Project>{4E00F686-B5A2-7D8F-EFED-E2A8C60D65F8}</Project>
+      <Name>Assembly-CSharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
