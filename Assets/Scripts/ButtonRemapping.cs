@@ -37,7 +37,7 @@ public class ButtonRemapping : MonoBehaviour
 
     private void Start()
     {
-        Keycode = AccessibilityManager.ManagerInstance.Keys[Index - 1];
+        Keycode = AccessibilityManager.ManagerInstance.Keys[Index];
         Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
     }
 
@@ -63,7 +63,7 @@ public class ButtonRemapping : MonoBehaviour
         {
             Keycode = KeyEvent.keyCode;
 
-            AccessibilityManager.ManagerInstance.Keys[Index - 1] = KeyEvent.keyCode;
+            AccessibilityManager.ManagerInstance.Keys[Index] = KeyEvent.keyCode;
 
             IsButtonPressed = false;
         }
