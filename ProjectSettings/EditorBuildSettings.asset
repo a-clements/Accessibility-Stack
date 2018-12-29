@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Accessibility Stack.unity
+    guid: d9c2ccb39c901f3469ee3ab8ed6ccbee
   m_configObjects: {}

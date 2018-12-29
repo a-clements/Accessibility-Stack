@@ -8,6 +8,7 @@ public class DropdownRemapping : MonoBehaviour
     public Dropdown Dropdown;
     private KeyCode Keycode;
     private int Index;
+    private bool initial = true;
 
     private void Awake()
     {
@@ -48,5 +49,12 @@ public class DropdownRemapping : MonoBehaviour
         Keycode = (KeyCode)Enum.Parse(typeof(KeyCode), Dropdown.options[Dropdown.value].text, true);
 
         AccessibilityManager.ManagerInstance.Keys[Index - 1] = Keycode;
+
+        if (initial == false)
+        {
+            AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+        }
+
+        initial = false;
     }
 }

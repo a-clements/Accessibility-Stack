@@ -44,6 +44,9 @@ public class ButtonRemapping : MonoBehaviour
     public void OnButtonClick()
     {
         Button.transform.GetChild(0).GetComponent<Text>().text = "Please enter a new key";
+
+        AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+
         text = "ButtonPressed";
 
         if (IsButtonPressed == false)
@@ -83,6 +86,7 @@ public class ButtonRemapping : MonoBehaviour
         {
             case "ButtonPressed":
                 Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
                 StopCoroutine(GetNewKey());
                 break;
         }

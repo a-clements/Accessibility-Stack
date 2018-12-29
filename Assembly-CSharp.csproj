@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\AccessibilityManager.cs" />
     <Compile Include="Assets\Scripts\ButtonRemapping.cs" />
     <Compile Include="Assets\Scripts\DropdownRemapping.cs" />
+    <Compile Include="Assets\Scripts\ResolutionChange.cs" />
     <Compile Include="Assets\Scripts\TTS.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/woofa/Documents/GitHub/Accessibility Stack/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
@@ -277,9 +278,6 @@
     </Reference>
     <Reference Include="Interop.SpeechLib">
       <HintPath>C:/Users/woofa/Documents/GitHub/Accessibility Stack/Assets/External Libraries/Interop.SpeechLib.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Speech">
-      <HintPath>C:/Users/woofa/Documents/GitHub/Accessibility Stack/Assets/External Libraries/System.Speech.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/woofa/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>

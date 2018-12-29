@@ -30,7 +30,8 @@ public class AccessibilityManager : MonoBehaviour
     public KeyCode[] Keys;
     public ButtonRemapping[] Buttons;
     public DropdownRemapping[] Dropdowns;
-    public Button_TTS[] Button_TTS;
+    public TTS[] TTS;
+    public Resolution[] Resolutions;
     [HideInInspector] public string PanelName;
 
     private void Awake()
@@ -50,7 +51,7 @@ public class AccessibilityManager : MonoBehaviour
     {
         Buttons = FindObjectsOfType<ButtonRemapping>();
         Dropdowns = FindObjectsOfType<DropdownRemapping>();
-        Button_TTS = FindObjectsOfType<Button_TTS>();
+        TTS = FindObjectsOfType<TTS>();
         WindowSize = FindObjectOfType<Canvas>();
     }
 
@@ -67,6 +68,7 @@ public class AccessibilityManager : MonoBehaviour
             Panel.GetComponent<RectTransform>().anchorMax = WindowSize.transform.GetChild(0).GetComponent<RectTransform>().anchorMax;
             Panel.GetComponent<RectTransform>().anchorMin = WindowSize.transform.GetChild(0).GetComponent<RectTransform>().anchorMin;
             Panel.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
+            Panel.GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
         else
         {
@@ -99,18 +101,18 @@ public class AccessibilityManager : MonoBehaviour
         {
             case 0:
                 ButtonControlType = Instantiate(ButtonPrefab, transform.position, transform.rotation);
-                ButtonControlType.transform.SetParent(Panel.transform);
+                ButtonControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
                 ButtonControlType.gameObject.AddComponent<ButtonRemapping>();
-                ButtonControlType.gameObject.AddComponent<Button_TTS>();
+                ButtonControlType.gameObject.AddComponent<TTS>();
                 ButtonControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 ButtonControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 break;
 
             case 1:
                 DropdownControlType = Instantiate(DropdownPrefab, transform.position, transform.rotation);
-                DropdownControlType.transform.SetParent(Panel.transform);
+                DropdownControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
                 DropdownControlType.gameObject.AddComponent<DropdownRemapping>();
-                DropdownControlType.gameObject.AddComponent<Button_TTS>();
+                DropdownControlType.gameObject.AddComponent<TTS>();
                 DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 break;
@@ -123,7 +125,7 @@ public class AccessibilityManager : MonoBehaviour
 
         Canvas WindowSize;
         WindowSize = FindObjectOfType<Canvas>();
-        Resolution[] Resolutions;
+        int i = 0;
 
         if (Panel == null)
         {
@@ -139,6 +141,8 @@ public class AccessibilityManager : MonoBehaviour
                 DropdownControlType.name = "ResolutionMenu";
                 DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+                DropdownControlType.gameObject.AddComponent<TTS>();
+                DropdownControlType.gameObject.AddComponent<ResolutionChange>();
 
                 Resolutions = Screen.resolutions;
 
@@ -149,16 +153,18 @@ public class AccessibilityManager : MonoBehaviour
                         DropdownControlType.options.Add(new Dropdown.OptionData(resolution.ToString()));
                     }
                 }
-                else
+
+                while(Screen.currentResolution.width != Resolutions[i].width)
                 {
-                    WindowSize.GetComponent<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-                    WindowSize.GetComponent<CanvasScaler>().screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
-                    WindowSize.GetComponent<CanvasScaler>().matchWidthOrHeight = 0.5f;
-                    WindowSize.GetComponent<CanvasScaler>().referenceResolution = new Vector2(1920, 1080);
+                    i++;
                 }
+
+                DropdownControlType.value = i;
+
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/ResolutionMenu").GetComponent<RectTransform>().anchorMin = new Vector2(0.008f, 0.96f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/ResolutionMenu").GetComponent<RectTransform>().anchorMax = new Vector2(0.3f, 0.99f);
-                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/ResolutionMenu").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/ResolutionMenu").GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/ResolutionMenu").GetComponent<RectTransform>().localScale = new Vector3 (1.0f,1.0f,1.0f);
                 break;
 
             case 1:
@@ -167,19 +173,62 @@ public class AccessibilityManager : MonoBehaviour
                 ToggleControlType.name = "FullScreenToggle";
                 ToggleControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 ToggleControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/FullScreenToggle").GetComponent<RectTransform>().anchorMin = new Vector2(0.72f, 0.96f);
+                ToggleControlType.gameObject.AddComponent<TTS>();
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/FullScreenToggle").GetComponent<RectTransform>().anchorMin = new Vector2(0.682f, 0.96f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/FullScreenToggle").GetComponent<RectTransform>().anchorMax = new Vector2(0.975f, 0.99f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/FullScreenToggle").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/FullScreenToggle").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/FullScreenToggle").GetChild(1).GetComponent<Text>().text = "Full Screen";
                 break;
 
             case 2:
                 DropdownControlType = Instantiate(DropdownPrefab, transform.position, transform.rotation);
                 DropdownControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
+                DropdownControlType.name = "TextureQuality";
+                DropdownControlType.options.Add(new Dropdown.OptionData("Low"));
+                DropdownControlType.options.Add(new Dropdown.OptionData("Medium"));
+                DropdownControlType.options.Add(new Dropdown.OptionData("High"));
                 DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-                DropdownControlType.gameObject.AddComponent<DropdownRemapping>();
-                DropdownControlType.gameObject.AddComponent<Button_TTS>();
+                DropdownControlType.gameObject.AddComponent<TTS>();
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/TextureQuality").GetComponent<RectTransform>().anchorMin = new Vector2(0.008f, 0.929f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/TextureQuality").GetComponent<RectTransform>().anchorMax = new Vector2(0.3f, 0.96f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/TextureQuality").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/TextureQuality").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                break;
+
+            case 3:
+                DropdownControlType = Instantiate(DropdownPrefab, transform.position, transform.rotation);
+                DropdownControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
+                DropdownControlType.name = "VSync";
+                DropdownControlType.options.Add(new Dropdown.OptionData("Don't Sync"));
+                DropdownControlType.options.Add(new Dropdown.OptionData("Every V Blank"));
+                DropdownControlType.options.Add(new Dropdown.OptionData("Every Second V Blank"));
+                DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+                DropdownControlType.gameObject.AddComponent<TTS>();
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/VSync").GetComponent<RectTransform>().anchorMin = new Vector2(0.682f, 0.929f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/VSync").GetComponent<RectTransform>().anchorMax = new Vector2(0.975f, 0.96f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/VSync").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/VSync").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                break;
+
+            case 4:
+                DropdownControlType = Instantiate(DropdownPrefab, transform.position, transform.rotation);
+                DropdownControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
+                DropdownControlType.name = "AntiAliasing";
+                DropdownControlType.options.Add(new Dropdown.OptionData("0x"));
+                DropdownControlType.options.Add(new Dropdown.OptionData("2x"));
+                DropdownControlType.options.Add(new Dropdown.OptionData("4x"));
+                DropdownControlType.options.Add(new Dropdown.OptionData("8x"));
+                DropdownControlType.options.Add(new Dropdown.OptionData("16x"));
+                DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+                DropdownControlType.gameObject.AddComponent<TTS>();
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/AntiAliasing").GetComponent<RectTransform>().anchorMin = new Vector2(0.008f, 0.899f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/AntiAliasing").GetComponent<RectTransform>().anchorMax = new Vector2(0.3f, 0.929f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/AntiAliasing").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/AntiAliasing").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                 break;
         }
     }
