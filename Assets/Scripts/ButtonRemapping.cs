@@ -16,7 +16,6 @@ public class ButtonRemapping : MonoBehaviour
     /*single game object that can access all controls.                                                                                                               */
 
     public Button Button;
-    private string text;
     private KeyCode Keycode;
     private int Index;
 
@@ -47,9 +46,12 @@ public class ButtonRemapping : MonoBehaviour
 
         AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
 
-        text = "ButtonPressed";
+        if(Input.GetKeyDown(KeyCode.Joystick1Button0))
+        {
+            StartCoroutine(GetNewJoystickButton());
+        }
 
-        if (IsButtonPressed == false)
+        else if (IsButtonPressed == false)
         {
             StartCoroutine(GetNewKey());
         }
@@ -61,7 +63,6 @@ public class ButtonRemapping : MonoBehaviour
 
         if (KeyEvent.isKey && IsButtonPressed == true)
         {
-
             Keycode = KeyEvent.keyCode;
 
             AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
@@ -129,16 +130,48 @@ public class ButtonRemapping : MonoBehaviour
         }
     }
 
+    IEnumerator WaitForJoystick()
+    {
+        while (!KeyEvent.isKey)
+        {
+            if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+            {
+                Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                AccessibilityManager.ManagerInstance.Speak("Cancel");
+            }
+
+            else if (Input.GetKeyDown(KeyCode.Joystick1Button2))
+            {
+                Keycode = KeyCode.Joystick1Button2;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.Joystick1Button3))
+            {
+                Keycode = KeyCode.Joystick1Button3;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            yield return null;
+        }
+    }
+
     public IEnumerator GetNewKey()
     {
         IsButtonPressed = true;
         yield return WaitForKey();
 
-        switch (text)
-        {
-            case "ButtonPressed":
-                StopCoroutine(GetNewKey());
-                break;
-        }
+        StopCoroutine(GetNewKey());
+    }
+
+    private IEnumerator GetNewJoystickButton()
+    {
+        yield return WaitForJoystick();
+
+        StopCoroutine(GetNewJoystickButton());
     }
 }
