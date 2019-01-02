@@ -66,6 +66,30 @@ public class ButtonRemapping : MonoBehaviour
 
             AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
 
+            string keytext = Keycode.ToString();
+            int stringlength = keytext.Length;
+
+            if (stringlength > 5 && stringlength < 7)
+            {
+                if (keytext == "SysReq")
+                {
+                    Button.transform.GetChild(0).GetComponent<Text>().text = "System Requirements";
+                    AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+                }
+                else
+                {
+                    keytext = keytext.Substring(0, 5) + " " + keytext.Substring(5, stringlength - 5);
+
+                    Button.transform.GetChild(0).GetComponent<Text>().text = keytext;
+                    AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+                }
+            }
+            else
+            {
+                Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
             IsButtonPressed = false;
         }
 
@@ -84,11 +108,12 @@ public class ButtonRemapping : MonoBehaviour
                 Keycode = KeyCode.Mouse2;
             }
 
+            AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+
             string keytext = Keycode.ToString();
             int stringlength = keytext.Length;
             keytext = keytext.Substring(0, 5) + " " + keytext.Substring(5, stringlength - 5);
 
-            AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
             Button.transform.GetChild(0).GetComponent<Text>().text = keytext;
             AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
 
@@ -112,24 +137,6 @@ public class ButtonRemapping : MonoBehaviour
         switch (text)
         {
             case "ButtonPressed":
-
-                string keytext = Keycode.ToString();
-                int stringlength = keytext.Length;
-
-                if(stringlength > 4 && stringlength < 6)
-                {
-                    keytext = keytext.Substring(0, 5) + " " + keytext.Substring(5, stringlength - 5);
-
-                    AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
-                    Button.transform.GetChild(0).GetComponent<Text>().text = keytext;
-                    AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
-                }
-                else
-                {
-                    Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
-                    AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
-                }
-
                 StopCoroutine(GetNewKey());
                 break;
         }
