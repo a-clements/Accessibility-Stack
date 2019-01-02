@@ -61,9 +61,36 @@ public class ButtonRemapping : MonoBehaviour
 
         if (KeyEvent.isKey && IsButtonPressed == true)
         {
+
             Keycode = KeyEvent.keyCode;
 
-            AccessibilityManager.ManagerInstance.Keys[Index] = KeyEvent.keyCode;
+            AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+
+            IsButtonPressed = false;
+        }
+
+        if (KeyEvent.isMouse && IsButtonPressed == true)
+        {
+            if (KeyEvent.button == 0)
+            {
+                Keycode = KeyCode.Mouse0;
+            }
+            else if (KeyEvent.button == 1)
+            {
+                Keycode = KeyCode.Mouse1;
+            }
+            else if (KeyEvent.button == 2)
+            {
+                Keycode = KeyCode.Mouse2;
+            }
+
+            string keytext = Keycode.ToString();
+            int stringlength = keytext.Length;
+            keytext = keytext.Substring(0, 5) + " " + keytext.Substring(5, stringlength - 5);
+
+            AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+            Button.transform.GetChild(0).GetComponent<Text>().text = keytext;
+            AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
 
             IsButtonPressed = false;
         }
@@ -85,8 +112,24 @@ public class ButtonRemapping : MonoBehaviour
         switch (text)
         {
             case "ButtonPressed":
-                Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
-                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+
+                string keytext = Keycode.ToString();
+                int stringlength = keytext.Length;
+
+                if(stringlength > 4 && stringlength < 6)
+                {
+                    keytext = keytext.Substring(0, 5) + " " + keytext.Substring(5, stringlength - 5);
+
+                    AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                    Button.transform.GetChild(0).GetComponent<Text>().text = keytext;
+                    AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+                }
+                else
+                {
+                    Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                    AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+                }
+
                 StopCoroutine(GetNewKey());
                 break;
         }

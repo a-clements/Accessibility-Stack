@@ -104,7 +104,7 @@ public class AccessibilityManager : MonoBehaviour
                 ButtonControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
                 ButtonControlType.gameObject.AddComponent<ButtonRemapping>();
                 ButtonControlType.gameObject.AddComponent<TTS>();
-                ButtonControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                ButtonControlType.GetComponent<RectTransform>().anchoredPosition = new Vector2(8.5f,0);
                 ButtonControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 break;
 
@@ -113,7 +113,7 @@ public class AccessibilityManager : MonoBehaviour
                 DropdownControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
                 DropdownControlType.gameObject.AddComponent<DropdownRemapping>();
                 DropdownControlType.gameObject.AddComponent<TTS>();
-                DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                DropdownControlType.GetComponent<RectTransform>().anchoredPosition = new Vector2(8.5f, 0);
                 DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 break;
         }
