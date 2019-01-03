@@ -5,18 +5,15 @@ using System.Collections;
 
 public class ButtonRemapping : MonoBehaviour
 {
-    /*This script will assign new keycodes on on either a button click or a change of a dropdown. There are a few bugs.                                              */
-    /*1. Pressing return will click the button but doesn't allow for a new button to be assigned because the enter key is also the submit within the event manager.  */
-    /*Not everyone can use a mouse to click a button so being able to press enter and start the keyremapping is an ideal if it is at all possible.                   */
-    /*2. It's not generic. There are different methods for different control methods such as dropdowns for setting up a controller.                                  */
-    /*3. It doesn't work with controllers.                                                                                                                           */
-    /*Being able to use the same script for controllers would greatly simplify the process and remove external dependancies such as incontrol.                       */
-    /*This would make it a truly one size fits most script.                                                                                                          */
-    /*As the script exists now it would need to be attached to each individual control. While this is ok, a better option would be to have the script attached to a  */
-    /*single game object that can access all controls.                                                                                                               */
+    /*This script will assign new keycodes on on either a button click or controller button 0 being pressed. There are a no known bugs.                                    */
+    /*Pressing return will invoke OnButtonClick(). Pressing return a second time will continue the loop until either a new button is pressed. Or a mouse button clicked.   */
+    /*Clicking the button with a mouse will invoke the OnButtonClick() but follow it's own subsystem.                                                                      */
+    /*Pressing button 0 on a gamepad will invoke the OnButtonClick() but follows its own subsystem. Pressing button 1 will cancel the button remapping.                    */
+    /*The gamepad subsystem is entirely segregated from the keyboard and mouse subsystems. The keyboard and mouse subsystem have an overlap.                               */
 
     public Button Button;
     private KeyCode Keycode;
+    private KeyCode OldKeycode;
     private int Index;
 
     private bool IsButtonPressed = false;
@@ -42,6 +39,7 @@ public class ButtonRemapping : MonoBehaviour
 
     public void OnButtonClick()
     {
+        OldKeycode = AccessibilityManager.ManagerInstance.Keys[Index];
         Button.transform.GetChild(0).GetComponent<Text>().text = "Please enter a new key";
 
         AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
@@ -63,35 +61,53 @@ public class ButtonRemapping : MonoBehaviour
 
         if (KeyEvent.isKey && IsButtonPressed == true)
         {
-            Keycode = KeyEvent.keyCode;
-
-            AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
-
-            string keytext = Keycode.ToString();
-            int stringlength = keytext.Length;
-
-            if (stringlength > 5 && stringlength < 7)
+            if(KeyEvent.keyCode != KeyCode.Return)
             {
-                if (keytext == "SysReq")
+                if(KeyEvent.keyCode != KeyCode.Escape)
                 {
-                    Button.transform.GetChild(0).GetComponent<Text>().text = "System Requirements";
-                    AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+                    Keycode = KeyEvent.keyCode;
+
+                    AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+
+                    if(AccessibilityManager.ManagerInstance.Keys[Index] == KeyCode.None)
+                    {
+                        AccessibilityManager.ManagerInstance.Keys[Index] = OldKeycode;
+                    }
+
+                    string keytext = Keycode.ToString();
+                    int stringlength = keytext.Length;
+
+                    if (stringlength > 5 && stringlength < 7)
+                    {
+                        if (keytext == "SysReq")
+                        {
+                            Button.transform.GetChild(0).GetComponent<Text>().text = "System Requirements";
+                            AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+                        }
+                        else
+                        {
+                            keytext = keytext.Substring(0, 5) + " " + keytext.Substring(5, stringlength - 5);
+
+                            Button.transform.GetChild(0).GetComponent<Text>().text = keytext;
+                            AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+                        }
+                    }
+                    else
+                    {
+                        Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                        AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+                    }
+
+                    IsButtonPressed = false;
                 }
                 else
                 {
-                    keytext = keytext.Substring(0, 5) + " " + keytext.Substring(5, stringlength - 5);
-
-                    Button.transform.GetChild(0).GetComponent<Text>().text = keytext;
-                    AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+                    AccessibilityManager.ManagerInstance.Speak("Cancel");
+                    Keycode = AccessibilityManager.ManagerInstance.Keys[Index];
+                    Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                    IsButtonPressed = false;
                 }
             }
-            else
-            {
-                Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
-                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
-            }
-
-            IsButtonPressed = false;
         }
 
         if (KeyEvent.isMouse && IsButtonPressed == true)
@@ -122,12 +138,28 @@ public class ButtonRemapping : MonoBehaviour
         }
     }
 
+    public IEnumerator GetNewKey()
+    {
+        IsButtonPressed = true;
+        yield return WaitForKey();
+
+        StopCoroutine(GetNewKey());
+    }
+
     IEnumerator WaitForKey()
     {
         while (!KeyEvent.isKey)
         {
             yield return null;
         }
+    }
+
+    private IEnumerator GetNewJoystickButton()
+    {
+        IsButtonPressed = true;
+        yield return WaitForJoystick();
+
+        StopCoroutine(GetNewJoystickButton());
     }
 
     IEnumerator WaitForJoystick()
@@ -305,21 +337,5 @@ public class ButtonRemapping : MonoBehaviour
 
             yield return null;
         }
-    }
-
-    public IEnumerator GetNewKey()
-    {
-        IsButtonPressed = true;
-        yield return WaitForKey();
-
-        StopCoroutine(GetNewKey());
-    }
-
-    private IEnumerator GetNewJoystickButton()
-    {
-        IsButtonPressed = true;
-        yield return WaitForJoystick();
-
-        StopCoroutine(GetNewJoystickButton());
     }
 }
