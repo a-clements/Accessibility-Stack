@@ -134,26 +134,170 @@ public class ButtonRemapping : MonoBehaviour
     {
         while (IsButtonPressed == true)
         {
-            if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+            if (Input.GetKeyDown(KeyCode.JoystickButton1))
             {
                 IsButtonPressed = false;
                 Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
                 AccessibilityManager.ManagerInstance.Speak("Cancel");
             }
 
-            else if (Input.GetKeyDown(KeyCode.Joystick1Button2))
+            else if (Input.GetKeyDown(KeyCode.JoystickButton2))
             {
                 IsButtonPressed = false;
-                Keycode = KeyCode.Joystick1Button2;
+                Keycode = KeyCode.JoystickButton2;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = "Action 1";
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton3))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton3;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = "Action 2";
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton4))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton4;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = "Left Bumper";
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton5))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton5;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = "Right Bumper";
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton6))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton6;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = "Status";
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton7))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton7;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = "Pause";
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton8))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton8;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = "Left Analogue Button";
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton9))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton9;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = "Right Analogue Button";
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton10))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton10;
                 AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
                 Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
                 AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
             }
 
-            else if (Input.GetKeyDown(KeyCode.Joystick1Button3))
+            else if (Input.GetKeyDown(KeyCode.JoystickButton11))
             {
                 IsButtonPressed = false;
-                Keycode = KeyCode.Joystick1Button3;
+                Keycode = KeyCode.JoystickButton11;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton12))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton12;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton13))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton13;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton14))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton14;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton15))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton15;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton16))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton16;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton17))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton17;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton18))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton18;
+                AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton19))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton19;
                 AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
                 Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
                 AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
