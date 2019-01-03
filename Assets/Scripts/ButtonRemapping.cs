@@ -132,16 +132,18 @@ public class ButtonRemapping : MonoBehaviour
 
     IEnumerator WaitForJoystick()
     {
-        while (!KeyEvent.isKey)
+        while (IsButtonPressed == true)
         {
             if (Input.GetKeyDown(KeyCode.Joystick1Button1))
             {
+                IsButtonPressed = false;
                 Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
                 AccessibilityManager.ManagerInstance.Speak("Cancel");
             }
 
             else if (Input.GetKeyDown(KeyCode.Joystick1Button2))
             {
+                IsButtonPressed = false;
                 Keycode = KeyCode.Joystick1Button2;
                 AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
                 Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
@@ -150,6 +152,7 @@ public class ButtonRemapping : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.Joystick1Button3))
             {
+                IsButtonPressed = false;
                 Keycode = KeyCode.Joystick1Button3;
                 AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
                 Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
@@ -170,6 +173,7 @@ public class ButtonRemapping : MonoBehaviour
 
     private IEnumerator GetNewJoystickButton()
     {
+        IsButtonPressed = true;
         yield return WaitForJoystick();
 
         StopCoroutine(GetNewJoystickButton());
