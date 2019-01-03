@@ -61,54 +61,51 @@ public class ButtonRemapping : MonoBehaviour
 
         if (KeyEvent.isKey && IsButtonPressed == true)
         {
-            if (KeyEvent.keyCode != KeyCode.Return)
+            if (KeyEvent.keyCode != KeyCode.Return && KeyEvent.keyCode != KeyCode.KeypadEnter)
             {
-                if (KeyEvent.keyCode != KeyCode.KeypadEnter)
+                if (KeyEvent.keyCode != KeyCode.Escape)
                 {
-                    if (KeyEvent.keyCode != KeyCode.Escape)
+                    Keycode = KeyEvent.keyCode;
+
+                    AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+
+                    if (AccessibilityManager.ManagerInstance.Keys[Index] == KeyCode.None)
                     {
-                        Keycode = KeyEvent.keyCode;
+                        AccessibilityManager.ManagerInstance.Keys[Index] = OldKeycode;
+                    }
 
-                        AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
+                    string keytext = Keycode.ToString();
+                    int stringlength = keytext.Length;
 
-                        if (AccessibilityManager.ManagerInstance.Keys[Index] == KeyCode.None)
+                    if (stringlength > 5 && stringlength < 7)
+                    {
+                        if (keytext == "SysReq")
                         {
-                            AccessibilityManager.ManagerInstance.Keys[Index] = OldKeycode;
-                        }
-
-                        string keytext = Keycode.ToString();
-                        int stringlength = keytext.Length;
-
-                        if (stringlength > 5 && stringlength < 7)
-                        {
-                            if (keytext == "SysReq")
-                            {
-                                Button.transform.GetChild(0).GetComponent<Text>().text = "System Requirements";
-                                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
-                            }
-                            else
-                            {
-                                keytext = keytext.Substring(0, 5) + " " + keytext.Substring(5, stringlength - 5);
-
-                                Button.transform.GetChild(0).GetComponent<Text>().text = keytext;
-                                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
-                            }
+                            Button.transform.GetChild(0).GetComponent<Text>().text = "System Requirements";
+                            AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
                         }
                         else
                         {
-                            Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                            keytext = keytext.Substring(0, 5) + " " + keytext.Substring(5, stringlength - 5);
+
+                            Button.transform.GetChild(0).GetComponent<Text>().text = keytext;
                             AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
                         }
-
-                        IsButtonPressed = false;
                     }
                     else
                     {
-                        AccessibilityManager.ManagerInstance.Speak("Cancel");
-                        Keycode = AccessibilityManager.ManagerInstance.Keys[Index];
                         Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
-                        IsButtonPressed = false;
+                        AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
                     }
+
+                    IsButtonPressed = false;
+                }
+                else
+                {
+                    AccessibilityManager.ManagerInstance.Speak("Cancel");
+                    Keycode = AccessibilityManager.ManagerInstance.Keys[Index];
+                    Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                    IsButtonPressed = false;
                 }
             }
         }
