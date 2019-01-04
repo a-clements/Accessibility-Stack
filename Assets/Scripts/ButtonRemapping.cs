@@ -37,6 +37,14 @@ public class ButtonRemapping : MonoBehaviour
         Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
     }
 
+    private void Update()
+    {
+        if(Input.GetAxis(AccessibilityManager.ManagerInstance.Trigger) > 0.0f)
+        {
+            Debug.Log(AccessibilityManager.ManagerInstance.Trigger);
+        }
+    }
+
     public void OnButtonClick()
     {
         OldKeycode = AccessibilityManager.ManagerInstance.Keys[Index];
@@ -332,6 +340,22 @@ public class ButtonRemapping : MonoBehaviour
                 Keycode = KeyCode.JoystickButton19;
                 AccessibilityManager.ManagerInstance.Keys[Index] = Keycode;
                 Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetAxis("Left Trigger") > 0.0f)
+            {
+                IsButtonPressed = false;
+                AccessibilityManager.ManagerInstance.Trigger = "Left Trigger";
+                Button.transform.GetChild(0).GetComponent<Text>().text = AccessibilityManager.ManagerInstance.Trigger;
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetAxis("Right Trigger") > 0.0f)
+            {
+                IsButtonPressed = false;
+                AccessibilityManager.ManagerInstance.Trigger = "Right Trigger";
+                Button.transform.GetChild(0).GetComponent<Text>().text = AccessibilityManager.ManagerInstance.Trigger;
                 AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
             }
 

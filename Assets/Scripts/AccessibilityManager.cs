@@ -28,6 +28,7 @@ public class AccessibilityManager : MonoBehaviour
     public GameObject PanelPrefab;
 
     public KeyCode[] Keys;
+    public string Trigger;
     public ButtonRemapping[] Buttons;
     public DropdownRemapping[] Dropdowns;
     public TTS[] TTS;
