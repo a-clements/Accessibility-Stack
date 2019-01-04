@@ -149,6 +149,7 @@ public class ButtonRemapping : MonoBehaviour
     public IEnumerator GetNewKey()
     {
         IsButtonPressed = true;
+
         yield return WaitForKey();
 
         StopCoroutine(GetNewKey());
@@ -355,6 +356,22 @@ public class ButtonRemapping : MonoBehaviour
             {
                 IsButtonPressed = false;
                 AccessibilityManager.ManagerInstance.Trigger = "Right Trigger";
+                Button.transform.GetChild(0).GetComponent<Text>().text = AccessibilityManager.ManagerInstance.Trigger;
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetAxis("DPad Vertical") > 0.0f)
+            {
+                IsButtonPressed = false;
+                AccessibilityManager.ManagerInstance.Trigger = "DPad Vertical";
+                Button.transform.GetChild(0).GetComponent<Text>().text = AccessibilityManager.ManagerInstance.Trigger;
+                AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetAxis("DPad Horizontal") > 0.0f)
+            {
+                IsButtonPressed = false;
+                AccessibilityManager.ManagerInstance.Trigger = "DPad Horizontal";
                 Button.transform.GetChild(0).GetComponent<Text>().text = AccessibilityManager.ManagerInstance.Trigger;
                 AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
             }
