@@ -344,7 +344,7 @@ public class ButtonRemapping : MonoBehaviour
                 AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
             }
 
-            else if (Input.GetAxis("Left Trigger") > 0.0f)
+            else if (Input.GetAxis("Left Trigger") != 0.0f)
             {
                 IsButtonPressed = false;
                 AccessibilityManager.ManagerInstance.Trigger = "Left Trigger";
@@ -352,7 +352,7 @@ public class ButtonRemapping : MonoBehaviour
                 AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
             }
 
-            else if (Input.GetAxis("Right Trigger") > 0.0f)
+            else if (Input.GetAxis("Right Trigger") != 0.0f)
             {
                 IsButtonPressed = false;
                 AccessibilityManager.ManagerInstance.Trigger = "Right Trigger";
@@ -360,7 +360,7 @@ public class ButtonRemapping : MonoBehaviour
                 AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
             }
 
-            else if (Input.GetAxis("DPad Vertical") > 0.0f)
+            else if (Input.GetAxis("DPad Vertical") != 0.0f)
             {
                 IsButtonPressed = false;
                 AccessibilityManager.ManagerInstance.Trigger = "DPad Vertical";
@@ -368,7 +368,7 @@ public class ButtonRemapping : MonoBehaviour
                 AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
             }
 
-            else if (Input.GetAxis("DPad Horizontal") > 0.0f)
+            else if (Input.GetAxis("DPad Horizontal") != 0.0f)
             {
                 IsButtonPressed = false;
                 AccessibilityManager.ManagerInstance.Trigger = "DPad Horizontal";
