@@ -5,6 +5,8 @@ using System;
 //using System.Speech.Synthesis; //native functionality does not work in unity so it has to be done with the speechlib.
 using SpeechLib;
 using UnityEngine.UI;
+using UnityEditor;
+using System.Text.RegularExpressions;
 
 public class AccessibilityManager : MonoBehaviour
 {
@@ -34,6 +36,8 @@ public class AccessibilityManager : MonoBehaviour
     public TTS[] TTS;
     public Resolution[] Resolutions;
     [HideInInspector] public string PanelName;
+
+    static readonly List<AxisPreset> axisPresets = new List<AxisPreset>();
 
     private void Awake()
     {
@@ -88,6 +92,30 @@ public class AccessibilityManager : MonoBehaviour
         }
     }
 
+    public void RemapAxis()
+    {
+        axisPresets.Clear();
+        ImportExistingAxisPresets();
+        CreateCompatibilityAxisPresets();
+
+        var inputManagerAsset = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0];
+        var serializedObject = new SerializedObject(inputManagerAsset);
+        var axisArray = serializedObject.FindProperty("m_Axes");
+
+        axisArray.arraySize = axisPresets.Count;
+        serializedObject.ApplyModifiedProperties();
+
+        for (var i = 0; i < axisPresets.Count; i++)
+        {
+            var axisEntry = axisArray.GetArrayElementAtIndex(i);
+            axisPresets[i].ApplyTo(ref axisEntry);
+        }
+
+        serializedObject.ApplyModifiedProperties();
+
+        AssetDatabase.Refresh();
+    }
+
     public void CreateControls(int ControlIndex)
     {
         Panel = GameObject.Find("ControlsPanel");
@@ -96,6 +124,7 @@ public class AccessibilityManager : MonoBehaviour
         {
             PanelName = "ControlsPanel";
             CreatePanel();
+            RemapAxis();
         }
 
         switch (ControlIndex)
@@ -105,7 +134,7 @@ public class AccessibilityManager : MonoBehaviour
                 ButtonControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
                 ButtonControlType.gameObject.AddComponent<ButtonRemapping>();
                 ButtonControlType.gameObject.AddComponent<TTS>();
-                ButtonControlType.GetComponent<RectTransform>().anchoredPosition = new Vector2(8.5f,0);
+                ButtonControlType.GetComponent<RectTransform>().anchoredPosition = new Vector2(8.5f, 0);
                 ButtonControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 break;
 
@@ -155,7 +184,7 @@ public class AccessibilityManager : MonoBehaviour
                     }
                 }
 
-                while(Screen.currentResolution.width != Resolutions[i].width)
+                while (Screen.currentResolution.width != Resolutions[i].width)
                 {
                     i++;
                 }
@@ -165,7 +194,7 @@ public class AccessibilityManager : MonoBehaviour
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/ResolutionMenu").GetComponent<RectTransform>().anchorMin = new Vector2(0.008f, 0.96f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/ResolutionMenu").GetComponent<RectTransform>().anchorMax = new Vector2(0.3f, 0.99f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/ResolutionMenu").GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
-                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/ResolutionMenu").GetComponent<RectTransform>().localScale = new Vector3 (1.0f,1.0f,1.0f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/ResolutionMenu").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                 break;
 
             case 1:
@@ -243,6 +272,526 @@ public class AccessibilityManager : MonoBehaviour
             PanelName = "AudioPanel";
             CreatePanel();
         }
+    }
+
+    internal class AxisPreset
+    {
+        public string name;
+        public string descriptiveName;
+        public string descriptiveNegativeName;
+        public string negativeButton;
+        public string positiveButton;
+        public string altNegativeButton;
+        public string altPositiveButton;
+        public float gravity;
+        public float deadZone = 0.001f;
+        public float sensitivity = 1.0f;
+        public bool snap;
+        public bool invert;
+        public int type;
+        public int axis;
+        public int joyNum;
+
+        public AxisPreset()
+        {
+        }
+
+
+        public AxisPreset(SerializedProperty axisPreset)
+        {
+            this.name = GetChildProperty(axisPreset, "m_Name").stringValue;
+            this.descriptiveName = GetChildProperty(axisPreset, "descriptiveName").stringValue;
+            this.descriptiveNegativeName = GetChildProperty(axisPreset, "descriptiveNegativeName").stringValue;
+            this.negativeButton = GetChildProperty(axisPreset, "negativeButton").stringValue;
+            this.positiveButton = GetChildProperty(axisPreset, "positiveButton").stringValue;
+            this.altNegativeButton = GetChildProperty(axisPreset, "altNegativeButton").stringValue;
+            this.altPositiveButton = GetChildProperty(axisPreset, "altPositiveButton").stringValue;
+            this.gravity = GetChildProperty(axisPreset, "gravity").floatValue;
+            this.deadZone = GetChildProperty(axisPreset, "dead").floatValue;
+            this.sensitivity = GetChildProperty(axisPreset, "sensitivity").floatValue;
+            this.snap = GetChildProperty(axisPreset, "snap").boolValue;
+            this.invert = GetChildProperty(axisPreset, "invert").boolValue;
+            this.type = GetChildProperty(axisPreset, "type").intValue;
+            this.axis = GetChildProperty(axisPreset, "axis").intValue;
+            this.joyNum = GetChildProperty(axisPreset, "joyNum").intValue;
+        }
+
+        public AxisPreset(string name, int type, int axis, float sensitivity)
+        {
+            this.name = name;
+            this.descriptiveName = "";
+            this.descriptiveNegativeName = "";
+            this.negativeButton = "";
+            this.positiveButton = "";
+            this.altNegativeButton = "";
+            this.altPositiveButton = "";
+            this.gravity = 0.0f;
+            this.deadZone = 0.001f;
+            this.sensitivity = sensitivity;
+            this.snap = false;
+            this.invert = false;
+            this.type = type;
+            this.axis = axis;
+            this.joyNum = 0;
+        }
+
+        public AxisPreset(int device, int analog)
+        {
+            this.name = string.Format("joystick {0} analog {1}", device, analog);
+            this.descriptiveName = "";
+            this.descriptiveNegativeName = "";
+            this.negativeButton = "";
+            this.positiveButton = "";
+            this.altNegativeButton = "";
+            this.altPositiveButton = "";
+            this.gravity = 0.0f;
+            this.deadZone = 0.001f;
+            this.sensitivity = 1.0f;
+            this.snap = false;
+            this.invert = false;
+            this.type = 2;
+            this.axis = analog;
+            this.joyNum = device;
+        }
+
+        public bool ReservedName
+        {
+            get
+            {
+                if (Regex.Match(name, @"^joystick \d+ analog \d+$").Success ||
+                    Regex.Match(name, @"^mouse (x|y|z)$").Success)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        public void ApplyTo(ref SerializedProperty axisPreset)
+        {
+            GetChildProperty(axisPreset, "m_Name").stringValue = name;
+            GetChildProperty(axisPreset, "descriptiveName").stringValue = descriptiveName;
+            GetChildProperty(axisPreset, "descriptiveNegativeName").stringValue = descriptiveNegativeName;
+            GetChildProperty(axisPreset, "negativeButton").stringValue = negativeButton;
+            GetChildProperty(axisPreset, "positiveButton").stringValue = positiveButton;
+            GetChildProperty(axisPreset, "altNegativeButton").stringValue = altNegativeButton;
+            GetChildProperty(axisPreset, "altPositiveButton").stringValue = altPositiveButton;
+            GetChildProperty(axisPreset, "gravity").floatValue = gravity;
+            GetChildProperty(axisPreset, "dead").floatValue = deadZone;
+            GetChildProperty(axisPreset, "sensitivity").floatValue = sensitivity;
+            GetChildProperty(axisPreset, "snap").boolValue = snap;
+            GetChildProperty(axisPreset, "invert").boolValue = invert;
+            GetChildProperty(axisPreset, "type").intValue = type;
+            GetChildProperty(axisPreset, "axis").intValue = axis;
+            GetChildProperty(axisPreset, "joyNum").intValue = joyNum;
+        }
+    }
+
+    static SerializedProperty GetChildProperty(SerializedProperty parent, string name)
+    {
+        var child = parent.Copy();
+        child.Next(true);
+
+        do
+        {
+            if (child.name == name)
+            {
+                return child;
+            }
+        } while (child.Next(false));
+
+        return null;
+    }
+
+    static void CreateCompatibilityAxisPresets()
+    {
+        if (!HasAxisPreset("Mouse ScrollWheel"))
+        {
+            axisPresets.Add(new AxisPreset("Mouse ScrollWheel", 1, 2, 0.1f));
+        }
+
+        if (!HasAxisPreset("Horizontal"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Horizontal",
+                negativeButton = "left",
+                positiveButton = "right",
+                altNegativeButton = "a",
+                altPositiveButton = "d",
+                gravity = 3.0f,
+                deadZone = 0.001f,
+                sensitivity = 3.0f,
+                snap = true,
+                type = 0,
+                axis = 0,
+                joyNum = 0
+            });
+
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Horizontal",
+                gravity = 0.0f,
+                deadZone = 0.19f,
+                sensitivity = 1.0f,
+                type = 2,
+                axis = 0,
+                joyNum = 0
+            });
+        }
+
+        if (!HasAxisPreset("Vertical"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Vertical",
+                negativeButton = "down",
+                positiveButton = "up",
+                altNegativeButton = "s",
+                altPositiveButton = "w",
+                gravity = 3.0f,
+                deadZone = 0.001f,
+                sensitivity = 3.0f,
+                snap = true,
+                type = 0,
+                axis = 0,
+                joyNum = 0
+            });
+
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Vertical",
+                gravity = 0.0f,
+                deadZone = 0.19f,
+                sensitivity = 1.0f,
+                type = 2,
+                axis = 0,
+                invert = true,
+                joyNum = 0
+            });
+        }
+
+        if (!HasAxisPreset("Fire1"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Fire1",
+                negativeButton = "",
+                positiveButton = "left ctrl",
+                altNegativeButton = "",
+                altPositiveButton = "mouse 0",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                snap = false,
+                type = 0,
+                axis = 0,
+                joyNum = 0
+            });
+
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Fire1",
+                negativeButton = "",
+                positiveButton = "joystick button 0",
+                altNegativeButton = "",
+                altPositiveButton = "",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                snap = false,
+                type = 0,
+                axis = 0,
+                joyNum = 0
+            });
+        }
+
+        if (!HasAxisPreset("Fire2"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Fire2",
+                negativeButton = "",
+                positiveButton = "left alt",
+                altNegativeButton = "",
+                altPositiveButton = "mouse 1",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                snap = false,
+                type = 0,
+                axis = 0,
+                joyNum = 0
+            });
+
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Fire2",
+                negativeButton = "",
+                positiveButton = "joystick button 1",
+                altNegativeButton = "",
+                altPositiveButton = "",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                snap = false,
+                type = 0,
+                axis = 0,
+                joyNum = 0
+            });
+        }
+
+        if (!HasAxisPreset("Fire3"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Fire3",
+                negativeButton = "",
+                positiveButton = "left shift",
+                altNegativeButton = "",
+                altPositiveButton = "mouse 2",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                snap = false,
+                type = 0,
+                axis = 0,
+                joyNum = 0
+            });
+
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Fire3",
+                negativeButton = "",
+                positiveButton = "joystick button 2",
+                altNegativeButton = "",
+                altPositiveButton = "",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                snap = false,
+                type = 0,
+                axis = 0,
+                joyNum = 0
+            });
+        }
+
+        if (!HasAxisPreset("Jump"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Jump",
+                negativeButton = "",
+                positiveButton = "space",
+                altNegativeButton = "",
+                altPositiveButton = "",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                snap = false,
+                type = 0,
+                axis = 0,
+                joyNum = 0
+            });
+
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Jump",
+                negativeButton = "",
+                positiveButton = "joystick button 3",
+                altNegativeButton = "",
+                altPositiveButton = "",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                snap = false,
+                type = 0,
+                axis = 0,
+                joyNum = 0
+            });
+        }
+
+        if (!HasAxisPreset("Mouse X"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Mouse X",
+                negativeButton = "",
+                positiveButton = "",
+                altNegativeButton = "",
+                altPositiveButton = "",
+                gravity = 0.0f,
+                deadZone = 0.0f,
+                sensitivity = 0.1f,
+                snap = false,
+                type = 0,
+                axis = 0,
+                joyNum = 0
+            });
+        }
+
+        if (!HasAxisPreset("Mouse Y"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Mouse Y",
+                negativeButton = "",
+                positiveButton = "",
+                altNegativeButton = "",
+                altPositiveButton = "",
+                gravity = 0.0f,
+                deadZone = 0.0f,
+                sensitivity = 0.1f,
+                snap = false,
+                type = 0,
+                axis = 0,
+                joyNum = 0
+            });
+        }
+
+        if (!HasAxisPreset("Submit"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Submit",
+                positiveButton = "return",
+                altPositiveButton = "joystick button 0",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                type = 0,
+                axis = 0,
+                joyNum = 0
+            });
+
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Submit",
+                positiveButton = "enter",
+                altPositiveButton = "space",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                type = 0,
+                axis = 0,
+                joyNum = 0
+            });
+        }
+
+        if (!HasAxisPreset("Cancel"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Cancel",
+                positiveButton = "escape",
+                altPositiveButton = "joystick button 1",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                type = 0,
+                axis = 0,
+                joyNum = 0
+            });
+        }
+
+        if (!HasAxisPreset("Left Trigger"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Left Trigger",
+                positiveButton = "",
+                altPositiveButton = "",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                type = 2,
+                axis = 8,
+                joyNum = 0
+            });
+        }
+
+        if (!HasAxisPreset("Right Trigger"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Right Trigger",
+                positiveButton = "",
+                altPositiveButton = "",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                type = 2,
+                axis = 9,
+                joyNum = 0
+            });
+        }
+
+        if (!HasAxisPreset("DPad Horizontal"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "DPad Horizontal",
+                positiveButton = "",
+                altPositiveButton = "",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                type = 2,
+                axis = 5,
+                joyNum = 0
+            });
+        }
+
+        if (!HasAxisPreset("DPad Vertical"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "DPad Vertical",
+                positiveButton = "",
+                altPositiveButton = "",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                type = 2,
+                axis = 6,
+                joyNum = 0
+            });
+        }
+    }
+
+    static void ImportExistingAxisPresets()
+    {
+        var axisArray = GetInputManagerAxisArray();
+        for (var i = 0; i < axisArray.arraySize; i++)
+        {
+            var axisEntry = axisArray.GetArrayElementAtIndex(i);
+            var axisPreset = new AxisPreset(axisEntry);
+            if (!axisPreset.ReservedName)
+            {
+                axisPresets.Add(axisPreset);
+            }
+        }
+    }
+
+    static SerializedProperty GetInputManagerAxisArray()
+    {
+        var inputManagerAsset = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0];
+        var serializedObject = new SerializedObject(inputManagerAsset);
+        return serializedObject.FindProperty("m_Axes");
+    }
+
+    static bool HasAxisPreset(string name)
+    {
+        for (var i = 0; i < axisPresets.Count; i++)
+        {
+            if (axisPresets[i].name == name)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void Speak(string text)

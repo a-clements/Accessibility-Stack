@@ -11,16 +11,16 @@ public class AccessibilityManagerEditor : Editor
     private int GraphicsIndex = 0;
     private int AudioIndex = 0;
 
-    void Start ()
+    void Start()
     {
 
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+    void Update()
     {
-		
-	}
+
+    }
 
     public override void OnInspectorGUI()
     {
@@ -28,7 +28,7 @@ public class AccessibilityManagerEditor : Editor
 
         GUILayout.BeginVertical(); //ensures that all controls are under each other vertically
 
-/*The beginning of the Panels code*/
+        /*The beginning of code that lays out buttons to modify and call the CreatePanel function*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1)); //creates a line in the inspector
 
         EditorGUILayout.LabelField("Panels", EditorStyles.boldLabel); //creates a label in the inspector with a bold font
@@ -61,9 +61,9 @@ public class AccessibilityManagerEditor : Editor
         }
 
         GUILayout.EndVertical(); //closes off the vertical command
-/*The end of the panels code*/
+                                 /*The end of the panels code*/
 
-        /*This is the beginning of the gameplay settings*/
+        /*This is the beginning of the gameplay code which modifies and calls the CreateGamePlay function*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 
         EditorGUILayout.LabelField("Game Play", EditorStyles.boldLabel);
@@ -80,9 +80,25 @@ public class AccessibilityManagerEditor : Editor
         }
 
         GUILayout.EndHorizontal(); //this line ends the horizontal layout
-/*This is the end of the gameplay settings*/
+                                   /*This is the end of the gameplay settings*/
 
-/*This is the beginning of the Controls settings*/
+        /*This is the beginning of the remap axis code which calls the ReMapAxis function*/
+        GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
+
+        EditorGUILayout.LabelField("Remap Axis", EditorStyles.boldLabel);
+
+        GUILayout.BeginVertical();
+
+        if (GUILayout.Button("Remap InputManager Axis")) //creates a button whose caption changes depending on the enum of the toolbar
+        {
+            Manager.RemapAxis(); //makes a call to the AccessibilityManager script
+        }
+
+        GUILayout.EndVertical();
+
+        /*This is the end of the remap axis */
+
+        /*This is the beginning of the controls code which modifies and calls the CreateControls function*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 
         EditorGUILayout.LabelField("Controls", EditorStyles.boldLabel);
@@ -99,9 +115,9 @@ public class AccessibilityManagerEditor : Editor
         }
 
         GUILayout.EndHorizontal();
-/*This is the end of the Controls settings*/
+        /*This is the end of the Controls settings*/
 
-/*This is the beginning of the graphics settings*/
+        /*This is the beginning of the graphics code which modifies and calls the CreateGraphics function*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 
         EditorGUILayout.LabelField("Graphics", EditorStyles.boldLabel);
@@ -118,9 +134,9 @@ public class AccessibilityManagerEditor : Editor
         }
 
         GUILayout.EndHorizontal();
-/*This is the end of the Grapics settings*/
+        /*This is the end of the Grapics settings*/
 
-/*This is the beginning of the Audio settings*/
+        /*This is the beginning of the audio code which modifies and calls the CreateAudio function*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 
         EditorGUILayout.LabelField("Audio", EditorStyles.boldLabel);
@@ -137,7 +153,7 @@ public class AccessibilityManagerEditor : Editor
         }
 
         GUILayout.EndHorizontal();
-/*This is the end of the audio settings*/
+        /*This is the end of the audio settings*/
 
         base.OnInspectorGUI();
     }
