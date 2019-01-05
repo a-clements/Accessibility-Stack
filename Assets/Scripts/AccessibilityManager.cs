@@ -122,8 +122,9 @@ public class AccessibilityManager : MonoBehaviour
         {
             PanelName = "ControlsPanel";
             CreatePanel();
-            RemapAxis();
         }
+
+        RemapAxis();
 
         switch (ControlIndex)
         {
