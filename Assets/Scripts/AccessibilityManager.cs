@@ -432,7 +432,7 @@ public class AccessibilityManager : MonoBehaviour
                 deadZone = 0.19f,
                 sensitivity = 1.0f,
                 type = 2,
-                axis = 0,
+                axis = 1,
                 invert = true,
                 joyNum = 0
             });
@@ -611,7 +611,7 @@ public class AccessibilityManager : MonoBehaviour
                 sensitivity = 0.1f,
                 snap = false,
                 type = 0,
-                axis = 0,
+                axis = 1,
                 joyNum = 0
             });
         }
