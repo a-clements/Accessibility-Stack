@@ -6,6 +6,7 @@ using System;
 using SpeechLib;
 using UnityEngine.UI;
 using UnityEditor;
+using System.Text.RegularExpressions;
 
 public class AccessibilityManager : MonoBehaviour
 {
@@ -94,6 +95,8 @@ public class AccessibilityManager : MonoBehaviour
     public void RemapAxis()
     {
         axisPresets.Clear();
+        CreateRequiredAxisPresets();
+        ImportExistingAxisPresets();
         CreateCompatibilityAxisPresets();
 
         var inputManagerAsset = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0];
@@ -332,6 +335,40 @@ public class AccessibilityManager : MonoBehaviour
             this.type = type;
             this.axis = axis;
             this.joyNum = 0;
+        }
+
+        public AxisPreset(int device, int analog)
+        {
+            this.name = string.Format("joystick {0} analog {1}", device, analog);
+            this.descriptiveName = "";
+            this.descriptiveNegativeName = "";
+            this.negativeButton = "";
+            this.positiveButton = "";
+            this.altNegativeButton = "";
+            this.altPositiveButton = "";
+            this.gravity = 0.0f;
+            this.deadZone = 0.001f;
+            this.sensitivity = 1.0f;
+            this.snap = false;
+            this.invert = false;
+            this.type = 2;
+            this.axis = analog;
+            this.joyNum = device;
+        }
+
+
+        public bool ReservedName
+        {
+            get
+            {
+                if (Regex.Match(name, @"^joystick \d+ analog \d+$").Success ||
+                    Regex.Match(name, @"^mouse (x|y|z)$").Success)
+                {
+                    return true;
+                }
+
+                return false;
+            }
         }
 
         public void ApplyTo(ref SerializedProperty axisPreset)
@@ -744,6 +781,31 @@ public class AccessibilityManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    static void CreateRequiredAxisPresets()
+    {
+        for (var device = 1; device <= 10; device++)
+        {
+            for (var analog = 0; analog < 20; analog++)
+            {
+                axisPresets.Add(new AxisPreset(device, analog));
+            }
+        }
+    }
+
+    static void ImportExistingAxisPresets()
+    {
+        var axisArray = GetInputManagerAxisArray();
+        for (var i = 0; i < axisArray.arraySize; i++)
+        {
+            var axisEntry = axisArray.GetArrayElementAtIndex(i);
+            var axisPreset = new AxisPreset(axisEntry);
+            if (!axisPreset.ReservedName)
+            {
+                axisPresets.Add(axisPreset);
+            }
+        }
     }
 
     public void Speak(string text)
