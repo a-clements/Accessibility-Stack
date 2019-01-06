@@ -1,8 +1,8 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(AccessibilityManager))]
-public class AccessibilityManagerEditor : Editor
+[CustomEditor(typeof(AccessibilityManager))] //declares this script as a custom editor of type AccessibilityManager, which is a script.
+public class AccessibilityManagerEditor : Editor //derives from the Editor class.
 {
     private string PanelName;
     private int PanelNumber;
@@ -11,30 +11,22 @@ public class AccessibilityManagerEditor : Editor
     private int GraphicsIndex = 0;
     private int AudioIndex = 0;
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public override void OnInspectorGUI()
+    public override void OnInspectorGUI() //this line overrides the base implementation of OnInspectorGui()
     {
         AccessibilityManager Manager = (AccessibilityManager)target; //sets the target of this script be the AccessibilityManager script
 
         GUILayout.BeginVertical(); //ensures that all controls are under each other vertically
 
-        /*The beginning of code that lays out buttons to modify and call the CreatePanel function*/
+/*The beginning of code that lays out buttons to modify and call the CreatePanel function*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1)); //creates a line in the inspector
 
         EditorGUILayout.LabelField("Panels", EditorStyles.boldLabel); //creates a label in the inspector with a bold font
 
         PanelNumber = GUILayout.Toolbar(PanelNumber, new string[] { "GamePlay", "Controls", "Graphics", "Audio" }); //this line creates a toolbar and places the enum in the variable
 
+        /*This switch statement changes the caption on the create panel button so that the user knows exactly which panel is being created. It does so by taking the PanelNumber value*/
+        /* and changing the PanelName depending on the value passed into the switch both locally and in the AccessibilityManager script. The reason for changing the PanelName in the */
+        /*AccessibilityManager script is so that each panel is named correctly. This is important for the layout of each type of control so that it is parented to the correct panel. 0*/
         switch (PanelNumber)
         {
             case 0:
@@ -61,9 +53,9 @@ public class AccessibilityManagerEditor : Editor
         }
 
         GUILayout.EndVertical(); //closes off the vertical command
-                                 /*The end of the panels code*/
+/*The end of the panels code*/
 
-        /*This is the beginning of the gameplay code which modifies and calls the CreateGamePlay function*/
+/*This is the beginning of the gameplay code which modifies and calls the CreateGamePlay function*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 
         EditorGUILayout.LabelField("Game Play", EditorStyles.boldLabel);
@@ -80,9 +72,9 @@ public class AccessibilityManagerEditor : Editor
         }
 
         GUILayout.EndHorizontal(); //this line ends the horizontal layout
-                                   /*This is the end of the gameplay settings*/
+/*This is the end of the gameplay settings*/
 
-        /*This is the beginning of the remap axis code which calls the ReMapAxis function*/
+/*This is the beginning of the remap axis code which calls the ReMapAxis function*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 
         EditorGUILayout.LabelField("Remap Axis", EditorStyles.boldLabel);
@@ -95,10 +87,9 @@ public class AccessibilityManagerEditor : Editor
         }
 
         GUILayout.EndVertical();
+/*This is the end of the remap axis */
 
-        /*This is the end of the remap axis */
-
-        /*This is the beginning of the controls code which modifies and calls the CreateControls function*/
+/*This is the beginning of the controls code which modifies and calls the CreateControls function*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 
         EditorGUILayout.LabelField("Controls", EditorStyles.boldLabel);
@@ -115,9 +106,9 @@ public class AccessibilityManagerEditor : Editor
         }
 
         GUILayout.EndHorizontal();
-        /*This is the end of the Controls settings*/
+/*This is the end of the Controls settings*/
 
-        /*This is the beginning of the graphics code which modifies and calls the CreateGraphics function*/
+/*This is the beginning of the graphics code which modifies and calls the CreateGraphics function*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 
         EditorGUILayout.LabelField("Graphics", EditorStyles.boldLabel);
@@ -134,9 +125,9 @@ public class AccessibilityManagerEditor : Editor
         }
 
         GUILayout.EndHorizontal();
-        /*This is the end of the Grapics settings*/
+/*This is the end of the Grapics settings*/
 
-        /*This is the beginning of the audio code which modifies and calls the CreateAudio function*/
+/*This is the beginning of the audio code which modifies and calls the CreateAudio function*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 
         EditorGUILayout.LabelField("Audio", EditorStyles.boldLabel);
@@ -153,8 +144,8 @@ public class AccessibilityManagerEditor : Editor
         }
 
         GUILayout.EndHorizontal();
-        /*This is the end of the audio settings*/
+/*This is the end of the audio settings*/
 
-        base.OnInspectorGUI();
+        base.OnInspectorGUI(); //this line of code gives this script access to the base functionality of OnInspectorGui().
     }
 }

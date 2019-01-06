@@ -95,7 +95,7 @@ public class AccessibilityManager : MonoBehaviour
     public void RemapAxis()
     {
         axisPresets.Clear();
-        CreateRequiredAxisPresets();
+        //CreateRequiredAxisPresets();
         ImportExistingAxisPresets();
         CreateCompatibilityAxisPresets();
 
