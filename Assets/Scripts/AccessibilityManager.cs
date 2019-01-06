@@ -106,7 +106,7 @@ public class AccessibilityManager : MonoBehaviour
         axisArray.arraySize = axisPresets.Count;
         serializedObject.ApplyModifiedProperties();
 
-        for (var i = 0; i < axisPresets.Count; i++)
+        for (int i = 0; i < axisPresets.Count; i++)
         {
             var axisEntry = axisArray.GetArrayElementAtIndex(i);
             axisPresets[i].ApplyTo(ref axisEntry);
@@ -772,7 +772,7 @@ public class AccessibilityManager : MonoBehaviour
 
     static bool HasAxisPreset(string name)
     {
-        for (var i = 0; i < axisPresets.Count; i++)
+        for (int i = 0; i < axisPresets.Count; i++)
         {
             if (axisPresets[i].name == name)
             {
@@ -785,9 +785,9 @@ public class AccessibilityManager : MonoBehaviour
 
     static void CreateRequiredAxisPresets()
     {
-        for (var device = 1; device <= 10; device++)
+        for (int device = 1; device <= 10; device++)
         {
-            for (var analog = 0; analog < 20; analog++)
+            for (int analog = 0; analog < 20; analog++)
             {
                 axisPresets.Add(new AxisPreset(device, analog));
             }
@@ -797,7 +797,7 @@ public class AccessibilityManager : MonoBehaviour
     static void ImportExistingAxisPresets()
     {
         var axisArray = GetInputManagerAxisArray();
-        for (var i = 0; i < axisArray.arraySize; i++)
+        for (int i = 0; i < axisArray.arraySize; i++)
         {
             var axisEntry = axisArray.GetArrayElementAtIndex(i);
             var axisPreset = new AxisPreset(axisEntry);
