@@ -10,6 +10,9 @@ public class AccessibilityManagerEditor : Editor //derives from the Editor class
     private int ControlIndex = 0;
     private int GraphicsIndex = 0;
     private int AudioIndex = 0;
+    private int ControlTypeIndex = 0;
+    private int AxisTypeIndex = 0;
+    private int JoyNumIndex = 0;
 
     public override void OnInspectorGUI() //this line overrides the base implementation of OnInspectorGui()
     {
@@ -80,6 +83,48 @@ public class AccessibilityManagerEditor : Editor //derives from the Editor class
         EditorGUILayout.LabelField("Remap Axis", EditorStyles.boldLabel);
 
         GUILayout.BeginVertical();
+
+        AccessibilityManager.AxisName = EditorGUILayout.TextField("Name ", AccessibilityManager.AxisName);
+        AccessibilityManager.DescriptiveAxisName = EditorGUILayout.TextField("Descriptive Name ", AccessibilityManager.DescriptiveAxisName);
+        AccessibilityManager.DescriptiveNegativeAxisName = EditorGUILayout.TextField("Descriptive Negative Name ", AccessibilityManager.DescriptiveNegativeAxisName);
+        AccessibilityManager.NegativeButton = EditorGUILayout.TextField("Negative Button ", AccessibilityManager.NegativeButton);
+        AccessibilityManager.PositiveButton = EditorGUILayout.TextField("Positive Button ", AccessibilityManager.PositiveButton);
+        AccessibilityManager.AltNegativeButton = EditorGUILayout.TextField("Alt Negative Button ", AccessibilityManager.AltNegativeButton);
+        AccessibilityManager.AltPositiveButton = EditorGUILayout.TextField("Alt Negative Butto: ", AccessibilityManager.AltPositiveButton);
+        AccessibilityManager.AxisGravity = EditorGUILayout.FloatField("Gravit: ", AccessibilityManager.AxisGravity);
+        AccessibilityManager.AxisDeadZone = EditorGUILayout.FloatField("DeadZone ", AccessibilityManager.AxisDeadZone);
+        AccessibilityManager.AxisSensitivity = EditorGUILayout.FloatField("Sensetivity ", AccessibilityManager.AxisSensitivity);
+        AccessibilityManager.AxisSnap = EditorGUILayout.Toggle("Snap: ", false);
+        AccessibilityManager.AxisInvert = EditorGUILayout.Toggle("Invert: ", false);
+
+        EditorGUILayout.BeginHorizontal();
+
+        EditorGUILayout.LabelField("Type", GUILayout.MaxWidth(135));
+        string[] ControlType = new[] { "Key or Mouse Button", "Mouse Movement", "Joystick Axis" }; //this creates an enum list
+        AccessibilityManager.ControlType = EditorGUILayout.Popup(ControlTypeIndex, ControlType); //this creates a dropdown menu in the inspector with the enum values
+
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+
+        EditorGUILayout.LabelField("Axis", GUILayout.MaxWidth(135));
+        string[] AxisType = new[] { "X axis", "Y axis", "3rd axis (Joysticks and Scrollwheel", "4th axis (Joysticks)",  "5th axis (Joysticks)",
+        "6th axis (Joysticks)", "7th axis (Joysticks)", "8th axis (Joysticks)", "9th axis (Joysticks)", "10th axis (Joysticks)", "11th axis (Joysticks)",
+        "12th axis (Joysticks)", "13th axis (Joysticks)", "14th axis (Joysticks)", "15th axis (Joysticks)", "16th axis (Joysticks)", "17th axis (Joysticks)",
+        "18th axis (Joysticks)", "19th axis (Joysticks)", "20th axis (Joysticks)", "21th axis (Joysticks)", "22th axis (Joysticks)", "23th axis (Joysticks)",
+        "24th axis (Joysticks)", "25th axis (Joysticks)", "26th axis (Joysticks)", "27th axis (Joysticks)", "28th axis (Joysticks)" }; //this creates an enum list
+        AccessibilityManager.AxisType = EditorGUILayout.Popup(AxisTypeIndex, AxisType); //this creates a dropdown menu in the inspector with the enum values
+
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+
+        EditorGUILayout.LabelField("Joy Num", GUILayout.MaxWidth(135));
+        string[] JoyNum = new[] { "Get Motion from all Joysticks", "Joystick 1", "Joystick 2", "Joystick 3", "Joystick 4", "Joystick 5", "Joystick 6", "Joystick 7",
+        "Joystick 8", "Joystick 9", "Joystick 10", "Joystick 11", "Joystick 12", "Joystick 13", "Joystick 14", "Joystick 15", "Joystick 16" }; //this creates an enum list
+        AccessibilityManager.JoyNum = EditorGUILayout.Popup(JoyNumIndex, JoyNum); //this creates an enum list
+
+        EditorGUILayout.EndHorizontal();
 
         if (GUILayout.Button("Remap InputManager Axis")) //creates a button whose caption changes depending on the enum of the toolbar
         {

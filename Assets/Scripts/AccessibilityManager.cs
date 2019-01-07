@@ -10,9 +10,9 @@ using System.Text.RegularExpressions;
 
 public class AccessibilityManager : MonoBehaviour
 {
-    public static AccessibilityManager ManagerInstance = null;
+    //public static AccessibilityManager ManagerInstance = null;
     //SpeechSynthesizer Voice = new SpeechSynthesizer();
-    SpVoice Voice = new SpVoice();
+    static SpVoice Voice = new SpVoice();
     private GameObject Panel;
     private Button ButtonControlType;
     private Dropdown DropdownControlType;
@@ -29,28 +29,45 @@ public class AccessibilityManager : MonoBehaviour
     public Image ImagePrefab;
     public GameObject PanelPrefab;
 
-    public KeyCode[] Keys;
-    public string Trigger;
+    public static KeyCode[] Keys;
+    public static string Trigger;
     public ButtonRemapping[] Buttons;
     public DropdownRemapping[] Dropdowns;
     public TTS[] TTS;
     public Resolution[] Resolutions;
-    [HideInInspector] public string PanelName;
+
+    public string PanelName;
+
+    public static string AxisName;
+    public static string DescriptiveAxisName;
+    public static string DescriptiveNegativeAxisName;
+    public static string NegativeButton;
+    public static string PositiveButton;
+    public static string AltNegativeButton;
+    public static string AltPositiveButton;
+    public static float AxisGravity;
+    public static float AxisDeadZone = 0.001f;
+    public static float AxisSensitivity = 1.0f;
+    public static bool AxisSnap;
+    public static bool AxisInvert;
+    public static int ControlType;
+    public static int AxisType;
+    public static int JoyNum;
 
     static readonly List<AxisPreset> axisPresets = new List<AxisPreset>();
 
-    private void Awake()
-    {
-        if (ManagerInstance == null)
-        {
-            ManagerInstance = this;
-        }
+    //private void Awake()
+    //{
+    //    if (ManagerInstance == null)
+    //    {
+    //        ManagerInstance = this;
+    //    }
 
-        if (ManagerInstance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
+    //    if (ManagerInstance != this)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 
     public void OnEnable()
     {
@@ -761,6 +778,28 @@ public class AccessibilityManager : MonoBehaviour
                 joyNum = 0
             });
         }
+
+        if (AxisName != null)
+        {
+            if (!HasAxisPreset(AxisName))
+            {
+                axisPresets.Add(new AxisPreset()
+                {
+                    name = AxisName,
+                    negativeButton = NegativeButton,
+                    positiveButton = PositiveButton,
+                    altNegativeButton = AltNegativeButton,
+                    altPositiveButton = AltPositiveButton,
+                    gravity = AxisGravity,
+                    deadZone = AxisDeadZone,
+                    sensitivity = AxisSensitivity,
+                    snap = AxisSnap,
+                    type = ControlType,
+                    axis = AxisType,
+                    joyNum = JoyNum
+                });
+            }
+        }
     }
 
     static SerializedProperty GetInputManagerAxisArray()
@@ -808,7 +847,7 @@ public class AccessibilityManager : MonoBehaviour
         }
     }
 
-    public void Speak(string text)
+    public static void Speak(string text)
     {
         Voice.Speak(text);
     }
