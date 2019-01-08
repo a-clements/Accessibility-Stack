@@ -49,7 +49,11 @@ MonoBehaviour:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_MinSize: {x: 681, y: 492}
+=======
+  m_MinSize: {x: 683, y: 492}
+>>>>>>> parent of f2b7b79... new axis can now be created on the fly
 =======
   m_MinSize: {x: 683, y: 492}
 >>>>>>> parent of f2b7b79... new axis can now be created on the fly
@@ -234,7 +238,11 @@ MonoBehaviour:
     height: 957
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_MinSize: {x: 404, y: 492}
+=======
+  m_MinSize: {x: 406, y: 492}
+>>>>>>> parent of f2b7b79... new axis can now be created on the fly
 =======
   m_MinSize: {x: 406, y: 492}
 >>>>>>> parent of f2b7b79... new axis can now be created on the fly
@@ -530,6 +538,7 @@ MonoBehaviour:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_SelectedIDs: dcfbffff
     m_LastClickedID: -1060
 =======
@@ -548,6 +557,10 @@ MonoBehaviour:
     m_SelectedIDs: dcfbffff
     m_LastClickedID: -1060
 >>>>>>> parent of b0d4108... DPad and triggers now mapped.
+=======
+    m_SelectedIDs: 80010000
+    m_LastClickedID: 0
+>>>>>>> parent of f2b7b79... new axis can now be created on the fly
     m_ExpandedIDs: defbffff00000000
 >>>>>>> parent of 1bd5bf7... finished input manager cleanup
 =======
