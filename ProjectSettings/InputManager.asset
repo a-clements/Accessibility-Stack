@@ -3239,9 +3239,15 @@ InputManager:
     dead: 0.001
     sensitivity: 1
     snap: 0
+<<<<<<< HEAD
     invert: 0
     type: 1
     axis: 1
+=======
+    invert: 1
+    type: 2
+    axis: 0
+>>>>>>> parent of 5e7d0ad... testing to make sure there are no bugs in the custom input manager
     joyNum: 0
   - serializedVersion: 3
     m_Name: mouse z

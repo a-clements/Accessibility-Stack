@@ -42,10 +42,15 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 957
+<<<<<<< HEAD
   m_MinSize: {x: 681, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
+=======
+  m_MinSize: {x: 679, y: 492}
+  m_MaxSize: {x: 14002, y: 14042}
+>>>>>>> parent of 5e7d0ad... testing to make sure there are no bugs in the custom input manager
   vertical: 0
-  controlID: 64
+  controlID: 9
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -64,8 +69,8 @@ MonoBehaviour:
     y: 0
     width: 416
     height: 957
-  m_MinSize: {x: 277, y: 71}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -143,7 +148,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 1007
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &7
 MonoBehaviour:
@@ -209,7 +214,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 65
+  controlID: 10
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -233,7 +238,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 221}
   m_MaxSize: {x: 8004, y: 4021}
   vertical: 0
-  controlID: 66
+  controlID: 11
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -334,9 +339,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 102c0000
-    m_LastClickedID: 11280
-    m_ExpandedIDs: 00000000f8290000202c000000ca9a3b
+    m_SelectedIDs: 0c2c0000
+    m_LastClickedID: 11276
+    m_ExpandedIDs: 00000000f42900001c2c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -364,7 +369,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000f8290000202c0000
+    m_ExpandedIDs: 00000000f42900001c2c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -481,6 +486,7 @@ MonoBehaviour:
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_SelectedIDs: dcfbffff
     m_LastClickedID: -1060
     m_ExpandedIDs: defbffff00000000
@@ -493,6 +499,11 @@ MonoBehaviour:
 =======
     m_ExpandedIDs: defbffff00000000
 >>>>>>> parent of 1bd5bf7... finished input manager cleanup
+=======
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 38fbffff6cfbffff9efbffffc4fbffffdafbffffdcfbffffdefbffff00000000
+>>>>>>> parent of 5e7d0ad... testing to make sure there are no bugs in the custom input manager
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
