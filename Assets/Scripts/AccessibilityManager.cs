@@ -12,7 +12,7 @@ public class AccessibilityManager : MonoBehaviour
 {
     public static AccessibilityManager ManagerInstance = null;
     //SpeechSynthesizer Voice = new SpeechSynthesizer();
-    SpVoice Voice = new SpVoice();
+    static SpVoice Voice = new SpVoice();
     private GameObject Panel;
     private Button ButtonControlType;
     private Dropdown DropdownControlType;
@@ -35,7 +35,24 @@ public class AccessibilityManager : MonoBehaviour
     public DropdownRemapping[] Dropdowns;
     public TTS[] TTS;
     public Resolution[] Resolutions;
-    [HideInInspector] public string PanelName;
+
+    public string PanelName;
+
+    public static string AxisName;
+    public static string DescriptiveAxisName;
+    public static string DescriptiveNegativeAxisName;
+    public static string NegativeButton;
+    public static string PositiveButton;
+    public static string AltNegativeButton;
+    public static string AltPositiveButton;
+    public static float AxisGravity;
+    public static float AxisDeadZone = 0.001f;
+    public static float AxisSensitivity = 1.0f;
+    public static bool AxisSnap;
+    public static bool AxisInvert;
+    public static int ControlType;
+    public static int AxisType;
+    public static int JoyNum;
 
     static readonly List<AxisPreset> axisPresets = new List<AxisPreset>();
 
@@ -95,7 +112,7 @@ public class AccessibilityManager : MonoBehaviour
     public void RemapAxis()
     {
         axisPresets.Clear();
-        CreateRequiredAxisPresets();
+        //CreateRequiredAxisPresets();
         ImportExistingAxisPresets();
         CreateCompatibilityAxisPresets();
 
@@ -106,7 +123,7 @@ public class AccessibilityManager : MonoBehaviour
         axisArray.arraySize = axisPresets.Count;
         serializedObject.ApplyModifiedProperties();
 
-        for (var i = 0; i < axisPresets.Count; i++)
+        for (int i = 0; i < axisPresets.Count; i++)
         {
             var axisEntry = axisArray.GetArrayElementAtIndex(i);
             axisPresets[i].ApplyTo(ref axisEntry);
@@ -469,7 +486,7 @@ public class AccessibilityManager : MonoBehaviour
                 deadZone = 0.19f,
                 sensitivity = 1.0f,
                 type = 2,
-                axis = 0,
+                axis = 1,
                 invert = true,
                 joyNum = 0
             });
@@ -648,7 +665,7 @@ public class AccessibilityManager : MonoBehaviour
                 sensitivity = 0.1f,
                 snap = false,
                 type = 0,
-                axis = 0,
+                axis = 1,
                 joyNum = 0
             });
         }
@@ -761,6 +778,28 @@ public class AccessibilityManager : MonoBehaviour
                 joyNum = 0
             });
         }
+
+        if (AxisName != null)
+        {
+            if (!HasAxisPreset(AxisName))
+            {
+                axisPresets.Add(new AxisPreset()
+                {
+                    name = AxisName,
+                    negativeButton = NegativeButton,
+                    positiveButton = PositiveButton,
+                    altNegativeButton = AltNegativeButton,
+                    altPositiveButton = AltPositiveButton,
+                    gravity = AxisGravity,
+                    deadZone = AxisDeadZone,
+                    sensitivity = AxisSensitivity,
+                    snap = AxisSnap,
+                    type = ControlType,
+                    axis = AxisType,
+                    joyNum = JoyNum
+                });
+            }
+        }
     }
 
     static SerializedProperty GetInputManagerAxisArray()
@@ -772,7 +811,7 @@ public class AccessibilityManager : MonoBehaviour
 
     static bool HasAxisPreset(string name)
     {
-        for (var i = 0; i < axisPresets.Count; i++)
+        for (int i = 0; i < axisPresets.Count; i++)
         {
             if (axisPresets[i].name == name)
             {
@@ -785,9 +824,9 @@ public class AccessibilityManager : MonoBehaviour
 
     static void CreateRequiredAxisPresets()
     {
-        for (var device = 1; device <= 10; device++)
+        for (int device = 1; device <= 10; device++)
         {
-            for (var analog = 0; analog < 20; analog++)
+            for (int analog = 0; analog < 20; analog++)
             {
                 axisPresets.Add(new AxisPreset(device, analog));
             }
@@ -797,7 +836,7 @@ public class AccessibilityManager : MonoBehaviour
     static void ImportExistingAxisPresets()
     {
         var axisArray = GetInputManagerAxisArray();
-        for (var i = 0; i < axisArray.arraySize; i++)
+        for (int i = 0; i < axisArray.arraySize; i++)
         {
             var axisEntry = axisArray.GetArrayElementAtIndex(i);
             var axisPreset = new AxisPreset(axisEntry);
