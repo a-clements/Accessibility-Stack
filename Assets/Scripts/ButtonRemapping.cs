@@ -149,7 +149,6 @@ public class ButtonRemapping : MonoBehaviour
     public IEnumerator GetNewKey()
     {
         IsButtonPressed = true;
-
         yield return WaitForKey();
 
         StopCoroutine(GetNewKey());
@@ -360,6 +359,7 @@ public class ButtonRemapping : MonoBehaviour
                 AccessibilityManager.Speak(this.transform.GetComponentInChildren<Text>().text);
             }
 
+<<<<<<< HEAD
             else if (Input.GetAxis("DPad Vertical") != 0.0f)
             {
                 IsButtonPressed = false;
@@ -376,6 +376,8 @@ public class ButtonRemapping : MonoBehaviour
                 AccessibilityManager.Speak(this.transform.GetComponentInChildren<Text>().text);
             }
 
+=======
+>>>>>>> parent of b0d4108... DPad and triggers now mapped.
             yield return null;
         }
     }

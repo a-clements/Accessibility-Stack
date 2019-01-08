@@ -20,7 +20,11 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 6}
+<<<<<<< HEAD
   m_MinSize: {x: 950, y: 542}
+=======
+  m_MinSize: {x: 950, y: 300}
+>>>>>>> parent of b0d4108... DPad and triggers now mapped.
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -43,6 +47,7 @@ MonoBehaviour:
     width: 1920
     height: 957
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_MinSize: {x: 681, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
 =======
@@ -51,6 +56,12 @@ MonoBehaviour:
 >>>>>>> parent of 5e7d0ad... testing to make sure there are no bugs in the custom input manager
   vertical: 0
   controlID: 9
+=======
+  m_MinSize: {x: 683, y: 342}
+  m_MaxSize: {x: 12008, y: 8042}
+  vertical: 0
+  controlID: 81
+>>>>>>> parent of b0d4108... DPad and triggers now mapped.
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -69,8 +80,8 @@ MonoBehaviour:
     y: 0
     width: 416
     height: 957
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 277, y: 71}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -94,8 +105,8 @@ MonoBehaviour:
     y: 0
     width: 373
     height: 579
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -119,9 +130,15 @@ MonoBehaviour:
     y: 579
     width: 1504
     height: 378
+<<<<<<< HEAD
   m_MinSize: {x: 232, y: 271}
   m_MaxSize: {x: 10002, y: 10021}
   m_ActualView: {fileID: 13}
+=======
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 18}
+>>>>>>> parent of b0d4108... DPad and triggers now mapped.
   m_Panes:
   - {fileID: 13}
   - {fileID: 18}
@@ -211,10 +228,17 @@ MonoBehaviour:
     y: 0
     width: 1504
     height: 957
+<<<<<<< HEAD
   m_MinSize: {x: 404, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
   controlID: 10
+=======
+  m_MinSize: {x: 406, y: 342}
+  m_MaxSize: {x: 8006, y: 8042}
+  vertical: 1
+  controlID: 82
+>>>>>>> parent of b0d4108... DPad and triggers now mapped.
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -235,10 +259,14 @@ MonoBehaviour:
     y: 0
     width: 1504
     height: 579
-  m_MinSize: {x: 404, y: 221}
-  m_MaxSize: {x: 8004, y: 4021}
+  m_MinSize: {x: 406, y: 221}
+  m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
+<<<<<<< HEAD
   controlID: 11
+=======
+  controlID: 83
+>>>>>>> parent of b0d4108... DPad and triggers now mapped.
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -394,8 +422,13 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
+<<<<<<< HEAD
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
+=======
+    m_SelectedInstanceIDs: dcfbffff
+    m_LastClickedInstanceID: -1060
+>>>>>>> parent of b0d4108... DPad and triggers now mapped.
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -487,6 +520,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_SelectedIDs: dcfbffff
     m_LastClickedID: -1060
     m_ExpandedIDs: defbffff00000000
@@ -497,6 +531,10 @@ MonoBehaviour:
     m_ExpandedIDs: c6fbffff00000000
 >>>>>>> parent of 43008bd... updated the comments
 =======
+=======
+    m_SelectedIDs: dcfbffff
+    m_LastClickedID: -1060
+>>>>>>> parent of b0d4108... DPad and triggers now mapped.
     m_ExpandedIDs: defbffff00000000
 >>>>>>> parent of 1bd5bf7... finished input manager cleanup
 =======
