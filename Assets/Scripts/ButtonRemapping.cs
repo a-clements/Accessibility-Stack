@@ -6,13 +6,10 @@ using System.Collections;
 public class ButtonRemapping : MonoBehaviour
 {
     /*This script will assign new keycodes on on either a button click or controller button 0 being pressed. There are a no known bugs.                                    */
-    /*Pressing return will invoke OnButtonClick(). Pressing return a second time will continue the loop until either a new button is pressed, or a mouse button clicked.   */
-    /*Pressing the escape key will cancel the button remapping function.                                                                                                   */
-    /*Clicking the button with a mouse will invoke the OnButtonClick() but will follow a mouse specific subsystem.                                                         */
-    /*Pressing the escape key will cancel the button remapping function.                                                                                                   */
-    /*Pressing button 0 on a gamepad will invoke the OnButtonClick() but follows a controller specific subsystem. Pressing button 1 will cancel the button remapping.      */
+    /*Pressing return will invoke OnButtonClick(). Pressing return a second time will continue the loop until either a new button is pressed. Or a mouse button clicked.   */
+    /*Clicking the button with a mouse will invoke the OnButtonClick() but follow it's own subsystem.                                                                      */
+    /*Pressing button 0 on a gamepad will invoke the OnButtonClick() but follows its own subsystem. Pressing button 1 will cancel the button remapping.                    */
     /*The gamepad subsystem is entirely segregated from the keyboard and mouse subsystems. The keyboard and mouse subsystem have an overlap.                               */
-    /*This script is a per button instance, meaning that this script must be attached to every button that requires the capability to be remapped.                         */
 
     public Button Button;
     private KeyCode Keycode;
