@@ -15,7 +15,7 @@ public class TTS : MonoBehaviour, IPointerEnterHandler
     {
         if (this.enabled == true)
         {
-            AccessibilityManager.Speak(this.transform.GetComponentInChildren<Text>().text);
+            AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
         }
     }
 }

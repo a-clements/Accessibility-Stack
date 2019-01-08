@@ -3160,9 +3160,15 @@ InputManager:
     sensitivity: 1
     snap: 0
     invert: 0
+<<<<<<< HEAD
     type: 2
     axis: 16
     joyNum: 10
+=======
+    type: 0
+    axis: 0
+    joyNum: 0
+>>>>>>> parent of f2b7b79... new axis can now be created on the fly
   - serializedVersion: 3
     m_Name: joystick 10 analog 17
     descriptiveName: 

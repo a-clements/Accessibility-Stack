@@ -6,6 +6,7 @@ Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
+<<<<<<< HEAD
 Cmd: initializeCompiler
 <<<<<<< HEAD
 Cmd: initializeCompiler
@@ -55,3 +56,5 @@ Cmd: initializeCompiler
 >>>>>>> parent of 43008bd... updated the comments
 =======
 >>>>>>> parent of b0d4108... DPad and triggers now mapped.
+=======
+>>>>>>> parent of f2b7b79... new axis can now be created on the fly
