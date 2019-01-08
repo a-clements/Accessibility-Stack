@@ -191,7 +191,7 @@ public class AccessibilityManager : MonoBehaviour
                 DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 DropdownControlType.gameObject.AddComponent<TTS>();
-                DropdownControlType.gameObject.AddComponent<ResolutionChange>();
+                DropdownControlType.gameObject.AddComponent<GraphicsSettings>();
 
                 Resolutions = Screen.resolutions;
 
@@ -223,6 +223,7 @@ public class AccessibilityManager : MonoBehaviour
                 ToggleControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 ToggleControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 ToggleControlType.gameObject.AddComponent<TTS>();
+                ToggleControlType.gameObject.AddComponent<GraphicsSettings>();
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/FullScreenToggle").GetComponent<RectTransform>().anchorMin = new Vector2(0.682f, 0.96f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/FullScreenToggle").GetComponent<RectTransform>().anchorMax = new Vector2(0.975f, 0.99f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/FullScreenToggle").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
@@ -240,6 +241,7 @@ public class AccessibilityManager : MonoBehaviour
                 DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 DropdownControlType.gameObject.AddComponent<TTS>();
+                DropdownControlType.gameObject.AddComponent<GraphicsSettings>();
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/TextureQuality").GetComponent<RectTransform>().anchorMin = new Vector2(0.008f, 0.929f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/TextureQuality").GetComponent<RectTransform>().anchorMax = new Vector2(0.3f, 0.96f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/TextureQuality").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
@@ -256,6 +258,7 @@ public class AccessibilityManager : MonoBehaviour
                 DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 DropdownControlType.gameObject.AddComponent<TTS>();
+                DropdownControlType.gameObject.AddComponent<GraphicsSettings>();
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/VSync").GetComponent<RectTransform>().anchorMin = new Vector2(0.682f, 0.929f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/VSync").GetComponent<RectTransform>().anchorMax = new Vector2(0.975f, 0.96f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/VSync").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
@@ -274,6 +277,7 @@ public class AccessibilityManager : MonoBehaviour
                 DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 DropdownControlType.gameObject.AddComponent<TTS>();
+                DropdownControlType.gameObject.AddComponent<GraphicsSettings>();
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/AntiAliasing").GetComponent<RectTransform>().anchorMin = new Vector2(0.008f, 0.899f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/AntiAliasing").GetComponent<RectTransform>().anchorMax = new Vector2(0.3f, 0.929f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/AntiAliasing").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
@@ -287,6 +291,8 @@ public class AccessibilityManager : MonoBehaviour
                 SliderControlType.transform.GetChild(3).GetComponent<Text>().text = "Gamma Correction";
                 SliderControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 SliderControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+                SliderControlType.gameObject.AddComponent<TTS>();
+                SliderControlType.gameObject.AddComponent<GraphicsSettings>();
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/GammaCorrection").GetComponent<RectTransform>().anchorMin = new Vector2(0.682f, 0.899f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/GammaCorrection").GetComponent<RectTransform>().anchorMax = new Vector2(0.975f, 0.915f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/GammaCorrection").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
