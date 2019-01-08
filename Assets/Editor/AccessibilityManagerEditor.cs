@@ -160,7 +160,7 @@ public class AccessibilityManagerEditor : Editor //derives from the Editor class
 
         GUILayout.BeginHorizontal();
 
-        string[] GraphicsOptions = new[] { "Resolution", "Full Screen", "Texture Quality", "VSync", "Anti Aliasing" };
+        string[] GraphicsOptions = new[] { "Resolution", "Full Screen", "Texture Quality", "VSync", "Anti Aliasing", "Gamma Correction" };
 
         GraphicsIndex = EditorGUILayout.Popup(GraphicsIndex, GraphicsOptions);
 

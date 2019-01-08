@@ -279,6 +279,19 @@ public class AccessibilityManager : MonoBehaviour
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/AntiAliasing").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/AntiAliasing").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                 break;
+
+            case 5:
+                SliderControlType = Instantiate(SliderPrefab, transform.position, transform.rotation);
+                SliderControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
+                SliderControlType.name = "GammaCorrection";
+                SliderControlType.transform.GetChild(3).GetComponent<Text>().text = "Gamma Correction";
+                SliderControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                SliderControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/GammaCorrection").GetComponent<RectTransform>().anchorMin = new Vector2(0.682f, 0.899f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/GammaCorrection").GetComponent<RectTransform>().anchorMax = new Vector2(0.975f, 0.915f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/GammaCorrection").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/GammaCorrection").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                break;
         }
     }
 
