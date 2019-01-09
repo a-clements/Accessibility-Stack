@@ -61,7 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Editor\AccessibilityManagerEditor.cs" />
+    <Compile Include="Assets\Editor\Scripts\AccessibilityManagerEditor.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/woofa/Documents/GitHub/Accessibility Stack/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
