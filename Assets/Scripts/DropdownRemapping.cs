@@ -18,7 +18,7 @@ public class DropdownRemapping : MonoBehaviour
 
     private void Start()
     {
-        Keycode = AccessibilityManager.ManagerInstance.Keys[Index - 1];
+        Keycode = UIManager.ManagerInstance.Keys[Index - 1];
 
         int i = 0;
 
@@ -48,11 +48,11 @@ public class DropdownRemapping : MonoBehaviour
     {
         Keycode = (KeyCode)Enum.Parse(typeof(KeyCode), Dropdown.options[Dropdown.value].text, true);
 
-        AccessibilityManager.ManagerInstance.Keys[Index - 1] = Keycode;
+        UIManager.ManagerInstance.Keys[Index - 1] = Keycode;
 
         if (initial == false)
         {
-            AccessibilityManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            UIManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
         }
 
         initial = false;
