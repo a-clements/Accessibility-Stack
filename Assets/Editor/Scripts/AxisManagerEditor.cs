@@ -335,6 +335,35 @@ public class AxisManagerEditor : Editor //derives from the Editor class.
             });
         }
 
+        if (!HasAxisPreset("Right Thumbstick Horizontal"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Right Thumbstick Horizontal",
+                gravity = 0.0f,
+                deadZone = 0.19f,
+                sensitivity = 1.0f,
+                type = 2,
+                axis = 3,
+                joyNum = 0
+            });
+        }
+
+        if (!HasAxisPreset("Right Thumbstick Vertical"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Right Thumbstick Vertical",
+                gravity = 0.0f,
+                deadZone = 0.19f,
+                sensitivity = 1.0f,
+                type = 2,
+                axis = 4,
+                invert = true,
+                joyNum = 0
+            });
+        }
+
         if (!HasAxisPreset("Fire1"))
         {
             axisPresets.Add(new AxisPreset()
@@ -558,38 +587,6 @@ public class AxisManagerEditor : Editor //derives from the Editor class.
             });
         }
 
-        if (!HasAxisPreset("Left Trigger"))
-        {
-            axisPresets.Add(new AxisPreset()
-            {
-                name = "Left Trigger",
-                positiveButton = "",
-                altPositiveButton = "",
-                gravity = 1000.0f,
-                deadZone = 0.001f,
-                sensitivity = 1000.0f,
-                type = 2,
-                axis = 8,
-                joyNum = 0
-            });
-        }
-
-        if (!HasAxisPreset("Right Trigger"))
-        {
-            axisPresets.Add(new AxisPreset()
-            {
-                name = "Right Trigger",
-                positiveButton = "",
-                altPositiveButton = "",
-                gravity = 1000.0f,
-                deadZone = 0.001f,
-                sensitivity = 1000.0f,
-                type = 2,
-                axis = 9,
-                joyNum = 0
-            });
-        }
-
         if (!HasAxisPreset("DPad Horizontal"))
         {
             axisPresets.Add(new AxisPreset()
@@ -622,7 +619,39 @@ public class AxisManagerEditor : Editor //derives from the Editor class.
             });
         }
 
-        if (AxisName != null && AxisName.Length > 0)
+        if (!HasAxisPreset("Left Trigger"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Left Trigger",
+                positiveButton = "",
+                altPositiveButton = "",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                type = 2,
+                axis = 8,
+                joyNum = 0
+            });
+        }
+
+        if (!HasAxisPreset("Right Trigger"))
+        {
+            axisPresets.Add(new AxisPreset()
+            {
+                name = "Right Trigger",
+                positiveButton = "",
+                altPositiveButton = "",
+                gravity = 1000.0f,
+                deadZone = 0.001f,
+                sensitivity = 1000.0f,
+                type = 2,
+                axis = 9,
+                joyNum = 0
+            });
+        }
+
+        if (AxisName != null && AxisName.Length > 00)
         {
             Debug.Log(AxisName.Length);
             if (!HasAxisPreset(AxisName))

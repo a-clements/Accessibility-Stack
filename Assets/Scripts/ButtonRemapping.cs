@@ -343,6 +343,38 @@ public class ButtonRemapping : MonoBehaviour
                 UIManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
             }
 
+            if (Input.GetAxis("Horizontal") != 0.0f)
+            {
+                IsButtonPressed = false;
+                UIManager.ManagerInstance.Trigger = "Horizontal";
+                Button.transform.GetChild(0).GetComponent<Text>().text = "Left Thumbstick Horizontal";
+                UIManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            if (Input.GetAxis("Vertical") != 0.0f)
+            {
+                IsButtonPressed = false;
+                UIManager.ManagerInstance.Trigger = "Vertical";
+                Button.transform.GetChild(0).GetComponent<Text>().text = "Left Thumbstick Vertical";
+                UIManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            if (Input.GetAxis("Right Thumbstick Horizontal") != 0.0f)
+            {
+                IsButtonPressed = false;
+                UIManager.ManagerInstance.Trigger = "Right Thumbstick Horizontal";
+                Button.transform.GetChild(0).GetComponent<Text>().text = UIManager.ManagerInstance.Trigger;
+                UIManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            if (Input.GetAxis("Right Thumbstick Vertical") != 0.0f)
+            {
+                IsButtonPressed = false;
+                UIManager.ManagerInstance.Trigger = "Right Thumbstick Vertical";
+                Button.transform.GetChild(0).GetComponent<Text>().text = UIManager.ManagerInstance.Trigger;
+                UIManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
             else if (Input.GetAxis("Left Trigger") != 0.0f)
             {
                 IsButtonPressed = false;
