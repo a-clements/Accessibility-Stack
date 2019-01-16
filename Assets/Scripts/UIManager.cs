@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     public GameObject PanelPrefab;
 
     public KeyCode[] Keys;
+    public string Movement;
     public string Trigger;
     public ButtonRemapping[] Buttons;
     public DropdownRemapping[] Dropdowns;
