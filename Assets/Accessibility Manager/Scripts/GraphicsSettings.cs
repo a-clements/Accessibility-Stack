@@ -15,6 +15,8 @@ public class GraphicsSettings : MonoBehaviour
     public Slider Gamma;
     public Dropdown MainColour;
     public Dropdown SecondColour;
+    public GameObject MainHSVPanel;
+    public GameObject SecondHSVPanel;
 
     private Resolution[] Resolution;
     public Button[] Buttons;
@@ -41,6 +43,8 @@ public class GraphicsSettings : MonoBehaviour
         Gamma = GameObject.Find("Scroll View/Viewport/Content/GammaCorrection").GetComponent<Slider>();
         MainColour = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/MainColour").GetComponent<Dropdown>();
         SecondColour = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondColour").GetComponent<Dropdown>();
+        MainHSVPanel = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/MainHSVPanel");
+        SecondHSVPanel = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondHSVPanel");
 
 
         Gamma.value = 0.5f;
@@ -89,110 +93,103 @@ public class GraphicsSettings : MonoBehaviour
         {
             SecondColour.onValueChanged.AddListener(delegate { OnSecondColourChange(); });
         }
+
+        if (MainHSVPanel != null)
+        {
+            MainHSVPanel.transform.GetChild(1).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnMainHSVChanged(); });
+            MainHSVPanel.transform.GetChild(2).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnMainHSVChanged(); });
+            MainHSVPanel.transform.GetChild(3).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnMainHSVChanged(); });
+        }
+
+        if (SecondHSVPanel != null)
+        {
+            SecondHSVPanel.transform.GetChild(1).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnSecondHSVChanged(); });
+            SecondHSVPanel.transform.GetChild(2).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnSecondHSVChanged(); });
+            SecondHSVPanel.transform.GetChild(3).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnSecondHSVChanged(); });
+        }
+    }
+
+    private void OnMainHSVChanged()
+    {
+        OnMainColourLoad(Color.HSVToRGB(MainHSVPanel.transform.GetChild(1).GetComponent<Slider>().value,
+            MainHSVPanel.transform.GetChild(2).GetComponent<Slider>().value,
+            MainHSVPanel.transform.GetChild(2).GetComponent<Slider>().value));
+    }
+
+    private void OnSecondHSVChanged()
+    {
+        OnSecondColourLoad(Color.HSVToRGB(SecondHSVPanel.transform.GetChild(1).GetComponent<Slider>().value,
+            SecondHSVPanel.transform.GetChild(2).GetComponent<Slider>().value,
+            SecondHSVPanel.transform.GetChild(2).GetComponent<Slider>().value));
     }
 
     private void OnMainColourChange()
     {
-        //float Hue = 0.0f;
-        //float Saturation = 0.0f;
-        //float Brightness = 0.0f;
-
         switch (MainColour.value)
         {
             case 0:
                 OnMainColourLoad(Color.black);
-                //Color.RGBToHSV(Color.black, out Hue, out Saturation, out Brightness);
                 break;
             case 1:
                 OnMainColourLoad(Color.blue);
-                //Color.RGBToHSV(Color.blue, out Hue, out Saturation, out Brightness);
                 break;
             case 2:
                 OnMainColourLoad(Color.cyan);
-                //Color.RGBToHSV(Color.cyan, out Hue, out Saturation, out Brightness);
                 break;
             case 3:
                 OnMainColourLoad(Color.green);
-                //Color.RGBToHSV(Color.green, out Hue, out Saturation, out Brightness);
                 break;
             case 4:
                 OnMainColourLoad(Color.grey);
-                //Color.RGBToHSV(Color.grey, out Hue, out Saturation, out Brightness);
                 break;
             case 5:
                 OnMainColourLoad(Color.magenta);
-                //Color.RGBToHSV(Color.magenta, out Hue, out Saturation, out Brightness);
                 break;
             case 6:
                 OnMainColourLoad(Color.red);
-                //Color.RGBToHSV(Color.red, out Hue, out Saturation, out Brightness);
                 break;
             case 7:
                 OnMainColourLoad(Color.white);
-                //Color.RGBToHSV(Color.white, out Hue, out Saturation, out Brightness);
                 break;
             case 8:
                 OnMainColourLoad(Color.yellow);
-                //Color.RGBToHSV(Color.yellow, out Hue, out Saturation, out Brightness);
                 break;
         }
-
-        //Gamemanager.UIMainColour = UIMainColour;
-        //MainHue.value = Hue;
-        //MainSaturation.value = Saturation;
-        //MainBrightness.value = Brightness;
     }
 
     private void OnSecondColourChange()
     {
-        //float Hue = 0.0f;
-        //float Saturation = 0.0f;
-        //float Brightness = 0.0f;
-
         switch (SecondColour.value)
         {
             case 0:
                 OnSecondColourLoad(Color.black);
-                //Color.RGBToHSV(Color.black, out Hue, out Saturation, out Brightness);
                 break;
             case 1:
                 OnSecondColourLoad(Color.blue);
-                //Color.RGBToHSV(Color.blue, out Hue, out Saturation, out Brightness);
                 break;
             case 2:
                 OnSecondColourLoad(Color.cyan);
-                //Color.RGBToHSV(Color.cyan, out Hue, out Saturation, out Brightness);
                 break;
             case 3:
                 OnSecondColourLoad(Color.green);
-                //Color.RGBToHSV(Color.green, out Hue, out Saturation, out Brightness);
                 break;
             case 4:
                 OnSecondColourLoad(Color.grey);
-                //Color.RGBToHSV(Color.grey, out Hue, out Saturation, out Brightness);
                 break;
             case 5:
                 OnSecondColourLoad(Color.magenta);
-                //Color.RGBToHSV(Color.magenta, out Hue, out Saturation, out Brightness);
                 break;
             case 6:
                 OnSecondColourLoad(Color.red);
-                //Color.RGBToHSV(Color.red, out Hue, out Saturation, out Brightness);
                 break;
             case 7:
                 OnSecondColourLoad(Color.white);
-                //Color.RGBToHSV(Color.white, out Hue, out Saturation, out Brightness);
                 break;
             case 8:
                 OnSecondColourLoad(Color.yellow);
                 //Color.RGBToHSV(Color.yellow, out Hue, out Saturation, out Brightness);
                 break;
         }
-
-        //Gamemanager.UIMainColour = UIMainColour;
-        //MainHue.value = Hue;
-        //MainSaturation.value = Saturation;
-        //MainBrightness.value = Brightness;
     }
 
     private void OnMainColourLoad(Color Colour)

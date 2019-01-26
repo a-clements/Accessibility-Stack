@@ -101,7 +101,7 @@ public class UIManagerEditor : Editor //derives from the Editor class.
 
         GUILayout.BeginHorizontal();
 
-        string[] GraphicsOptions = new[] { "Resolution", "Full Screen", "Texture Quality", "VSync", "Anti Aliasing", "Gamma Correction", "Main Colour", "Secondary Colour" };
+        string[] GraphicsOptions = new[] { "Resolution", "Full Screen", "Texture Quality", "VSync", "Anti Aliasing", "Gamma Correction", "Main Colour", "Second Colour", "Main HSV", "Second HSV" };
 
         GraphicsIndex = EditorGUILayout.Popup(GraphicsIndex, GraphicsOptions, GUILayout.MaxWidth(135));
 
