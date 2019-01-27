@@ -101,7 +101,7 @@ public class UIManagerEditor : Editor //derives from the Editor class.
 
         GUILayout.BeginHorizontal();
 
-        string[] GraphicsOptions = new[] { "Resolution", "Full Screen", "Texture Quality", "VSync", "Anti Aliasing", "Gamma Correction", "Main Colour", "Second Colour", "Main HSV", "Second HSV" };
+        string[] GraphicsOptions = new[] { "Resolution", "Full Screen", "Texture Quality", "VSync", "Anti Aliasing", "Gamma Correction", "Main Colour", "Second Colour" };
 
         GraphicsIndex = EditorGUILayout.Popup(GraphicsIndex, GraphicsOptions, GUILayout.MaxWidth(135));
 
@@ -120,7 +120,7 @@ public class UIManagerEditor : Editor //derives from the Editor class.
 
         GUILayout.BeginHorizontal();
 
-        string[] AudioOptions = new[] { "Button", "Dropdown" };
+        string[] AudioOptions = new[] { "Text to Speech", "Dropdown" };
 
         AudioIndex = EditorGUILayout.Popup(AudioIndex, AudioOptions, GUILayout.MaxWidth(135));
 

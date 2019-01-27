@@ -85,6 +85,7 @@ public class UIManager : MonoBehaviour
                     break;
 
                 case "AudioPanel":
+                    Panel.AddComponent<AudioSettings>();
                     break;
             }
         }
@@ -102,6 +103,12 @@ public class UIManager : MonoBehaviour
         {
             PanelName = "GamePlayPanel";
             CreatePanel();
+        }
+
+        switch(GameplayIndex)
+        {
+            case 0:
+                break;
         }
     }
 
@@ -243,8 +250,8 @@ public class UIManager : MonoBehaviour
                 DropdownControlType.options.Add(new Dropdown.OptionData("0x"));
                 DropdownControlType.options.Add(new Dropdown.OptionData("2x"));
                 DropdownControlType.options.Add(new Dropdown.OptionData("4x"));
+                DropdownControlType.options.Add(new Dropdown.OptionData("6x"));
                 DropdownControlType.options.Add(new Dropdown.OptionData("8x"));
-                DropdownControlType.options.Add(new Dropdown.OptionData("16x"));
                 DropdownControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 DropdownControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 DropdownControlType.transform.GetChild(3).gameObject.AddComponent<TTS>();
@@ -293,6 +300,22 @@ public class UIManager : MonoBehaviour
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/MainColour").GetComponent<RectTransform>().anchorMax = new Vector2(0.3f, 0.83f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/MainColour").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/MainColour").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
+                PanelControlType = Instantiate(HSVPanelPrefab, transform.position, transform.rotation);
+                PanelControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
+                PanelControlType.name = "MainHSVPanel";
+                PanelControlType.transform.localPosition = new Vector3(0, 0, 0);
+                PanelControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                PanelControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+                PanelControlType.transform.GetChild(0).GetChild(3).GetComponent<Text>().text = "Hue";
+                PanelControlType.transform.GetChild(1).GetChild(3).GetComponent<Text>().text = "Saturation";
+                PanelControlType.transform.GetChild(2).GetChild(3).GetComponent<Text>().text = "Brightness";
+
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/MainHSVPanel").GetComponent<RectTransform>().anchorMin = new Vector2(0.008f, 0.69f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/MainHSVPanel").GetComponent<RectTransform>().anchorMax = new Vector2(0.3f, 0.796f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/MainHSVPanel").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/MainHSVPanel").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                PanelControlType.transform.SetParent(DropdownControlType.transform);
                 break;
 
             case 7:
@@ -317,44 +340,22 @@ public class UIManager : MonoBehaviour
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondColour").GetComponent<RectTransform>().anchorMax = new Vector2(0.975f, 0.83f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondColour").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondColour").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                break;
-
-            case 8:
-                PanelControlType = Instantiate(HSVPanelPrefab, transform.position, transform.rotation);
-                PanelControlType.name = "MainHSVPanel";
-                PanelControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
-                PanelControlType.transform.localPosition = new Vector3(0, 0, 0);
-                PanelControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                PanelControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
-                PanelControlType.transform.GetChild(0).GetComponent<Text>().text = "Main Colour";
-                PanelControlType.transform.GetChild(1).GetChild(3).GetComponent<Text>().text = "Hue";
-                PanelControlType.transform.GetChild(2).GetChild(3).GetComponent<Text>().text = "Saturation";
-                PanelControlType.transform.GetChild(3).GetChild(3).GetComponent<Text>().text = "Brightness";
-                PanelControlType.gameObject.AddComponent<TTS>();
-
-                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/MainHSVPanel").GetComponent<RectTransform>().anchorMin = new Vector2(0.008f, 0.743f);
-                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/MainHSVPanel").GetComponent<RectTransform>().anchorMax = new Vector2(0.3f, 0.83f);
-                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/MainHSVPanel").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
-                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/MainHSVPanel").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                break;
-
-            case 9:
+ 
                 PanelControlType = Instantiate(HSVPanelPrefab, transform.position, transform.rotation);
                 PanelControlType.name = "SecondHSVPanel";
                 PanelControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
                 PanelControlType.transform.localPosition = new Vector3(0, 0, 0);
                 PanelControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 PanelControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
-                PanelControlType.transform.GetChild(0).GetComponent<Text>().text = "Second Colour";
-                PanelControlType.transform.GetChild(1).GetChild(3).GetComponent<Text>().text = "Hue";
-                PanelControlType.transform.GetChild(2).GetChild(3).GetComponent<Text>().text = "Saturation";
-                PanelControlType.transform.GetChild(3).GetChild(3).GetComponent<Text>().text = "Brightness";
-                PanelControlType.gameObject.AddComponent<TTS>();
+                PanelControlType.transform.GetChild(0).GetChild(3).GetComponent<Text>().text = "Hue";
+                PanelControlType.transform.GetChild(1).GetChild(3).GetComponent<Text>().text = "Saturation";
+                PanelControlType.transform.GetChild(2).GetChild(3).GetComponent<Text>().text = "Brightness";
 
-                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondHSVPanel").GetComponent<RectTransform>().anchorMin = new Vector2(0.682f, 0.743f);
-                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondHSVPanel").GetComponent<RectTransform>().anchorMax = new Vector2(0.975f, 0.83f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondHSVPanel").GetComponent<RectTransform>().anchorMin = new Vector2(0.682f, 0.69f);
+                WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondHSVPanel").GetComponent<RectTransform>().anchorMax = new Vector2(0.975f, 0.796f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondHSVPanel").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
                 WindowSize.gameObject.transform.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondHSVPanel").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                PanelControlType.transform.SetParent(DropdownControlType.transform);
                 break;
         }
     }
@@ -367,6 +368,25 @@ public class UIManager : MonoBehaviour
         {
             PanelName = "AudioPanel";
             CreatePanel();
+        }
+
+        switch(AudioIndex)
+        {
+            case 0:
+                ToggleControlType = Instantiate(TogglePrefab, transform.position, transform.rotation);
+                ToggleControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
+                ToggleControlType.name = "TextToSpeech";
+                ToggleControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                ToggleControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+                ToggleControlType.transform.GetChild(1).gameObject.AddComponent<TTS>();
+                ToggleControlType.transform.GetChild(1).GetComponent<Text>().text = "Text To Speech";
+
+
+                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/TextToSpeech").GetComponent<RectTransform>().anchorMin = new Vector2(0.008f, 0.942f);
+                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/TextToSpeech").GetComponent<RectTransform>().anchorMax = new Vector2(0.3f, 0.972f);
+                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/TextToSpeech").GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/TextToSpeech").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                break;
         }
     }
 

@@ -43,8 +43,8 @@ public class GraphicsSettings : MonoBehaviour
         Gamma = GameObject.Find("Scroll View/Viewport/Content/GammaCorrection").GetComponent<Slider>();
         MainColour = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/MainColour").GetComponent<Dropdown>();
         SecondColour = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondColour").GetComponent<Dropdown>();
-        MainHSVPanel = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/MainHSVPanel");
-        SecondHSVPanel = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondHSVPanel");
+        MainHSVPanel = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/MainColour/MainHSVPanel");
+        SecondHSVPanel = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondColour/SecondHSVPanel");
 
 
         Gamma.value = 0.5f;
@@ -96,30 +96,30 @@ public class GraphicsSettings : MonoBehaviour
 
         if (MainHSVPanel != null)
         {
+            MainHSVPanel.transform.GetChild(0).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnMainHSVChanged(); });
             MainHSVPanel.transform.GetChild(1).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnMainHSVChanged(); });
             MainHSVPanel.transform.GetChild(2).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnMainHSVChanged(); });
-            MainHSVPanel.transform.GetChild(3).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnMainHSVChanged(); });
         }
 
         if (SecondHSVPanel != null)
         {
+            SecondHSVPanel.transform.GetChild(0).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnSecondHSVChanged(); });
             SecondHSVPanel.transform.GetChild(1).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnSecondHSVChanged(); });
             SecondHSVPanel.transform.GetChild(2).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnSecondHSVChanged(); });
-            SecondHSVPanel.transform.GetChild(3).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnSecondHSVChanged(); });
         }
     }
 
     private void OnMainHSVChanged()
     {
-        OnMainColourLoad(Color.HSVToRGB(MainHSVPanel.transform.GetChild(1).GetComponent<Slider>().value,
-            MainHSVPanel.transform.GetChild(2).GetComponent<Slider>().value,
+        OnMainColourLoad(Color.HSVToRGB(MainHSVPanel.transform.GetChild(0).GetComponent<Slider>().value,
+            MainHSVPanel.transform.GetChild(1).GetComponent<Slider>().value,
             MainHSVPanel.transform.GetChild(2).GetComponent<Slider>().value));
     }
 
     private void OnSecondHSVChanged()
     {
-        OnSecondColourLoad(Color.HSVToRGB(SecondHSVPanel.transform.GetChild(1).GetComponent<Slider>().value,
-            SecondHSVPanel.transform.GetChild(2).GetComponent<Slider>().value,
+        OnSecondColourLoad(Color.HSVToRGB(SecondHSVPanel.transform.GetChild(0).GetComponent<Slider>().value,
+            SecondHSVPanel.transform.GetChild(1).GetComponent<Slider>().value,
             SecondHSVPanel.transform.GetChild(2).GetComponent<Slider>().value));
     }
 

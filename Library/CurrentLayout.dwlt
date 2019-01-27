@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_MinSize: {x: 681, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 80
+  controlID: 66
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 81
+  controlID: 67
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 221}
   m_MaxSize: {x: 8004, y: 4021}
   vertical: 0
-  controlID: 82
+  controlID: 68
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -252,8 +252,8 @@ MonoBehaviour:
     y: 0
     width: 1132
     height: 578
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -323,20 +323,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Accessibility Manager/Prefabs
+    - Assets/Accessibility Manager
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Accessibility Manager/Prefabs
+  - Assets/Accessibility Manager
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\woofa\Documents\GitHub\Accessibility-Stack
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ba0a0000
-    m_LastClickedID: 2746
-    m_ExpandedIDs: 000000002e09000058090000f231000000ca9a3b
+    m_SelectedIDs: 58090000
+    m_LastClickedID: 2392
+    m_ExpandedIDs: 000000002e09000058090000ca33000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -364,7 +364,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000002e09000058090000f2310000
+    m_ExpandedIDs: 000000002e09000058090000ca330000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -482,21 +482,21 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: e2fbffff
     m_LastClickedID: -1054
-    m_ExpandedIDs: 3269faffd8a4faff76b2faff30d9faff3ad9faff085afcfffac9fcff008efdff0a8efdff148efdff1c8efdff06f7fdffc820feff267efeff9afbfeffe2abffff14f9ffff34fbffff92fbffffbefbffffc6fbffffe0fbffffe2fbffffe4fbffff00000000
+    m_ExpandedIDs: dcdafaff0edbfaff18dbfaff22dbfafff6fefaffdc18fbffe618fbfff018fbfff818fbff3a4dfbff4e4dfbff3065fbff3a65fbff4c65fbff9c37fcff9e37fcffa037fcffa237fcff926bfcff9a6bfcff0a6cfcffa684fcff4eeefcff50eefcff52eefcff54eefcff3e0cfdff400cfdff807efdff38cbfdffa8cbfdff58e4fdff50eefdfff2ddfeff4c47ffffa6e4ffffdafaffffe2faffff68fbffff6afbffff9afbffffe0fbffffe2fbffffe4fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: HSVPanel
-      m_OriginalName: HSVPanel
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: -300858
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 4}
     m_SearchString: 
@@ -531,14 +531,14 @@ MonoBehaviour:
     height: 557
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 12595.2939257
+  lastFramingTime: 16560.8397079
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 539.88885, y: 421.46198, z: 0}
+    m_Target: {x: 631.0387, y: 365.72244, z: 0}
     speed: 2
-    m_Value: {x: 539.88885, y: 421.46198, z: 0}
+    m_Value: {x: 631.0387, y: 365.72244, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -570,9 +570,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0, y: 0, z: -0, w: -1}
   m_Size:
-    m_Target: 563.4263
+    m_Target: 743.1747
     speed: 2
-    m_Value: 563.4263
+    m_Value: 743.1747
   m_Ortho:
     m_Target: 1
     speed: 2
