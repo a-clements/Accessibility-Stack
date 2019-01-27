@@ -7,17 +7,50 @@ public class AudioSettings : MonoBehaviour
 {
     public TTS[] TTS;
     public Toggle TextToSpeech;
+    public Slider SpeechVolume;
+
+    private int volume = 0;
 
     private void Awake()
     {
         TTS = FindObjectsOfType<TTS>();
         TextToSpeech = GameObject.Find("Scroll View/Viewport/Content/TextToSpeech").GetComponent<Toggle>();
+        SpeechVolume = GameObject.Find("Scroll View/Viewport/Content/SpeechVolume").GetComponent<Slider>();
     }
-
 
     private void OnEnable()
     {
-        TextToSpeech.onValueChanged.AddListener(delegate { OnTextToSpeechToggle(); });
+
+        if (TextToSpeech != null)
+        {
+            TextToSpeech.onValueChanged.AddListener(delegate { OnTextToSpeechToggle(); });
+        }
+
+        if(SpeechVolume != null)
+        {
+            SpeechVolume.onValueChanged.AddListener(delegate { OnSpeechVolumeChange(); });
+        }
+    }
+
+    void Start()
+    {
+        UIManager.ManagerInstance.SpeechVolume = SpeechVolume.value * 10;
+    }
+
+    public void OnSpeechVolumeChange()
+    {
+        UIManager.ManagerInstance.SpeechVolume = SpeechVolume.value * 10;
+
+        if(SpeechVolume.value == 0)
+        {
+            TextToSpeech.isOn = false;
+            OnTextToSpeechToggle();
+        }
+        else
+        {
+            TextToSpeech.isOn = true;
+            OnTextToSpeechToggle();
+        }
     }
 
     public void OnTextToSpeechToggle()
@@ -26,27 +59,23 @@ public class AudioSettings : MonoBehaviour
         {
             foreach (TTS tts in TTS)
             {
-                tts.enabled = false;
+                if(tts.enabled == true)
+                {
+                    tts.enabled = false;
+                }
             }
         }
         else
         {
             foreach (TTS tts in TTS)
             {
-                tts.enabled = true;
+                if (tts.enabled == false)
+                {
+                    tts.enabled = true;
+                }
             }
         }
     }
 
-    // Use this for initialization
-    void Start ()
-    {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
+
 }

@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager ManagerInstance = null;
     //SpeechSynthesizer Voice = new SpeechSynthesizer();
-    static SpVoice Voice = new SpVoice();
+    private SpVoice Voice = new SpVoice();
     private GameObject Panel;
     private GameObject PanelControlType;
     private Button ButtonControlType;
@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour
     public Resolution[] Resolutions;
 
     [HideInInspector]public string PanelName;
+    public float SpeechVolume = 0.0f;
 
     private void Awake()
     {
@@ -387,12 +388,32 @@ public class UIManager : MonoBehaviour
                 WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/TextToSpeech").GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
                 WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/TextToSpeech").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                 break;
+
+            case 1:
+                SliderControlType = Instantiate(SliderPrefab, transform.position, transform.rotation);
+                SliderControlType.transform.SetParent(Panel.transform.GetChild(0).GetChild(0).GetChild(0));
+                SliderControlType.name = "SpeechVolume";
+                SliderControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                SliderControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+                SliderControlType.GetComponent<Slider>().minValue = 0;
+                SliderControlType.GetComponent<Slider>().maxValue = 10;
+                SliderControlType.GetComponent<Slider>().wholeNumbers = true;
+                SliderControlType.GetComponent<Slider>().value = 5;
+                SliderControlType.transform.GetChild(3).gameObject.AddComponent<TTS>();
+                SliderControlType.transform.GetChild(3).GetComponent<Text>().text = "Speech Volume";
+
+                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/SpeechVolume").GetComponent<RectTransform>().anchorMin = new Vector2(0.682f, 0.942f);
+                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/SpeechVolume").GetComponent<RectTransform>().anchorMax = new Vector2(0.975f, 0.972f);
+                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/SpeechVolume").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
+                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/SpeechVolume").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                break;
         }
     }
 
     public void Speak(string text)
     {
         //this switch statement checks what the value of the string variable OSType is and runs the correct switch statement
+        Voice.Volume = (int)SpeechVolume;
         Voice.Speak(text);
     }
 }
