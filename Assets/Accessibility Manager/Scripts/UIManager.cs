@@ -396,8 +396,8 @@ public class UIManager : MonoBehaviour
                 SliderControlType.transform.GetChild(3).gameObject.AddComponent<TTS>();
                 SliderControlType.transform.GetChild(3).GetComponent<Text>().text = "Speech Volume";
 
-                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/SpeechVolume").GetComponent<RectTransform>().anchorMin = new Vector2(0.682f, 0.942f);
-                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/SpeechVolume").GetComponent<RectTransform>().anchorMax = new Vector2(0.975f, 0.972f);
+                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/SpeechVolume").GetComponent<RectTransform>().anchorMin = new Vector2(0.682f, 0.947f);
+                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/SpeechVolume").GetComponent<RectTransform>().anchorMax = new Vector2(0.975f, 0.965f);
                 WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/SpeechVolume").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
                 WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/SpeechVolume").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                 break;

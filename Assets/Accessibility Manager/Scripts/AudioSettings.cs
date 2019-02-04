@@ -12,6 +12,7 @@ public class AudioSettings : MonoBehaviour
     public Slider MusicVolume;
     public Slider SFXVolume;
     public Slider AmbientVolume;
+    public AudioSource[] Sources;
 
     private void Awake()
     {
@@ -27,8 +28,7 @@ public class AudioSettings : MonoBehaviour
         {
             SpeechVolume = GameObject.Find("Scroll View/Viewport/Content/SpeechVolume").GetComponent<Slider>();
             SpeechVolume.onValueChanged.AddListener(delegate { OnSpeechVolumeChange(); });
-            SpeechVolume.value = 0.5f;
-            UIManager.ManagerInstance.SpeechVolume = SpeechVolume.value * 10;
+            SpeechVolume.value = 5;
         }
 
         if (GameObject.Find("Scroll View/Viewport/Content/MasterVolume") != null)
@@ -45,9 +45,9 @@ public class AudioSettings : MonoBehaviour
             MusicVolume.value = 0.5f;
         }
 
-        if (GameObject.Find("Scroll View/Viewport/Content/SFXVolume") != null)
+        if (GameObject.Find("Scroll View/Viewport/Content/SfxVolume") != null)
         {
-            SFXVolume = GameObject.Find("Scroll View/Viewport/Content/SFXVolume").GetComponent<Slider>();
+            SFXVolume = GameObject.Find("Scroll View/Viewport/Content/SfxVolume").GetComponent<Slider>();
             SFXVolume.onValueChanged.AddListener(delegate { OnSFXVolumeChange(); });
             SFXVolume.value = 0.5f;
         }

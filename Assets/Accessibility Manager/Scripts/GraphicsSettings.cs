@@ -105,9 +105,10 @@ public class GraphicsSettings : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    private void Start()
     {
-
+        MainColour.value = 7;
+        SecondColour.value = 0;
     }
 
     private void OnMainHSVChanged()
@@ -188,7 +189,6 @@ public class GraphicsSettings : MonoBehaviour
                 break;
             case 8:
                 OnSecondColourLoad(Color.yellow);
-                //Color.RGBToHSV(Color.yellow, out Hue, out Saturation, out Brightness);
                 break;
         }
     }
@@ -275,12 +275,6 @@ public class GraphicsSettings : MonoBehaviour
     private void OnGammaChange()
     {
         RenderSettings.ambientLight = new Color(Gamma.value, Gamma.value, Gamma.value, 1.0f);
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-
     }
 
     // Update is called once per frame
