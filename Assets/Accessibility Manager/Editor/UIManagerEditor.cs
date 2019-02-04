@@ -120,7 +120,7 @@ public class UIManagerEditor : Editor //derives from the Editor class.
 
         GUILayout.BeginHorizontal();
 
-        string[] AudioOptions = new[] { "Text to Speech", "Speech Volume" };
+        string[] AudioOptions = new[] { "Text to Speech", "Speech Volume", "Master Volume", "Music Volume", "SFX Volume", "Ambient Volume" };
 
         AudioIndex = EditorGUILayout.Popup(AudioIndex, AudioOptions, GUILayout.MaxWidth(135));
 

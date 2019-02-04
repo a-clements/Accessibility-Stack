@@ -8,33 +8,85 @@ public class AudioSettings : MonoBehaviour
     public TTS[] TTS;
     public Toggle TextToSpeech;
     public Slider SpeechVolume;
-
-    private int volume = 0;
+    public Slider MasterVolume;
+    public Slider MusicVolume;
+    public Slider SFXVolume;
+    public Slider AmbientVolume;
 
     private void Awake()
     {
         TTS = FindObjectsOfType<TTS>();
-        TextToSpeech = GameObject.Find("Scroll View/Viewport/Content/TextToSpeech").GetComponent<Toggle>();
-        SpeechVolume = GameObject.Find("Scroll View/Viewport/Content/SpeechVolume").GetComponent<Slider>();
+
+        if(GameObject.Find("Scroll View/Viewport/Content/TextToSpeech") != null)
+        {
+            TextToSpeech = GameObject.Find("Scroll View/Viewport/Content/TextToSpeech").GetComponent<Toggle>();
+            TextToSpeech.onValueChanged.AddListener(delegate { OnTextToSpeechToggle(); });
+        }
+
+        if(GameObject.Find("Scroll View/Viewport/Content/SpeechVolume") != null)
+        {
+            SpeechVolume = GameObject.Find("Scroll View/Viewport/Content/SpeechVolume").GetComponent<Slider>();
+            SpeechVolume.onValueChanged.AddListener(delegate { OnSpeechVolumeChange(); });
+            SpeechVolume.value = 0.5f;
+            UIManager.ManagerInstance.SpeechVolume = SpeechVolume.value * 10;
+        }
+
+        if (GameObject.Find("Scroll View/Viewport/Content/MasterVolume") != null)
+        {
+            MasterVolume = GameObject.Find("Scroll View/Viewport/Content/MasterVolume").GetComponent<Slider>();
+            MasterVolume.onValueChanged.AddListener(delegate { OnMasterVolumeChange(); });
+            MasterVolume.value = 0.5f;
+        }
+
+        if (GameObject.Find("Scroll View/Viewport/Content/MusicVolume") != null)
+        {
+            MusicVolume = GameObject.Find("Scroll View/Viewport/Content/MusicVolume").GetComponent<Slider>();
+            MusicVolume.onValueChanged.AddListener(delegate { OnMusicVolumeChange(); });
+            MusicVolume.value = 0.5f;
+        }
+
+        if (GameObject.Find("Scroll View/Viewport/Content/SFXVolume") != null)
+        {
+            SFXVolume = GameObject.Find("Scroll View/Viewport/Content/SFXVolume").GetComponent<Slider>();
+            SFXVolume.onValueChanged.AddListener(delegate { OnSFXVolumeChange(); });
+            SFXVolume.value = 0.5f;
+        }
+
+        if (GameObject.Find("Scroll View/Viewport/Content/AmbientVolume") != null)
+        {
+            AmbientVolume = GameObject.Find("Scroll View/Viewport/Content/AmbientVolume").GetComponent<Slider>();
+            AmbientVolume.onValueChanged.AddListener(delegate { OnAmbientVolumeChange(); });
+            AmbientVolume.value = 0.5f;
+        }
     }
 
     private void OnEnable()
     {
-
-        if (TextToSpeech != null)
-        {
-            TextToSpeech.onValueChanged.AddListener(delegate { OnTextToSpeechToggle(); });
-        }
-
-        if(SpeechVolume != null)
-        {
-            SpeechVolume.onValueChanged.AddListener(delegate { OnSpeechVolumeChange(); });
-        }
     }
 
     void Start()
     {
-        UIManager.ManagerInstance.SpeechVolume = SpeechVolume.value * 10;
+
+    }
+
+    public void OnMasterVolumeChange()
+    {
+
+    }
+
+    public void OnMusicVolumeChange()
+    {
+
+    }
+
+    public void OnSFXVolumeChange()
+    {
+
+    }
+
+    public void OnAmbientVolumeChange()
+    {
+
     }
 
     public void OnSpeechVolumeChange()

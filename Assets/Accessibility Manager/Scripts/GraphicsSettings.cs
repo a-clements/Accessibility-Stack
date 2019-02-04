@@ -35,78 +35,79 @@ public class GraphicsSettings : MonoBehaviour
         Texts = FindObjectsOfType<Text>();
         Resolution = Screen.resolutions;
 
-        ResolutionDropdown = GameObject.Find("Scroll View/Viewport/Content/ResolutionMenu").GetComponent<Dropdown>();
-        FullscreenToggle = GameObject.Find("Scroll View/Viewport/Content/FullScreenToggle").GetComponent<Toggle>();
-        TextureQuality = GameObject.Find("Scroll View/Viewport/Content/TextureQuality").GetComponent<Dropdown>();
-        VSync = GameObject.Find("Scroll View/Viewport/Content/VSync").GetComponent<Dropdown>();
-        AA = GameObject.Find("Scroll View/Viewport/Content/AntiAliasing").GetComponent<Dropdown>();
-        Gamma = GameObject.Find("Scroll View/Viewport/Content/GammaCorrection").GetComponent<Slider>();
-        MainColour = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/MainColour").GetComponent<Dropdown>();
-        SecondColour = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondColour").GetComponent<Dropdown>();
-        MainHSVPanel = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/MainColour/MainHSVPanel");
-        SecondHSVPanel = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondColour/SecondHSVPanel");
-
-
-        Gamma.value = 0.5f;
-        MainColour.value = 0;
-        SecondColour.value = 7;
-    }
-
-    private void OnEnable()
-    {
-        if (ResolutionDropdown != null)
+        if(GameObject.Find("Scroll View/Viewport/Content/ResolutionMenu") != null)
         {
+            ResolutionDropdown = GameObject.Find("Scroll View/Viewport/Content/ResolutionMenu").GetComponent<Dropdown>();
             ResolutionDropdown.onValueChanged.AddListener(delegate { OnResolutionChange(); });
         }
 
-        if (FullscreenToggle != null)
+        if(GameObject.Find("Scroll View/Viewport/Content/FullScreenToggle") != null)
         {
+            FullscreenToggle = GameObject.Find("Scroll View/Viewport/Content/FullScreenToggle").GetComponent<Toggle>();
             FullscreenToggle.onValueChanged.AddListener(delegate { OnFullScreenToggle(); });
         }
 
-        if (TextureQuality != null)
+        if(GameObject.Find("Scroll View/Viewport/Content/TextureQuality") != null)
         {
+            TextureQuality = GameObject.Find("Scroll View/Viewport/Content/TextureQuality").GetComponent<Dropdown>();
             TextureQuality.onValueChanged.AddListener(delegate { OnTextureChange(); });
         }
 
-        if (VSync != null)
+        if(GameObject.Find("Scroll View/Viewport/Content/VSync") != null)
         {
+            VSync = GameObject.Find("Scroll View/Viewport/Content/VSync").GetComponent<Dropdown>();
             VSync.onValueChanged.AddListener(delegate { OnVSyncChange(); });
         }
 
-        if (AA != null)
+        if(GameObject.Find("Scroll View/Viewport/Content/AntiAliasing") != null)
         {
+            AA = GameObject.Find("Scroll View/Viewport/Content/AntiAliasing").GetComponent<Dropdown>();
             AA.onValueChanged.AddListener(delegate { OnAAChange(); });
         }
 
-        if (Gamma != null)
+        if(GameObject.Find("Scroll View/Viewport/Content/GammaCorrection") != null)
         {
+            Gamma = GameObject.Find("Scroll View/Viewport/Content/GammaCorrection").GetComponent<Slider>();
             Gamma.onValueChanged.AddListener(delegate { OnGammaChange(); });
+            Gamma.value = 0.5f;
         }
 
-        if (MainColour != null)
+        if(GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/MainColour") != null)
         {
+            MainColour = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/MainColour").GetComponent<Dropdown>();
             MainColour.onValueChanged.AddListener(delegate { OnMainColourChange(); });
+            MainColour.value = 0;
         }
 
-        if (SecondColour != null)
+        if(GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondColour"))
         {
+            SecondColour = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondColour").GetComponent<Dropdown>();
             SecondColour.onValueChanged.AddListener(delegate { OnSecondColourChange(); });
+            SecondColour.value = 7;
         }
 
-        if (MainHSVPanel != null)
+        if(GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/MainColour/MainHSVPanel") != null)
         {
+            MainHSVPanel = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/MainColour/MainHSVPanel");
+
             MainHSVPanel.transform.GetChild(0).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnMainHSVChanged(); });
             MainHSVPanel.transform.GetChild(1).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnMainHSVChanged(); });
             MainHSVPanel.transform.GetChild(2).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnMainHSVChanged(); });
         }
 
-        if (SecondHSVPanel != null)
+        if(GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondColour/SecondHSVPanel"))
         {
+            SecondHSVPanel = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondColour/SecondHSVPanel");
+
             SecondHSVPanel.transform.GetChild(0).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnSecondHSVChanged(); });
             SecondHSVPanel.transform.GetChild(1).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnSecondHSVChanged(); });
             SecondHSVPanel.transform.GetChild(2).GetComponent<Slider>().onValueChanged.AddListener(delegate { OnSecondHSVChanged(); });
         }
+    }
+
+    private void OnEnable()
+    {
+
     }
 
     private void OnMainHSVChanged()
