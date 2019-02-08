@@ -28,45 +28,45 @@ public class AudioSettings : MonoBehaviour
         {
             SpeechVolume = GameObject.Find("Scroll View/Viewport/Content/SpeechVolume").GetComponent<Slider>();
             SpeechVolume.onValueChanged.AddListener(delegate { OnSpeechVolumeChange(); });
-            SpeechVolume.value = 5;
         }
 
         if (GameObject.Find("Scroll View/Viewport/Content/MasterVolume") != null)
         {
             MasterVolume = GameObject.Find("Scroll View/Viewport/Content/MasterVolume").GetComponent<Slider>();
             MasterVolume.onValueChanged.AddListener(delegate { OnMasterVolumeChange(); });
-            MasterVolume.value = 0.5f;
         }
 
         if (GameObject.Find("Scroll View/Viewport/Content/MusicVolume") != null)
         {
             MusicVolume = GameObject.Find("Scroll View/Viewport/Content/MusicVolume").GetComponent<Slider>();
             MusicVolume.onValueChanged.AddListener(delegate { OnMusicVolumeChange(); });
-            MusicVolume.value = 0.5f;
         }
 
         if (GameObject.Find("Scroll View/Viewport/Content/SfxVolume") != null)
         {
             SFXVolume = GameObject.Find("Scroll View/Viewport/Content/SfxVolume").GetComponent<Slider>();
             SFXVolume.onValueChanged.AddListener(delegate { OnSFXVolumeChange(); });
-            SFXVolume.value = 0.5f;
         }
 
         if (GameObject.Find("Scroll View/Viewport/Content/AmbientVolume") != null)
         {
             AmbientVolume = GameObject.Find("Scroll View/Viewport/Content/AmbientVolume").GetComponent<Slider>();
             AmbientVolume.onValueChanged.AddListener(delegate { OnAmbientVolumeChange(); });
-            AmbientVolume.value = 0.5f;
         }
     }
 
     private void OnEnable()
     {
+
     }
 
     void Start()
     {
-
+        SpeechVolume.value = 5;
+        MasterVolume.value = 0.5f;
+        MusicVolume.value = 0.5f;
+        SFXVolume.value = 0.5f;
+        AmbientVolume.value = 0.5f;
     }
 
     public void OnMasterVolumeChange()

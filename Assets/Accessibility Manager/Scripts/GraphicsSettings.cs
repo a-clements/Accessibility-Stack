@@ -69,21 +69,18 @@ public class GraphicsSettings : MonoBehaviour
         {
             Gamma = GameObject.Find("Scroll View/Viewport/Content/GammaCorrection").GetComponent<Slider>();
             Gamma.onValueChanged.AddListener(delegate { OnGammaChange(); });
-            Gamma.value = 0.5f;
         }
 
         if(GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/MainColour") != null)
         {
             MainColour = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/MainColour").GetComponent<Dropdown>();
             MainColour.onValueChanged.AddListener(delegate { OnMainColourChange(); });
-            MainColour.value = 0;
         }
 
         if(GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondColour"))
         {
             SecondColour = GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/SecondColour").GetComponent<Dropdown>();
             SecondColour.onValueChanged.AddListener(delegate { OnSecondColourChange(); });
-            SecondColour.value = 7;
         }
 
         if(GameObject.Find("GraphicsPanel/Scroll View/Viewport/Content/MainColour/MainHSVPanel") != null)
@@ -105,8 +102,14 @@ public class GraphicsSettings : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+
+    }
+
     private void Start()
     {
+        Gamma.value = 0.5f;
         MainColour.value = 7;
         SecondColour.value = 0;
     }
