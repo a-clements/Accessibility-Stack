@@ -426,8 +426,8 @@ public class UIManager : MonoBehaviour
                 SliderControlType.transform.GetChild(3).gameObject.AddComponent<TTS>();
                 SliderControlType.transform.GetChild(3).GetComponent<Text>().text = "Music Volume";
 
-                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/MusicVolume").GetComponent<RectTransform>().anchorMin = new Vector2(0.198f, 0.86f);
-                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/MusicVolume").GetComponent<RectTransform>().anchorMax = new Vector2(0.795f, 0.879f);
+                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/MusicVolume").GetComponent<RectTransform>().anchorMin = new Vector2(0.198f, 0.874f);
+                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/MusicVolume").GetComponent<RectTransform>().anchorMax = new Vector2(0.795f, 0.894f);
                 WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/MusicVolume").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
                 WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/MusicVolume").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                 break;
@@ -439,10 +439,10 @@ public class UIManager : MonoBehaviour
                 SliderControlType.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 SliderControlType.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
                 SliderControlType.transform.GetChild(3).gameObject.AddComponent<TTS>();
-                SliderControlType.transform.GetChild(3).GetComponent<Text>().text = "Speccial Effects Volume";
+                SliderControlType.transform.GetChild(3).GetComponent<Text>().text = "Special Effects Volume";
 
-                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/SfxVolume").GetComponent<RectTransform>().anchorMin = new Vector2(0.198f, 0.825f);
-                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/SfxVolume").GetComponent<RectTransform>().anchorMax = new Vector2(0.795f, 0.843f);
+                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/SfxVolume").GetComponent<RectTransform>().anchorMin = new Vector2(0.198f, 0.844f);
+                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/SfxVolume").GetComponent<RectTransform>().anchorMax = new Vector2(0.795f, 0.862f);
                 WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/SfxVolume").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
                 WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/SfxVolume").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                 break;
@@ -456,8 +456,8 @@ public class UIManager : MonoBehaviour
                 SliderControlType.transform.GetChild(3).gameObject.AddComponent<TTS>();
                 SliderControlType.transform.GetChild(3).GetComponent<Text>().text = "Ambient Volume";
 
-                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/AmbientVolume").GetComponent<RectTransform>().anchorMin = new Vector2(0.198f, 0.789f);
-                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/AmbientVolume").GetComponent<RectTransform>().anchorMax = new Vector2(0.795f, 0.808f);
+                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/AmbientVolume").GetComponent<RectTransform>().anchorMin = new Vector2(0.198f, 0.812f);
+                WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/AmbientVolume").GetComponent<RectTransform>().anchorMax = new Vector2(0.795f, 0.832f);
                 WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/AmbientVolume").GetComponent<RectTransform>().sizeDelta = new Vector2(0.0f, 0.0f);
                 WindowSize.gameObject.transform.Find("AudioPanel/Scroll View/Viewport/Content/AmbientVolume").GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                 break;
