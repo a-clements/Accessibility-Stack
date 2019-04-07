@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
     private Slider SliderControlType;
     private Text TextControlType;
     private Image ImageControlType;
+
+    public TTS[] TTS;
     public Canvas WindowSize;
     public Button ButtonPrefab;
     public Dropdown DropdownPrefab;
@@ -30,6 +32,11 @@ public class UIManager : MonoBehaviour
     public KeyCode[] Keys;
     public string[] Movement;
     public Resolution[] Resolutions;
+
+    public GameObject GamePlay;
+    public GameObject Controls;
+    public GameObject Graphics;
+    public GameObject Audio;
 
     [HideInInspector]public string PanelName;
     public float SpeechVolume = 0.0f;
@@ -47,9 +54,38 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void OnEnable()
+    private void OnEnable()
     {
         WindowSize = FindObjectOfType<Canvas>();
+
+        TTS = FindObjectsOfType<TTS>();
+    }
+
+    private void Start()
+    {
+        if(GameObject.Find("Canvas/GamePlayPanel") != null)
+        {
+            GamePlay = GameObject.Find("Canvas/GamePlayPanel");
+            GamePlay.SetActive(false);
+        }
+
+        if (GameObject.Find("Canvas/ControlsPanel") != null)
+        {
+            Controls = GameObject.Find("Canvas/ControlsPanel");
+            Controls.SetActive(false);
+        }
+
+        if (GameObject.Find("Canvas/GraphicsPanel") != null)
+        {
+            Graphics = GameObject.Find("Canvas/GraphicsPanel");
+            Graphics.SetActive(false);
+        }
+
+        if (GameObject.Find("Canvas/AudioPanel") != null)
+        {
+            Audio = GameObject.Find("Canvas/AudioPanel");
+            Audio.SetActive(false);
+        }
     }
 
     public void CreatePanel()

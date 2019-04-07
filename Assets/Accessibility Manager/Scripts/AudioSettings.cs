@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class AudioSettings : MonoBehaviour
 {
-    public TTS[] TTS;
+
     public Toggle TextToSpeech;
     public Slider SpeechVolume;
     public Slider MasterVolume;
@@ -16,8 +16,6 @@ public class AudioSettings : MonoBehaviour
 
     private void Awake()
     {
-        TTS = FindObjectsOfType<TTS>();
-
         if(GameObject.Find("Scroll View/Viewport/Content/TextToSpeech") != null)
         {
             TextToSpeech = GameObject.Find("Scroll View/Viewport/Content/TextToSpeech").GetComponent<Toggle>();
@@ -109,7 +107,7 @@ public class AudioSettings : MonoBehaviour
     {
         if (TextToSpeech.isOn == false)
         {
-            foreach (TTS tts in TTS)
+            foreach (TTS tts in UIManager.ManagerInstance.TTS)
             {
                 if(tts.enabled == true)
                 {
@@ -119,7 +117,7 @@ public class AudioSettings : MonoBehaviour
         }
         else
         {
-            foreach (TTS tts in TTS)
+            foreach (TTS tts in UIManager.ManagerInstance.TTS)
             {
                 if (tts.enabled == false)
                 {
