@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     public static UIManager ManagerInstance = null;
     //SpeechSynthesizer Voice = new SpeechSynthesizer();
     private SpVoice Voice = new SpVoice();
+    private GameObject Canvas;
+    private GameObject MainMenu;
     private GameObject Panel;
     private GameObject PanelControlType;
     private Button ButtonControlType;
@@ -28,6 +30,7 @@ public class UIManager : MonoBehaviour
     public Image ImagePrefab;
     public GameObject HSVPanelPrefab;
     public GameObject PanelPrefab;
+    public GameObject MainMenuPanel;
 
     public KeyCode[] Keys;
     public string[] Movement;
@@ -86,6 +89,27 @@ public class UIManager : MonoBehaviour
             Audio = GameObject.Find("Canvas/AudioPanel");
             Audio.SetActive(false);
         }
+    }
+
+    public void CreateMainMenu()
+    {
+        Canvas = new GameObject("Canvas");
+        Canvas.AddComponent<Canvas>();
+        Canvas.AddComponent<CanvasScaler>();
+        Canvas.AddComponent<GraphicRaycaster>();
+        Canvas.GetComponent<RectTransform>().position = new Vector2(574.5f,271f);
+        Canvas.GetComponent<RectTransform>().sizeDelta = new Vector2(1149f,542f);
+        Canvas.GetComponent<RectTransform>().localScale = new Vector3(1.0f,1.0f,1.0f);
+        Canvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
+
+        WindowSize = Canvas.GetComponent<Canvas>();
+
+        MainMenu = Instantiate(MainMenuPanel,transform.position,transform.rotation);
+        MainMenu.name = "MainMenuPanel";
+        MainMenu.transform.SetParent(WindowSize.transform);
+        MainMenu.transform.localPosition = new Vector3(0, 0, 0);
+        MainMenu.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
+        MainMenu.GetComponent<RectTransform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 
     public void CreatePanel()

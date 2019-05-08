@@ -22,6 +22,16 @@ public class UIManagerEditor : Editor //derives from the Editor class.
         /*The beginning of code that lays out buttons to modify and call the CreatePanel function*/
         GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1)); //creates a line in the inspector
 
+        EditorGUILayout.LabelField("Main Menu", EditorStyles.boldLabel); //creates a label in the inspector with a bold font
+
+        if (GUILayout.Button("Create Main Menu")) //creates a button whose caption changes depending on the enum of the toolbar
+        {
+            Manager.CreateMainMenu(); //makes a call to the AccessibilityManager script
+        }
+
+        /*The beginning of code that lays out buttons to modify and call the CreatePanel function*/
+        GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1)); //creates a line in the inspector
+
         EditorGUILayout.LabelField("Panels", EditorStyles.boldLabel); //creates a label in the inspector with a bold font
 
         PanelNumber = GUILayout.Toolbar(PanelNumber, new string[] { "GamePlay", "Controls", "Graphics", "Audio" }); //this line creates a toolbar and places the enum in the variable
