@@ -116,6 +116,11 @@ public class UIManager : MonoBehaviour
     {
         WindowSize = FindObjectOfType<Canvas>();
 
+        if(WindowSize == null)
+        {
+            CreateMainMenu();
+        }
+
         if (GameObject.Find(PanelName) == null)
         {
             Panel = Instantiate(PanelPrefab, transform.position, transform.rotation);
