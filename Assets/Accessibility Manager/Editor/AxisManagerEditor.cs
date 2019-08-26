@@ -31,83 +31,93 @@ public class AxisManagerEditor : Editor //derives from the Editor class.
 
         EditorGUILayout.LabelField("Remap Axis", EditorStyles.boldLabel);
 
-        GUILayout.BeginVertical();
+        GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 
-        AxisName = EditorGUILayout.TextField("Name ", AxisName);
-        DescriptiveAxisName = EditorGUILayout.TextField("Descriptive Name ", DescriptiveAxisName);
-        DescriptiveNegativeAxisName = EditorGUILayout.TextField("Descriptive Negative Name ", DescriptiveNegativeAxisName);
-        NegativeButton = EditorGUILayout.TextField("Negative Button ", NegativeButton);
-        PositiveButton = EditorGUILayout.TextField("Positive Button ", PositiveButton);
-        AltNegativeButton = EditorGUILayout.TextField("Alt Negative Button ", AltNegativeButton);
-        AltPositiveButton = EditorGUILayout.TextField("Alt Negative Button ", AltPositiveButton);
-        AxisGravity = EditorGUILayout.FloatField("Gravity ", AxisGravity);
-        AxisDeadZone = EditorGUILayout.FloatField("DeadZone ", AxisDeadZone);
-        AxisSensitivity = EditorGUILayout.FloatField("Sensetivity ", AxisSensitivity);
-        AxisSnap = EditorGUILayout.Toggle("Snap ", AxisSnap);
-        AxisInvert = EditorGUILayout.Toggle("Invert ", AxisInvert);
+        #region Axis Values
+            GUILayout.BeginVertical();
 
-        EditorGUILayout.BeginHorizontal();
+            AxisName = EditorGUILayout.TextField("Name ", AxisName);
+            DescriptiveAxisName = EditorGUILayout.TextField("Descriptive Name ", DescriptiveAxisName);
+            DescriptiveNegativeAxisName = EditorGUILayout.TextField("Descriptive Negative Name ", DescriptiveNegativeAxisName);
+            NegativeButton = EditorGUILayout.TextField("Negative Button ", NegativeButton);
+            PositiveButton = EditorGUILayout.TextField("Positive Button ", PositiveButton);
+            AltNegativeButton = EditorGUILayout.TextField("Alt Negative Button ", AltNegativeButton);
+            AltPositiveButton = EditorGUILayout.TextField("Alt Negative Button ", AltPositiveButton);
+            AxisGravity = EditorGUILayout.FloatField("Gravity ", AxisGravity);
+            AxisDeadZone = EditorGUILayout.FloatField("DeadZone ", AxisDeadZone);
+            AxisSensitivity = EditorGUILayout.FloatField("Sensetivity ", AxisSensitivity);
+            AxisSnap = EditorGUILayout.Toggle("Snap ", AxisSnap);
+            AxisInvert = EditorGUILayout.Toggle("Invert ", AxisInvert);
 
-        EditorGUILayout.LabelField("Type", GUILayout.MaxWidth(135));
-        string[] ControlType = new[] { "Key or Mouse Button", "Mouse Movement", "Joystick Axis" }; //this creates an enum list
-        ControlTypeIndex = EditorGUILayout.Popup(ControlTypeIndex, ControlType); //this creates a dropdown menu in the inspector with the enum values
+            GUILayout.EndVertical();
+        #endregion
 
-        EditorGUILayout.EndHorizontal();
+        #region Axis Type
+            EditorGUILayout.BeginHorizontal();
 
-        EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Type", GUILayout.MaxWidth(135));
+            string[] ControlType = new[] { "Key or Mouse Button", "Mouse Movement", "Joystick Axis" }; //this creates an enum list
+            ControlTypeIndex = EditorGUILayout.Popup(ControlTypeIndex, ControlType); //this creates a dropdown menu in the inspector with the enum values
 
-        EditorGUILayout.LabelField("Axis", GUILayout.MaxWidth(135));
-        string[] AxisType = new[] { "X axis", "Y axis", "3rd axis (Joysticks and Scrollwheel", "4th axis (Joysticks)",  "5th axis (Joysticks)",
-        "6th axis (Joysticks)", "7th axis (Joysticks)", "8th axis (Joysticks)", "9th axis (Joysticks)", "10th axis (Joysticks)", "11th axis (Joysticks)",
-        "12th axis (Joysticks)", "13th axis (Joysticks)", "14th axis (Joysticks)", "15th axis (Joysticks)", "16th axis (Joysticks)", "17th axis (Joysticks)",
-        "18th axis (Joysticks)", "19th axis (Joysticks)", "20th axis (Joysticks)", "21th axis (Joysticks)", "22th axis (Joysticks)", "23th axis (Joysticks)",
-        "24th axis (Joysticks)", "25th axis (Joysticks)", "26th axis (Joysticks)", "27th axis (Joysticks)", "28th axis (Joysticks)" }; //this creates an enum list
-        AxisTypeIndex = EditorGUILayout.Popup(AxisTypeIndex, AxisType); //this creates a dropdown menu in the inspector with the enum values
+            EditorGUILayout.EndHorizontal();
+        #endregion
 
-        EditorGUILayout.EndHorizontal();
+        #region Controller Axis
+            EditorGUILayout.BeginHorizontal();
 
-        EditorGUILayout.BeginHorizontal();
-
-        EditorGUILayout.LabelField("Joy Num", GUILayout.MaxWidth(135));
-        string[] JoyNum = new[] { "Get Motion from all Joysticks", "Joystick 1", "Joystick 2", "Joystick 3", "Joystick 4", "Joystick 5", "Joystick 6", "Joystick 7",
-        "Joystick 8", "Joystick 9", "Joystick 10", "Joystick 11", "Joystick 12", "Joystick 13", "Joystick 14", "Joystick 15", "Joystick 16" }; //this creates an enum list
-        JoyNumIndex = EditorGUILayout.Popup(JoyNumIndex, JoyNum); //this creates an enum list
-
-        EditorGUILayout.EndHorizontal();
-
-        if (GUILayout.Button("Remap InputManager Axis")) //creates a button whose caption changes depending on the enum of the toolbar
-        {
-            RemapAxis(); //makes a call to the AccessibilityManager script
-            AxisName = "";
-            DescriptiveAxisName = "";
-            DescriptiveNegativeAxisName = "";
-            NegativeButton = "";
-            PositiveButton = "";
-            AltNegativeButton = "";
-            AltPositiveButton = "";
-            AxisGravity = 0;
-            AxisDeadZone = 0.001f;
-            AxisSensitivity = 1;
-            AxisSnap = false;
-            AxisInvert = false;
-            ControlType = new[] { "Key or Mouse Button", "Mouse Movement", "Joystick Axis" }; //this creates an enum list
-            ControlTypeIndex = EditorGUILayout.Popup(0, ControlType); //this creates a dropdown menu in the inspector with the enum values
-            AxisType = new[] { "X axis", "Y axis", "3rd axis (Joysticks and Scrollwheel", "4th axis (Joysticks)",  "5th axis (Joysticks)",
+            EditorGUILayout.LabelField("Axis", GUILayout.MaxWidth(135));
+            string[] AxisType = new[] { "X axis", "Y axis", "3rd axis (Joysticks and Scrollwheel", "4th axis (Joysticks)",  "5th axis (Joysticks)",
             "6th axis (Joysticks)", "7th axis (Joysticks)", "8th axis (Joysticks)", "9th axis (Joysticks)", "10th axis (Joysticks)", "11th axis (Joysticks)",
             "12th axis (Joysticks)", "13th axis (Joysticks)", "14th axis (Joysticks)", "15th axis (Joysticks)", "16th axis (Joysticks)", "17th axis (Joysticks)",
             "18th axis (Joysticks)", "19th axis (Joysticks)", "20th axis (Joysticks)", "21th axis (Joysticks)", "22th axis (Joysticks)", "23th axis (Joysticks)",
             "24th axis (Joysticks)", "25th axis (Joysticks)", "26th axis (Joysticks)", "27th axis (Joysticks)", "28th axis (Joysticks)" }; //this creates an enum list
-            AxisTypeIndex = EditorGUILayout.Popup(0, AxisType); //this creates a dropdown menu in the inspector with the enum values
-            JoyNum = new[] { "Get Motion from all Joysticks", "Joystick 1", "Joystick 2", "Joystick 3", "Joystick 4", "Joystick 5", "Joystick 6", "Joystick 7",
+            AxisTypeIndex = EditorGUILayout.Popup(AxisTypeIndex, AxisType); //this creates a dropdown menu in the inspector with the enum values
+
+            EditorGUILayout.EndHorizontal();
+        #endregion
+
+        #region Joystick Number
+            EditorGUILayout.BeginHorizontal();
+
+            EditorGUILayout.LabelField("Joy Num", GUILayout.MaxWidth(135));
+            string[] JoyNum = new[] { "Get Motion from all Joysticks", "Joystick 1", "Joystick 2", "Joystick 3", "Joystick 4", "Joystick 5", "Joystick 6", "Joystick 7",
             "Joystick 8", "Joystick 9", "Joystick 10", "Joystick 11", "Joystick 12", "Joystick 13", "Joystick 14", "Joystick 15", "Joystick 16" }; //this creates an enum list
-            JoyNumIndex = EditorGUILayout.Popup(0, JoyNum); //this creates an enum list
-        }
+            JoyNumIndex = EditorGUILayout.Popup(JoyNumIndex, JoyNum); //this creates an enum list
 
-        GUILayout.EndVertical();
-        /*This is the end of the remap axis */
+            EditorGUILayout.EndHorizontal();
+        #endregion
 
-        /*This is the beginning of the controls code which modifies and calls the CreateControls function*/
-        GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
+        #region Remap Axis
+            if (GUILayout.Button("Remap InputManager Axis")) //creates a button whose caption changes depending on the enum of the toolbar
+            {
+                RemapAxis(); //makes a call to the AccessibilityManager script
+                AxisName = "";
+                DescriptiveAxisName = "";
+                DescriptiveNegativeAxisName = "";
+                NegativeButton = "";
+                PositiveButton = "";
+                AltNegativeButton = "";
+                AltPositiveButton = "";
+                AxisGravity = 0;
+                AxisDeadZone = 0.001f;
+                AxisSensitivity = 1;
+                AxisSnap = false;
+                AxisInvert = false;
+                ControlType = new[] { "Key or Mouse Button", "Mouse Movement", "Joystick Axis" }; //this creates an enum list
+                ControlTypeIndex = EditorGUILayout.Popup(0, ControlType); //this creates a dropdown menu in the inspector with the enum values
+                AxisType = new[] { "X axis", "Y axis", "3rd axis (Joysticks and Scrollwheel", "4th axis (Joysticks)",  "5th axis (Joysticks)",
+                "6th axis (Joysticks)", "7th axis (Joysticks)", "8th axis (Joysticks)", "9th axis (Joysticks)", "10th axis (Joysticks)", "11th axis (Joysticks)",
+                "12th axis (Joysticks)", "13th axis (Joysticks)", "14th axis (Joysticks)", "15th axis (Joysticks)", "16th axis (Joysticks)", "17th axis (Joysticks)",
+                "18th axis (Joysticks)", "19th axis (Joysticks)", "20th axis (Joysticks)", "21th axis (Joysticks)", "22th axis (Joysticks)", "23th axis (Joysticks)",
+                "24th axis (Joysticks)", "25th axis (Joysticks)", "26th axis (Joysticks)", "27th axis (Joysticks)", "28th axis (Joysticks)" }; //this creates an enum list
+                AxisTypeIndex = EditorGUILayout.Popup(0, AxisType); //this creates a dropdown menu in the inspector with the enum values
+                JoyNum = new[] { "Get Motion from all Joysticks", "Joystick 1", "Joystick 2", "Joystick 3", "Joystick 4", "Joystick 5", "Joystick 6", "Joystick 7",
+                "Joystick 8", "Joystick 9", "Joystick 10", "Joystick 11", "Joystick 12", "Joystick 13", "Joystick 14", "Joystick 15", "Joystick 16" }; //this creates an enum list
+                JoyNumIndex = EditorGUILayout.Popup(0, JoyNum); //this creates an enum list
+            }
+            /*This is the end of the remap axis */
+        #endregion
+
         base.OnInspectorGUI(); //this line of code gives this script access to the base functionality of OnInspectorGui().
     }
 
