@@ -316,6 +316,9 @@
  <Reference Include="Interop.SpeechLib">
  <HintPath>C:/Users/woofa/Documents/GitHub/Accessibility-Stack/Assets/Accessibility Manager/External Libraries/Interop.SpeechLib.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor.Advertisements">
+ <HintPath>C:/Users/woofa/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="mscorlib">
  <HintPath>D:/Unity/2018.2.16f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
  </Reference>
