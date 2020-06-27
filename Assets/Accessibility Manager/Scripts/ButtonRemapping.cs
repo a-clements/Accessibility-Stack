@@ -2,8 +2,9 @@
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using UnityEngine.EventSystems;
 
-public class ButtonRemapping : MonoBehaviour
+public class ButtonRemapping : MonoBehaviour, IPointerClickHandler
 {
     /*This script will assign new keycodes on on either a button click or controller button 0 being pressed. There are a no known bugs.                                    */
     /*Pressing return will invoke OnButtonClick(). Pressing return a second time will continue the loop until either a new button is pressed. Or a mouse button clicked.   */
@@ -28,7 +29,7 @@ public class ButtonRemapping : MonoBehaviour
 
     private void OnEnable()
     {
-        Button.onClick.AddListener(delegate { OnButtonClick(); });
+        //Button.onClick.AddListener(delegate { OnButtonClick(); });
     }
 
     private void Start()
@@ -56,7 +57,7 @@ public class ButtonRemapping : MonoBehaviour
         }
     }
 
-    public void OnButtonClick()
+    public void OnPointerClick(PointerEventData eventData)
     {
         OldKeycode = UIManager.ManagerInstance.Keys[Index];
         Button.transform.GetChild(0).GetComponent<Text>().text = "Please enter a new key";
@@ -101,21 +102,20 @@ public class ButtonRemapping : MonoBehaviour
                         if (keytext == "SysReq")
                         {
                             Button.transform.GetChild(0).GetComponent<Text>().text = "System Requirements";
-                            UIManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
                         }
                         else
                         {
                             keytext = keytext.Substring(0, 5) + " " + keytext.Substring(5, stringlength - 5);
 
                             Button.transform.GetChild(0).GetComponent<Text>().text = keytext;
-                            UIManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
                         }
                     }
                     else
                     {
                         Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
-                        UIManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
                     }
+
+                    UIManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
 
                     IsButtonPressed = false;
                 }
@@ -185,14 +185,14 @@ public class ButtonRemapping : MonoBehaviour
     {
         while (IsButtonPressed == true)
         {
-            if (Input.GetKeyDown(KeyCode.JoystickButton1))
+            if (Input.GetKeyDown(KeyCode.Joystick1Button0))
             {
                 IsButtonPressed = false;
                 Button.transform.GetChild(0).GetComponent<Text>().text = Keycode.ToString();
                 UIManager.ManagerInstance.Speak("Cancel");
             }
 
-            else if (Input.GetKeyDown(KeyCode.JoystickButton2))
+            else if (Input.GetKeyDown(KeyCode.JoystickButton1))
             {
                 IsButtonPressed = false;
                 Keycode = KeyCode.JoystickButton2;
@@ -201,12 +201,21 @@ public class ButtonRemapping : MonoBehaviour
                 UIManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
             }
 
-            else if (Input.GetKeyDown(KeyCode.JoystickButton3))
+            else if (Input.GetKeyDown(KeyCode.JoystickButton2))
             {
                 IsButtonPressed = false;
                 Keycode = KeyCode.JoystickButton3;
                 UIManager.ManagerInstance.Keys[Index] = Keycode;
                 Button.transform.GetChild(0).GetComponent<Text>().text = "Action 2";
+                UIManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.JoystickButton3))
+            {
+                IsButtonPressed = false;
+                Keycode = KeyCode.JoystickButton3;
+                UIManager.ManagerInstance.Keys[Index] = Keycode;
+                Button.transform.GetChild(0).GetComponent<Text>().text = "Action 3";
                 UIManager.ManagerInstance.Speak(this.transform.GetComponentInChildren<Text>().text);
             }
 

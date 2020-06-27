@@ -208,8 +208,6 @@ public class UIManager : MonoBehaviour
     {
         Panel = GameObject.Find("GraphicsPanel");
 
-        Canvas WindowSize;
-        WindowSize = FindObjectOfType<Canvas>();
         int i = 0;
 
         if (Panel == null)
@@ -217,6 +215,9 @@ public class UIManager : MonoBehaviour
             PanelName = "GraphicsPanel";
             CreatePanel();
         }
+
+        Canvas WindowSize;
+        WindowSize = FindObjectOfType<Canvas>();
 
         switch (GraphicsIndex)
         {

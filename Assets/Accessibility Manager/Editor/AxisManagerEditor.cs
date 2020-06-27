@@ -128,7 +128,7 @@ public class AxisManagerEditor : Editor //derives from the Editor class.
         ImportExistingAxisPresets();
         CreateCompatibilityAxisPresets();
 
-        var inputManagerAsset = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0];
+        var inputManagerAsset = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset");
         var serializedObject = new SerializedObject(inputManagerAsset);
         var axisArray = serializedObject.FindProperty("m_Axes");
 
